@@ -789,9 +789,6 @@ ul {
   transform-origin: top;
   position: fixed;
   transition: transform 0.2s; }
-  @media screen and (min-width: 600px) {
-    .c-app-bar {
-      right: 40px; } }
 
 .c-app-bar__back {
   margin-left: 12px; }
@@ -815,5 +812,8 @@ ul {
 .c-app-bar--orange {
   background: #FF8055;
   color: white; }
+
+body {
+  background: #EEE; }
 
 /*# sourceMappingURL=main.css.map */

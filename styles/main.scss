@@ -1,2 +1,6 @@
 @import './base/index';
 @import './components/index';
+
+body {
+    background: $thread-light-gray;
+}
