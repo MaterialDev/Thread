@@ -25,3 +25,7 @@ gulp.task('build', () => {
         .pipe(rename('thread.css'))
         .pipe(gulp.dest('./dist'));
 });
+
+gulp.task('default', ['build'], () => {
+    gulp.watch('./styles/**/*.scss', ['build']);
+});
