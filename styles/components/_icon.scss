@@ -1,0 +1,38 @@
+@mixin icon() {
+    font-family: 'Material Icons';
+    vertical-align: middle;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    fill: currentColor;
+    color: inherit;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-feature-settings: 'liga';
+}
+
+.mi {
+    @include icon();
+
+    &--sm {
+        font-size: 18px;
+    }
+
+    &--lg {
+        font-size: 36px;
+    }
+
+    &--xl {
+        font-size: 48px;
+    }
+}

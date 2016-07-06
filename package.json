@@ -1,0 +1,24 @@
+{
+  "name": "thread",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zach Barnes <Zach.Barnes@Material.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "immutable-css": "^1.1.2",
+    "postcss-reporter": "^1.4.1",
+    "postcss-scss": "^0.1.8",
+    "stylelint": "^6.8.0",
+    "stylelint-config-standard": "^10.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+@mixin badge-color($background, $text) {
+    background: $background;
+    color: $text;
+}
+
+%badge {
+    border-radius: 10px;
+    height: 20px;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 3px 12px;
+    text-transform: uppercase;
+}
+
+.c-badge {
+    @extend %badge;
+
+    &--success {
+        @include badge-color($thread-green, $light-primary-text);
+    }
+}

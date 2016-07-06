@@ -1,0 +1,50 @@
+@keyframes wave-wobble {
+    0% {  transform: translate3d(-50%, -50%, 0) scale(0.6);  }
+    50% { transform: translate3d(-50%, -50%, 0) scale(0.7); }
+    100% { transform: translate3d(-50%, -50%, 0) scale(0.6); }
+}
+
+@keyframes wave-wobble-fab {
+    0% {  transform: translate3d(-50%, -50%, 0) scale(0.9);  }
+    50% { transform: translate3d(-50%, -50%, 0) scale(1.1); }
+    100% { transform: translate3d(-50%, -50%, 0) scale(0.9); }
+}
+
+.wave-effect {
+    pointer-events: none;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    background: currentColor;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(.67);
+    transition: opacity 200ms, transform 0ms 200ms;
+    transition-timing-function: $mv-ease;
+    opacity: 0;
+
+    &--focus {
+        opacity: .26;
+        animation: wave-wobble 2s $mv-ease infinite alternate;
+    }
+
+    &--active {
+        opacity: .26;
+        transform: translate3d(-50%, -50%, 0) scale(2);
+        transition: transform 300ms 60ms, opacity 200ms;
+    }
+
+    &--fab {
+        transform: translate3d(-50%, -50%, 0) scale(0);
+
+        &.wave-effect {
+            &--active {
+                transform: translate3d(-50%, -50%, 0) scale(1);
+            }
+
+            &--focus {
+                animation-name: wave-wobble-fab;
+            }
+        }
+    }
+}

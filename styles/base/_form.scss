@@ -1,0 +1,126 @@
+@mixin input-color($text-color, $border-color, $border-color-focus: none) {
+    color: $text-color;
+    border-color: $border-color;
+
+    ~ .c-input__addon {
+        color: $text-color;
+        border-color: $border-color;
+    }
+
+    @if $border-color-focus != none {
+        &:focus {
+            border-color: $border-color-focus;
+
+            & ~ &__addon {
+                border-color: $border-color-focus;
+            }
+        }
+    }
+}
+
+%input {
+    margin-bottom: 16px;
+    background: none;
+    font-size: 16px;
+    order: 1;
+    width: 100%;
+
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom: 1px solid;
+    padding-bottom: 4px;
+
+    &:focus {
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        outline: none;
+        padding-bottom: 3px;
+    }
+
+    @at-root select#{&} {
+        appearance: none;
+        background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_white.svg) no-repeat right;
+        padding-right: 24px;
+    }
+
+    @include font();
+}
+
+.c-input {
+    @extend %input;
+
+    &__container {
+        display: inline-flex;
+        vertical-align: bottom;
+    }
+
+    &__addon {
+        font-weight: normal;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        padding-bottom: 4px;
+        order: 0;
+        left: 0;
+        position: relative;
+    }
+
+    &:focus ~ &__addon {
+        border-bottom-width: 2px;
+        padding-bottom: 3px;
+    }
+
+    &--large {
+        font-size: 24px;
+
+        @media screen and (min-width: $bp-mobile) {
+            font-size: 36px;
+        }
+    }
+
+    &--natural-language {
+        &.c-input--light {
+            @include input-color($light-primary-text, $light-primary-text);
+        }
+
+        &.c-input--dark {
+            @include input-color($dark-primary-text, $thread-primary);
+        }
+    }
+
+    &--light {
+        @include input-color($light-primary-text, $light-divider, $light-primary-text);
+    }
+
+    &--dark {
+        @include input-color($dark-primary-text, $dark-divider, $thread-primary);
+    }
+
+    &--inline {
+        margin-bottom: 0;
+        padding-bottom: 1px;
+
+        ~ .c-input__addon {
+            padding-bottom: 1px;
+        }
+
+        &:focus {
+            padding-bottom: 0;
+
+            ~ .c-input__addon {
+                padding-bottom: 1px;
+            }
+        }
+    }
+
+    //Creates input with exact number width based on font size
+    &--number {
+        width: 0.5859em * 3;
+    }
+
+    @for $i from 1 through 6 {
+        &--number-#{$i} {
+            width: 0.5859em * $i;
+        }
+    }
+}

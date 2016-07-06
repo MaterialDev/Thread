@@ -1,0 +1,58 @@
+@mixin natural-language-color($text-color, $action-color, $action-border-color: none) {
+    color: $text-color;
+
+    .c-natural-language__action {
+        color: $action-color;
+
+        @if $action-border-color == 'none' {
+            border-bottom-color: $action-border-color;
+        } @else {
+            border-bottom-color: $action-color;
+        }
+    }
+}
+
+%natural-language {
+    font-weight: lighter;
+    font-size: 24px;
+    padding: 0 8px;
+    width: 800px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: $bp-mobile) {
+        font-size: 36px;
+    }
+}
+
+.c-natural-language {
+    @extend %natural-language;
+
+    &--light {
+        @include natural-language-color($light-secondary-text, $light-primary-text);
+    }
+
+    &--dark {
+        @include natural-language-color($dark-primary-text, $dark-primary-text, $thread-primary);
+
+        .c-natural-language__input {
+            color: $dark-primary-text;
+            border-color: $thread-primary;
+
+            @at-root select#{&} {
+                background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_secondary.svg) no-repeat right;
+            }
+        }
+
+        color: $dark-primary-text;
+    }
+
+    &__section {
+        margin-bottom: 24px;
+    }
+
+    option {
+        color: $dark-primary-text;
+    }
+}

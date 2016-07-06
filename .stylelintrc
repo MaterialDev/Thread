@@ -1,0 +1,34 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "indentation": [4],
+        "at-rule-no-unknown": [true, {
+            ignoreAtRules: [
+                "for",
+                "if",
+                "else",
+                "include",
+                "extend",
+                "at-root",
+                "mixin"
+            ]
+        }],
+        "at-rule-empty-line-before": ["always", {
+            ignoreAtRules: [
+                "if",
+                "else",
+                "include"
+            ]
+        }],
+        "block-closing-brace-newline-after": ["always-multi-line", {
+            ignoreAtRules: [
+                "if",
+                "else"
+            ]
+        }],
+        "no-missing-eof-newline": null,
+        "color-hex-case": "upper",
+        "selector-pseudo-element-colon-notation": "single",
+        "media-feature-no-missing-punctuation": null
+    }
+}

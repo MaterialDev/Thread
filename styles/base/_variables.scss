@@ -1,0 +1,34 @@
+//Timing functions
+$mv-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$mv-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$mv-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+//Font colors
+$dark-primary-text: rgba(0, 0, 0, 0.87);
+$dark-secondary-text: rgba(0, 0, 0, 0.54);
+$dark-disabled-text: rgba(0, 0, 0, 0.38);
+$dark-divider: rgba(0, 0, 0, 0.12);
+
+$light-primary-text: rgba(255, 255, 255, 1);
+$light-secondary-text: rgba(255, 255, 255, 0.7);
+$light-disabled-text: rgba(255, 255, 255, 0.3);
+$light-divider: rgba(255, 255, 255, 0.12);
+$light-shadow: rgba(0, 0, 0, 0.2);
+
+//page colors
+$thread-primary: #FFAB00;
+$thread-white: #FFF;
+$thread-purple: #684BB6;
+$thread-green: #3EC671;
+$thread-teal: #0FB3CC;
+$thread-orange: #FF8055;
+$thread-dark-gray: #79919D;
+$thread-blue: #1E66C3;
+$thread-salmon: #BC7180;
+$thread-red-orange: #EC6060;
+$thread-pink: #C45898;
+
+//Breakpoints
+$bp-desktop: 1200px;
+$bp-tablet: 960px;
+$bp-mobile: 600px;

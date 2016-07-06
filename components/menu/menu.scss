@@ -1,0 +1,83 @@
+.c-menu {
+    position: relative;
+    display: inline-block;
+
+    &__backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 100;
+
+        &--open {
+            pointer-events: auto;
+        }
+    }
+
+    &__content {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        @include shadow();
+        width: 56px * 2;
+        transform: scale(1, 0);
+        opacity: 0;
+        background: white;
+        transition: opacity 200ms $mv-ease-in, transform 0ms 200ms;
+        position: absolute;
+        z-index: 200;
+
+        @for $i from 1 through 5 {
+            &--width-#{$i} {
+                width: 56px * $i;
+            }
+        }
+
+        &--top {
+            top: 0;
+            transform-origin: top;
+        }
+
+        &--left {
+            left: 8px;
+        }
+
+        &--right {
+            right: 8px;
+        }
+
+        &--bottom {
+            bottom: 0;
+            transform-origin: bottom;
+        }
+
+        &--on-body {
+            position: fixed;
+        }
+
+        &--open {
+            opacity: 1;
+            transition: transform 200ms $mv-ease-out;
+            transform: scale(1, 1);
+
+            .c-menu {
+                &__item {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__item {
+        line-height: 48px;
+        opacity: 0;
+        transition: opacity 150ms $mv-ease-out 150ms, background 200ms $mv-ease;
+        font-size: 16px;
+        letter-spacing: 0;
+        text-transform: none;
+        font-weight: normal;
+        color: $dark-primary-text;
+        display: block;
+    }
+}

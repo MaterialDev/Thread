@@ -1,0 +1,127 @@
+@mixin button-color($text-color, $background-color: none) {
+    color: $text-color;
+    background: $background-color;
+
+    &:focus,
+    &:hover {
+        color: $text-color;
+
+        @if $background-color == 'none' {
+            background: rgba(0, 0, 0, 0.12);
+        } @else {
+            background: mix(black, $background-color, 10%);
+        }
+    }
+}
+
+@mixin button-raised() {
+    @include shadow();
+
+    &:active,
+    &:hover {
+        @include shadow-raised();
+    }
+}
+
+@mixin button-fab($width: 56px, $height: 56px) {
+    width: $width;
+    height: $height;
+    min-width: auto;
+    border-radius: 50%;
+    overflow: visible;
+}
+
+%button {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    line-height: 36px;
+    min-width: 88px;
+    border-radius: 2px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 8px;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.05em;
+    background: none;
+    transition: background 200ms $mv-ease;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.c-button {
+    @extend %button;
+    @include button-color($dark-primary-text);
+
+    &--raised {
+        @include button-raised();
+    }
+
+    &--fab {
+        @include button-fab();
+        @include button-raised();
+
+        &-mini {
+            @include button-fab(40px, 40px);
+            @include button-raised();
+        }
+    }
+
+    &--icon {
+        @include button-fab(40px, 40px);
+
+        &:hover,
+        &:focus {
+            background: none !important;
+        }
+    }
+
+    &--menu {
+        margin: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    &--huge {
+        border-radius: 24px;
+        padding: 4px 24px;
+        @include button-raised();
+    }
+
+    &--primary {
+        @include button-color($thread-primary);
+
+        //Reverse color and background if button is raised
+        &.c-button--raised,
+        &.c-button--fab,
+        &.c-button--fab-mini,
+        &.c-button--huge {
+            @include button-color($light-primary-text, $thread-primary);
+        }
+    }
+
+    &--secondary-filled {
+        @include button-color($dark-disabled-text, rgba(158, 158, 158, 0.2));
+    }
+
+    &__icon {
+        color: inherit;
+        fill: currentColor;
+
+        &--right {
+            margin-left: 8px;
+            margin-right: -8px;
+        }
+
+        &--left {
+            margin-left: -8px;
+            margin-right: 8px;
+        }
+    }
+}

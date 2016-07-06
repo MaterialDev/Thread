@@ -1,0 +1,104 @@
+@mixin page-color($color) {
+    .l-page__background {
+        background: $color;
+    }
+}
+
+%page {
+    position: relative;
+    overflow: auto;
+    padding-top: 64px;
+
+    @media screen and (min-width: $bp-mobile) {
+        padding-right: 40px;
+    }
+}
+
+.l-page {
+    @extend %page;
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 136px;
+        pointer-events: none;
+        transition: transform 0.3s ease-out;
+
+        &.collapsed {
+            transform: translate3d(0, -136px, 0);
+        }
+    }
+
+    /* stylelint-disable block-no-empty */
+    &__primary {}
+    &__secondary {}
+    /* stylelint-enable */
+
+    &__tab {
+        position: relative;
+        width: 800px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &--orange { @include page-color($thread-orange); }
+}
+
+.l-row {
+    overflow: auto;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    &:before {
+        display: table;
+        content: " ";
+    }
+}
+
+.l-container {
+    margin-top: -8px;
+}
+
+[class^="l-col"] {
+    padding-left: 8px;
+    padding-right: 8px;
+    float: left;
+    width: 100%;
+
+    & > [class^="l-col"] {
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+@for $i from 1 through 20 {
+    .l-col-#{$i * 5} {
+        width: $i * 5%;
+    }
+}
+
+@for $i from 1 through 20 {
+    .l-col-mobile-#{$i * 5} {
+        @media screen and (max-width: #{$bp-mobile - 1px}) {
+            width: $i * 5%;
+        }
+    }
+}
+
+@for $i from 1 through 20 {
+    .l-col-gt-mobile-#{$i * 5} {
+        @media screen and (min-width: $bp-mobile) {
+            width: $i * 5%;
+        }
+    }
+}

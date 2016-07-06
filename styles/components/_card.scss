@@ -1,0 +1,107 @@
+.c-card {
+    @include shadow();
+    background: white;
+    border-radius: 2px;
+    margin: 8px;
+
+    &--with-media {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: $bp-mobile) {
+        flex-direction: row;
+    }
+
+    &__media {
+        position: relative;
+        overflow: hidden;
+        flex-basis: 40%;
+
+        &-img {
+            height: auto;
+            width: 100%;
+
+            @media screen and (min-width: $bp-mobile) {
+                position: absolute;
+                height: 100%;
+                width: auto;
+                bottom: 50%;
+                right: 50%;
+                transform: translate3d(50%, 50%, 0);
+            }
+        }
+
+        @for $i from 1 through 20 {
+            &--#{$i * 5} {
+                flex-basis: $i * 5%;
+                flex-shrink: 0;
+            }
+        }
+    }
+
+    &__content {
+        flex-shrink: 1;
+    }
+
+    &__header {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    &__help {
+        cursor: pointer;
+        i {
+            color: $dark-divider;
+        }
+    }
+
+    &__title {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+        letter-spacing: 0.1em;
+    }
+
+    &__body {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 24px;
+    }
+
+    &__footer {
+        padding-left: 16px;
+        padding-right: 16px;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.03);
+        justify-content: space-between;
+
+        @media screen and (min-width: $bp-mobile) {
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+    }
+
+    &__footer-left {
+        align-self: flex-start;
+    }
+
+    &__footer-right {
+        align-self: flex-end;
+    }
+
+    &__footer-left,
+    &__footer-right {
+        @media screen and (min-width: $bp-mobile) {
+            align-self: auto;
+        }
+    }
+}

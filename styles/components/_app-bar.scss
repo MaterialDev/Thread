@@ -1,0 +1,54 @@
+
+@mixin app-bar-color($background, $text) {
+    background: $background;
+    color: $text;
+}
+
+%app-bar {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform-origin: top;
+    position: fixed;
+    transition: transform 0.2s;
+
+    @media screen and (min-width: $bp-mobile) {
+        right: 40px;
+    }
+}
+
+.c-app-bar {
+    @extend %app-bar;
+
+    &__back {
+        margin-left: 12px;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+
+    &.collapsed {
+        transform: scale(1, 0);
+
+        & > * {
+            opacity: 0;
+        }
+    }
+
+    & > * {
+        transition: opacity 0.2s;
+    }
+
+    &--orange { @include app-bar-color($thread-orange, $light-primary-text); }
+}
