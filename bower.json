@@ -1,0 +1,24 @@
+{
+  "name": "thread",
+  "description": "Material CSS Framework",
+  "main": "./dist/thread.css",
+  "authors": [
+    "Zach Barnes <Zach.Barnes@Material.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Material",
+    "CSS",
+    "Thread"
+  ],
+  "homepage": "https://github.com/MaterialDev/Thread",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
