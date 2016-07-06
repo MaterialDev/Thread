@@ -4,7 +4,7 @@ angular.module('thread.scrollCollapse', []).directive('scrollCollapse', ($window
             let lastScroll = 0;
 
             angular.element($window).on('scroll', () => {
-                let scroll = angular.element('body').scrollTop();
+                let scroll = angular.element(document.querySelector('body')).scrollTop();
 
                 //Scrolling down
                 if (scroll > lastScroll + 10) {

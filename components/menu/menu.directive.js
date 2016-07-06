@@ -59,7 +59,7 @@ angular.module('thread.menu', []).directive('thdMenu', ($timeout) => {
 
                     switch (this.xPos) {
                         case 'right':
-                            left = targetPos.right - this.menuContent.width();
+                            left = targetPos.right - this.menuContent[0].offsetHeight;
                             break;
                         case 'left':
                             left = targetPos.left;
@@ -72,17 +72,15 @@ angular.module('thread.menu', []).directive('thdMenu', ($timeout) => {
                             top = targetPos.top;
                             break;
                         case 'bottom':
-                            top = targetPos.bottom - this.menuContent.height();
+                            top = targetPos.bottom - this.menuContent[0].offsetHeight;
                             break;
                         //no default
                     }
 
-                    this.menuContent.css({
-                        left: left,
-                        top: top,
-                        right: 'initial',
-                        bottom: 'initial'
-                    });
+                    this.menuContent[0].style.left = left;
+                    this.menuContent[0].style.top = top;
+                    this.menuContent[0].style.right = 'initial';
+                    this.menuContent[0].style.bottom = 'initial';
                 }
             }
 
