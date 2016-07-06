@@ -1,4 +1,4 @@
-angular.module('vln.utilities.scrollCollapse', []).directive('scrollCollapse', ($window) => {
+angular.module('thread.scrollCollapse', []).directive('scrollCollapse', ($window) => {
     return {
         link(scope, element, attrs) {
             let lastScroll = 0;

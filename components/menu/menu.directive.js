@@ -1,4 +1,4 @@
-angular.module('vln.menu', []).directive('vmMenu', ($timeout) => {
+angular.module('thread.menu', []).directive('thdMenu', ($timeout) => {
     return {
         templateUrl: 'components/menu/menu.html',
         transclude: true,
@@ -7,8 +7,8 @@ angular.module('vln.menu', []).directive('vmMenu', ($timeout) => {
         controllerAs: '$menu',
         scope: {},
         link(scope, element, attrs, ctrl) {
-            ctrl.menuContent = element.find('.c-menu__content');
-            ctrl.backdrop = element.find('.c-menu__backdrop');
+            ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
+            ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
 
             if (attrs.moveToBody) {
                 ctrl.moveToBody();
@@ -23,12 +23,12 @@ angular.module('vln.menu', []).directive('vmMenu', ($timeout) => {
                 ctrl.close();
             });
 
-            element.find('.c-menu__item').on('click', () => {
+            angular.element(element[0].querySelector('.c-menu__item')).on('click', () => {
                 $timeout(() => ctrl.close(), 100);
             });
         },
         controller($scope, $element) {
-            _.extend(this, {
+            angular.extend(this, {
                 onBody: false,
                 xPos: null,
                 yPos: null,
@@ -46,9 +46,9 @@ angular.module('vln.menu', []).directive('vmMenu', ($timeout) => {
             });
 
             function open() {
-                let menuTarget = $element.find('.c-menu__target');
+                let menuTarget = angular.element($element[0].querySelector('.c-menu__target'));
 
-                $element.find('.c-menu').addClass('c-menu--open');
+                angular.element($element[0].querySelector('.c-menu')).addClass('c-menu--open');
                 this.menuContent.addClass('c-menu__content--open');
                 this.backdrop.addClass('c-menu__backdrop--open');
 
@@ -87,7 +87,7 @@ angular.module('vln.menu', []).directive('vmMenu', ($timeout) => {
             }
 
             function close() {
-                $element.find('.c-menu').removeClass('c-menu--open');
+                angular.element($element[0].querySelector('.c-menu')).removeClass('c-menu--open');
                 this.menuContent.removeClass('c-menu__content--open');
                 this.backdrop.removeClass('c-menu__backdrop--open');
             }
@@ -120,21 +120,21 @@ angular.module('vln.menu', []).directive('vmMenu', ($timeout) => {
             function moveToBody() {
                 this.onBody = true;
                 this.menuContent.addClass('c-menu__content--on-body');
-                angular.element('body').append(this.menuContent);
-                angular.element('body').append(this.backdrop);
+                angular.element(document.querySelector('body')).append(this.menuContent);
+                angular.element(document.querySelector('body')).append(this.backdrop);
             }
         }
     };
 });
 
-angular.module('vln.menu').directive('vmMenuTarget', () => {
+angular.module('thread.menu').directive('thdMenuTarget', () => {
     return {
-        require: '^vmMenu',
+        require: '^thdMenu',
         transclude: true,
         replace: true,
         scope: true,
         template: `<button
-                    class="c-menu__target c-button c-button--icon"
+                    class="c-menu__target c-button"
                     ng-transclude
                     ng-click="$menu.open()"></button>`,
         link(scope, element, attrs, ctrl) {
@@ -143,9 +143,9 @@ angular.module('vln.menu').directive('vmMenuTarget', () => {
     };
 });
 
-angular.module('vln.menu').directive('vmMenuContent', () => {
+angular.module('thread.menu').directive('thdMenuContent', () => {
     return {
-        require: '^vmMenu',
+        require: '^thdMenu',
         transclude: true,
         replace: true,
         scope: true,
@@ -153,9 +153,9 @@ angular.module('vln.menu').directive('vmMenuContent', () => {
     };
 });
 
-angular.module('vln.menu').directive('vmMenuItem', () => {
+angular.module('thread.menu').directive('thdMenuItem', () => {
     return {
-        require: '^vmMenuContent',
+        require: '^thdMenuContent',
         transclude: true,
         replace: true,
         scope: true,
