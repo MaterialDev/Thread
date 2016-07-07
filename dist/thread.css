@@ -3,9 +3,6 @@
   position: relative;
   overflow: auto;
   padding-top: 64px; }
-  @media screen and (min-width: 600px) {
-    .l-page {
-      padding-right: 40px; } }
 
 .l-page {
   /* stylelint-disable block-no-empty */
@@ -15,7 +12,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 136px;
+    height: 176px;
     pointer-events: none;
     transition: transform 0.3s ease-out; }
     .l-page__background.collapsed {
@@ -277,6 +274,10 @@
 *:after {
   box-sizing: border-box; }
 
+html, body {
+  margin: 0;
+  padding: 0; }
+
 ul {
   margin: 0;
   padding: 0;
@@ -331,6 +332,12 @@ ul {
 
 .u-hide {
   display: none !important; }
+
+.u-no-margin {
+  margin: 0 !important; }
+
+.u-no-padding {
+  padding: 0 !important; }
 
 @media screen and (min-width: 600px) {
   .u-hide-gt-mobile {
@@ -417,6 +424,8 @@ ul {
   color: white; }
 
 .c-button {
+  text-align: center;
+  cursor: pointer;
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -501,6 +510,13 @@ ul {
     .c-button--secondary-filled:focus, .c-button--secondary-filled:hover {
       color: rgba(0, 0, 0, 0.38);
       background: rgba(79, 79, 79, 0.28); }
+  .c-button--tab {
+    height: 48px;
+    line-height: 48px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 0;
+    margin: 0; }
   .c-button__icon {
     color: inherit;
     fill: currentColor; }
@@ -950,6 +966,38 @@ textarea {
     font-weight: normal;
     color: rgba(0, 0, 0, 0.87);
     display: block; }
+
+.c-tab__header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center; }
+
+.c-tab__header-item {
+  color: inherit; }
+  .c-tab__header-item:hover {
+    color: inherit;
+    background: transparent; }
+  .c-tab__header-item:not(.active) {
+    padding-bottom: 4px; }
+  .c-tab__header-item.active {
+    border-bottom: 4px solid #FFAB00; }
+
+.c-tab__body {
+  width: 800px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; }
+
+.c-tab--orange .c-tab__header {
+  color: rgba(255, 255, 255, 0.7);
+  background: #FF8055; }
+
+.c-tab--orange .c-tab__header-item {
+  color: rgba(255, 255, 255, 0.7); }
+  .c-tab--orange .c-tab__header-item.active, .c-tab--orange .c-tab__header-item:hover {
+    color: white; }
 
 @keyframes wave-wobble {
   0% {

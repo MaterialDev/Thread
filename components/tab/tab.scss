@@ -1,3 +1,53 @@
-.c-tab {
+@mixin c-tab-color($background, $text, $text-active: inherit) {
+    .c-tab__header {
+        color: $text;
+        background: $background;
+    }
 
+    .c-tab__header-item {
+        color: $text;
+
+        &.active,
+        &:hover {
+            @if $text-active != 'inherit' {
+                color: $text-active;
+            } @else {
+                color: $text;
+            }
+        }
+    }
+}
+
+.c-tab {
+    &__header {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__header-item {
+        color: inherit;
+
+        &:hover {
+            color: inherit;
+            background: transparent;
+        }
+
+        &:not(.active) {
+            padding-bottom: 4px;
+        }
+
+        &.active {
+            border-bottom: 4px solid $thread-primary;
+        }
+    }
+
+    &__body {
+        width: 800px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+
+    &--orange { @include c-tab-color($thread-orange, $light-secondary-text, $light-primary-text); }
 }
