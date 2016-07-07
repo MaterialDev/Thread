@@ -10,7 +10,7 @@ let immutable = require('immutable-css');
 let autoprefixer = require('autoprefixer');
 let reporter = require('postcss-reporter');
 let stylelint = require('stylelint');
-let babel = require('gulp-babel');
+let typescript = require('gulp-typescript');
 let concat = require('gulp-concat');
 
 gulp.task('build:css', () => {
@@ -37,19 +37,18 @@ gulp.task('build:css', () => {
 gulp.task('build:js', () => {
     gulp.src([
         '!./components/**/*.spec.js',
-        './components/**/*.module.js',
-        './components/**/*.js',
-        'app.js'
+        './components/**/*.module.ts',
+        './components/**/*.ts',
+        'app.ts'
     ])
     .pipe(sourcemaps.init())
-    .pipe(concat('thread.js'))
-    .pipe(babel({
-        presets: ['es2015']
+    .pipe(typescript({
+        out: 'thread.js'
     }))
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('default', ['build:css', 'build:js'], () => {
     gulp.watch(['./styles/**/*.scss', './components/**/*.scss'], ['build:css']);
-    gulp.watch(['app.js', './components/**/*.js'], ['build:js']);
+    gulp.watch(['app.ts', './components/**/*.ts'], ['build:js']);
 });

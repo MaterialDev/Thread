@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Thread test page</title>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -15,8 +15,50 @@
 </head>
 <body ng-app="thread">
 
-<div class="c-tabs">
+<td-menu position="top left">
+    <td-menu-target>test</td-menu-target>
+    <td-menu-content>
+        <td-menu-item>test item</td-menu-item>
+        <td-menu-item>test item</td-menu-item>
+        <td-menu-item>test item</td-menu-item>
+        <td-menu-item>test item</td-menu-item>
+    </td-menu-content>
+</td-menu>
 
-</div>
+<td-tabs>
+    <td-tab>
+        <td-tab-title>
+            Tab 1
+        </td-tab-title>
+        <td-tab-body>
+            <div class="c-card">
+                <div class="c-card__content">
+                    <div class="c-card__header">
+                        <div class="c-card__title">Title</div>
+                    </div>
+                    <div class="c-card__body">body</div>
+                    <div class="c-card__footer">footer</div>
+                </div>
+            </div>
+        </td-tab-body>
+    </td-tab>
+    <td-tab>
+        <td-tab-title>
+            Tab 2
+        </td-tab-title>
+        <td-tab-body>
+            <div class="c-card">
+                <div class="c-card__content">
+                    <div class="c-card__header">
+                        <div class="c-card__title">Title</div>
+                    </div>
+                    <div class="c-card__body">body</div>
+                    <div class="c-card__footer">footer</div>
+                </div>
+            </div>
+        </td-tab-body>
+    </td-tab>
+</td-tabs>
+
 </body>
 </html>

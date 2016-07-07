@@ -1,22 +1,33 @@
-angular.module('thread.menu', []).directive('thdMenu', ($timeout) => {
-    return {
-        templateUrl: 'components/menu/menu.html',
-        transclude: true,
-        restrict: 'E',
-        bindToController: true,
-        controllerAs: '$menu',
-        scope: {},
-        link(scope, element, attrs, ctrl) {
+module Thread.Components {
+    export class Menu implements ng.IDirective {
+        scope = {};
+        transclude = true;
+        restrict = 'E';
+        bindToController = true;
+        controllerAs = '$menu';
+        template = `<div class="c-menu">
+                        <div class="c-menu__backdrop"></div>
+                        <ng-transclude></ng-transclude>
+                    </div>`;
+
+        menuContent : ng.IAugmentedJQuery;
+        backdrop : ng.IAugmentedJQuery;
+
+        constructor(private $timeout: ng.ITimeoutService) {}
+
+        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
             ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
             ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
 
-            if (attrs.moveToBody) {
+            if (attrs.hasOwnProperty('moveToBody')) {
                 ctrl.moveToBody();
             }
 
-            if (attrs.position) {
-                let splitPos = attrs.position.split(' ');
+            if (attrs.hasOwnProperty('position')) {
+                let splitPos = (<any>attrs).position.split(' ');
                 ctrl.setPosition(splitPos[0], splitPos[1]);
+            } else {
+                ctrl.setPosition('top', 'left');
             }
 
             ctrl.backdrop.on('click', () => {
@@ -24,10 +35,11 @@ angular.module('thread.menu', []).directive('thdMenu', ($timeout) => {
             });
 
             angular.element(element[0].querySelector('.c-menu__item')).on('click', () => {
-                $timeout(() => ctrl.close(), 100);
+                this.$timeout(() => ctrl.close(), 100);
             });
-        },
-        controller($scope, $element) {
+        }
+
+        controller($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
             angular.extend(this, {
                 onBody: false,
                 xPos: null,
@@ -122,41 +134,60 @@ angular.module('thread.menu', []).directive('thdMenu', ($timeout) => {
                 angular.element(document.querySelector('body')).append(this.backdrop);
             }
         }
-    };
-});
 
-angular.module('thread.menu').directive('thdMenuTarget', () => {
-    return {
-        require: '^thdMenu',
-        transclude: true,
-        replace: true,
-        scope: true,
-        template: `<button
+        static factory() : ng.IDirectiveFactory {
+            let directive = ($timeout: ng.ITimeoutService) => new Menu($timeout);
+            directive.$inject = ['$timeout'];
+            return directive;
+        }
+    }
+
+    export class MenuTarget implements ng.IDirective {
+        require = '^tdMenu';
+        transclude = true;
+        replace = true;
+        scope = true;
+        template = `<button
                     class="c-menu__target c-button"
                     ng-transclude
-                    ng-click="$menu.open()"></button>`,
-        link(scope, element, attrs, ctrl) {
-            scope.$menu = ctrl;
+                    ng-click="$menu.open()"></button>`;
+
+        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+            (<any>scope).$menu = ctrl;
         }
-    };
-});
 
-angular.module('thread.menu').directive('thdMenuContent', () => {
-    return {
-        require: '^thdMenu',
-        transclude: true,
-        replace: true,
-        scope: true,
-        template: '<ul class="c-menu__content" ng-transclude></ul>'
-    };
-});
+        static factory() : ng.IDirectiveFactory {
+            return () => new MenuTarget();
+        }
+    }
 
-angular.module('thread.menu').directive('thdMenuItem', () => {
-    return {
-        require: '^thdMenuContent',
-        transclude: true,
-        replace: true,
-        scope: true,
-        template: '<a class="c-button c-button--menu c-menu__item" ng-transclude></a>'
-    };
-});
+    export class MenuContent implements ng.IDirective {
+        require = '^tdMenu';
+        transclude = true;
+        replace = true;
+        scope = true;
+        template = '<ul class="c-menu__content" ng-transclude></ul>';
+
+        static factory() : ng.IDirectiveFactory {
+            return () => new MenuContent();
+        }
+    }
+
+    export class MenuItem implements ng.IDirective {
+        require = '^tdMenuContent';
+        transclude = true;
+        replace = true;
+        scope = true;
+        template = '<a class="c-button c-button--menu c-menu__item" ng-transclude></a>'
+
+        static factory() : ng.IDirectiveFactory {
+            return () => new MenuItem();
+        }
+    }
+}
+
+let menu = angular.module('thread.menu', []);
+menu.directive('tdMenu', Thread.Components.Menu.factory());
+menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
+menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
+menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
