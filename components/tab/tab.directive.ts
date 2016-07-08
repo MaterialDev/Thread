@@ -22,7 +22,7 @@ module Thread.Components {
 
         }
 
-        controller($element: ng.IAugmentedJQuery) {
+        controller($timeout, $element: ng.IAugmentedJQuery) {
             angular.extend(this, {
                 activeTab: 1,
                 tabs: [],
@@ -33,7 +33,7 @@ module Thread.Components {
             });
 
             function addTab(header : IAugmentedJQuery, body : IAugmentedJQuery) {
-                let idx = this.tabs.push({
+                let idx : number = this.tabs.push({
                     header: header,
                     body: body
                 });
@@ -47,15 +47,26 @@ module Thread.Components {
             }
 
             function changeTab(event: JQueryEventObject) {
-                let index = <string>event.target.getAttribute('td-tab-index');
+                let index : string = <string>event.target.getAttribute('td-tab-index');
 
                 if(index && parseInt(index) !== this.activeTab) {
+                    this.lastTab = this.activeTab;
                     this.activeTab = parseInt(index);
                     this.updateTabs();
                 }
             }
 
             function updateTabs() {
+
+                if(this.lastTab) {
+                    let height : Number = this.tabs[this.activeTab - 1].body[0].offsetHeight;
+                    let content : HTMLElement = <HTMLElement>$element[0].querySelector('.c-tab__content');
+                    content.style.height = `${height}px`;
+                    content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                }
+
+
+
                 for(let i = 0; i < this.tabs.length; i++) {
                     let idx = i + 1;
 
