@@ -2,7 +2,9 @@
 module Thread.Components {
     import IAugmentedJQuery = angular.IAugmentedJQuery;
     export class Tabs implements ng.IDirective {
-        scope = {};
+        scope = {
+            currentTab: '='
+        };
         restrict = 'E';
         template = `<div class="c-tab">
                         <div class="c-tab__header"></div>
@@ -23,7 +25,7 @@ module Thread.Components {
 
         }
 
-        controller($timeout, $element: ng.IAugmentedJQuery) {
+        controller($scope: ng.IScope, $timeout, $element: ng.IAugmentedJQuery) {
             angular.extend(this, {
                 activeTab: 1,
                 tabs: [],
@@ -31,6 +33,15 @@ module Thread.Components {
                 changeTab,
                 updateTabs,
                 clearTab
+            });
+
+            $scope.$watch(() => (<any>this).currentTab, (newValue, oldValue) => {
+                if(newValue && newValue === oldValue) {
+                    (<any>this).activeTab = newValue;
+                    (<any>this).updateTabs();
+                } else if(newValue) {
+                    (<any>this).changeTab(null, newValue);
+                }
             });
 
             function addTab(header : IAugmentedJQuery, body : IAugmentedJQuery) {
@@ -47,13 +58,14 @@ module Thread.Components {
                 this.updateTabs();
             }
 
-            function changeTab(event: JQueryEventObject) {
-                console.log('testing');
-                let index : string = <string>event.target.getAttribute('td-tab-index');
+            function changeTab(event: JQueryEventObject, index: number) {
+                if(index == null) {
+                    index = parseInt(event.target.getAttribute('td-tab-index'));
+                }
 
-                if(index && parseInt(index) !== this.activeTab) {
+                if(index && index !== this.activeTab) {
                     this.lastTab = this.activeTab;
-                    this.activeTab = parseInt(index);
+                    this.activeTab = index;
                     this.updateTabs();
                 }
             }
