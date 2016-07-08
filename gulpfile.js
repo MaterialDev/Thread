@@ -21,7 +21,7 @@ gulp.task('build:css', () => {
         './styles/main.scss',
         './components/**/*.scss'
     ])
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     .pipe(postcss([
         stylelint(),
         immutable,
@@ -30,7 +30,7 @@ gulp.task('build:css', () => {
     ], { syntax: sassSyntax }))
     .pipe(concat('thread.css'))
     .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('.'))
+    //.pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist'));
 });
 
