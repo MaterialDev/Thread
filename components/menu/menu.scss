@@ -24,7 +24,7 @@
         transform: scale(1, 0);
         opacity: 0;
         background: white;
-        transition: opacity 200ms $mv-ease-in, transform 0ms 200ms;
+        transition: opacity 200ms $td-ease-in, transform 0ms 200ms;
         position: absolute;
         z-index: 200;
 
@@ -58,7 +58,7 @@
 
         &--open {
             opacity: 1;
-            transition: transform 200ms $mv-ease-out;
+            transition: transform 200ms $td-ease-out;
             transform: scale(1, 1);
 
             .c-menu {
@@ -72,7 +72,7 @@
     &__item {
         line-height: 48px;
         opacity: 0;
-        transition: opacity 150ms $mv-ease-out 150ms, background 200ms $mv-ease;
+        transition: opacity 150ms $td-ease-out 150ms, background 200ms $td-ease;
         font-size: 16px;
         letter-spacing: 0;
         text-transform: none;

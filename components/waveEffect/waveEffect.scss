@@ -20,12 +20,12 @@
     left: 50%;
     transform: translate3d(-50%, -50%, 0) scale(0.67);
     transition: opacity 200ms, transform 0ms 200ms;
-    transition-timing-function: $mv-ease;
+    transition-timing-function: $td-ease;
     opacity: 0;
 
     &--focus {
         opacity: 0.26;
-        animation: wave-wobble 2s $mv-ease infinite alternate;
+        animation: wave-wobble 2s $td-ease infinite alternate;
     }
 
     &--active {

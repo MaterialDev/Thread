@@ -6,6 +6,7 @@ module thread {
     angular.module('thread', [
         'thread.scrollCollapse',
         'thread.waveEffect',
-        'thread.menu'
+        'thread.menu',
+        'thread.tab'
     ]);
 }
