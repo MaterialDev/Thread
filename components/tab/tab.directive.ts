@@ -2,6 +2,7 @@
 module Thread.Components {
     import IAugmentedJQuery = angular.IAugmentedJQuery;
     export class Tabs implements ng.IDirective {
+        scope = {};
         restrict = 'E';
         template = `<div class="c-tab">
                         <div class="c-tab__header"></div>
@@ -47,6 +48,7 @@ module Thread.Components {
             }
 
             function changeTab(event: JQueryEventObject) {
+                console.log('testing');
                 let index : string = <string>event.target.getAttribute('td-tab-index');
 
                 if(index && parseInt(index) !== this.activeTab) {
@@ -57,7 +59,6 @@ module Thread.Components {
             }
 
             function updateTabs() {
-
                 if(this.lastTab) {
                     let height : Number = this.tabs[this.activeTab - 1].body[0].offsetHeight;
                     let content : HTMLElement = <HTMLElement>$element[0].querySelector('.c-tab__content');
@@ -100,6 +101,7 @@ module Thread.Components {
     export class Tab implements ng.IDirective {
         restrict = 'E';
         require = '^tdTabs';
+        scope = true;
 
         constructor() {
 
@@ -123,7 +125,7 @@ module Thread.Components {
 
     export class TabTitle implements ng.IDirective {
         replace = true;
-        require = '^tdTab';
+        require = '^tdTabs';
         transclude = true;
         template = `<button class="c-tab__header-item c-button c-button--tab js-tab__title"
                             ng-click="$tabs.changeTab($event)"
@@ -131,6 +133,10 @@ module Thread.Components {
 
         constructor() {
 
+        }
+
+        link(scope: ng.IScope, element: IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+            (<any>scope).$tabs = ctrl;
         }
 
         static factory() : ng.IDirectiveFactory {
