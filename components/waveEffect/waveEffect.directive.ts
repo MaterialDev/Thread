@@ -6,7 +6,7 @@ module Thread.Components {
 
         }
 
-        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             if (attrs.hasOwnProperty('noWave')) {
                 return;
             }
@@ -31,7 +31,7 @@ module Thread.Components {
                 }
 
                 if (isFab) {
-                    //cirle, height must match the width
+                    //circle, height must match the width
                     width = rawElement.offsetWidth;
                     height = rawElement.offsetWidth;
                 } else {

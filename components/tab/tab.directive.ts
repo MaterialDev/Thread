@@ -7,7 +7,9 @@ module Thread.Components {
         };
         restrict = 'E';
         template = `<div class="c-tab">
-                        <div class="c-tab__header"></div>
+                        <div class="c-tab__header-wrapper">
+                            <div class="c-tab__header"></div>
+                        </div>
                         <div class="c-tab__content-wrapper">
                             <div class="c-tab__content" ng-transclude></div>
                         </div>
@@ -21,9 +23,9 @@ module Thread.Components {
 
         }
 
-        link(scope : ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) {
+        link = (scope : ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
 
-        }
+        };
 
         controller($scope: ng.IScope, $timeout, $element: ng.IAugmentedJQuery) {
             angular.extend(this, {
@@ -119,12 +121,12 @@ module Thread.Components {
 
         }
 
-        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             let header = angular.element(element[0].querySelector('.js-tab__title'));
             let body = angular.element(element[0].querySelector('.js-tab__body'));
 
             ctrl.addTab(header, body);
-        }
+        };
 
         controller() {
 
@@ -147,7 +149,7 @@ module Thread.Components {
 
         }
 
-        link(scope: ng.IScope, element: IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+        link = (scope: ng.IScope, element: IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             (<any>scope).$tabs = ctrl;
         }
 

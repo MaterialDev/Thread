@@ -15,7 +15,7 @@ module Thread.Components {
 
         constructor(private $timeout: ng.ITimeoutService) {}
 
-        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
             ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
 
@@ -37,7 +37,7 @@ module Thread.Components {
             angular.element(element[0].querySelector('.c-menu__item')).on('click', () => {
                 this.$timeout(() => ctrl.close(), 100);
             });
-        }
+        };
 
         controller($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
             angular.extend(this, {
@@ -152,7 +152,7 @@ module Thread.Components {
                     ng-transclude
                     ng-click="$menu.open()"></button>`;
 
-        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             (<any>scope).$menu = ctrl;
         }
 

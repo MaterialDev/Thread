@@ -1,7 +1,10 @@
 {
   "name": "thread",
   "description": "Material CSS Framework",
-  "main": "./dist/thread.css",
+  "main": [
+    "./dist/thread.css",
+    "./dist/thread.js"
+  ],
   "authors": [
     "Zach Barnes <Zach.Barnes@Material.com>"
   ],

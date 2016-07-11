@@ -4,6 +4,10 @@
         background: $background;
     }
 
+    .c-tab__header-wrapper {
+        background: $background;
+    }
+
     .c-tab__header-item {
         color: $text;
 
@@ -19,9 +23,15 @@
 }
 
 .c-tab {
+    &__header-wrapper {
+        width: 100%;
+        overflow: auto;
+    }
+
     &__header {
-        display: flex;
-        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 800px;
     }
 
     &__header-item {

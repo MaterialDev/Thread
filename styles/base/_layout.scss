@@ -7,7 +7,6 @@
 %page {
     position: relative;
     overflow: auto;
-    padding-top: 64px;
 }
 
 .l-page {
@@ -20,7 +19,7 @@
         right: 0;
         height: 176px;
         pointer-events: none;
-        transition: transform 0.3s ease-out;
+        transition: transform 0.3s $td-ease-out;
 
         &.collapsed {
             transform: translate3d(0, -136px, 0);
@@ -32,12 +31,13 @@
     &__secondary {}
     /* stylelint-enable */
 
-    &__tab {
-        position: relative;
-        width: 800px;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+    &--has-app-bar {
+        padding-top: 64px;
+        transition: transform 0.3s $td-ease-out;
+
+        &.collapsed {
+            transform: translate3d(0, -64px, 0);
+        }
     }
 
     &--orange { @include page-color($thread-orange); }

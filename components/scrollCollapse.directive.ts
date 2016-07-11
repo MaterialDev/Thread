@@ -1,18 +1,15 @@
 module Thread.Components {
-    "use strict";
-
     export class ScrollCollapse implements ng.IDirective {
         restrict = 'A';
 
         constructor(private $window: ng.IWindowService) {
-
         }
 
-        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
             let lastScroll = 0;
 
             angular.element(this.$window).on('scroll', () => {
-                let scroll = angular.element(document.querySelector('body')).scrollTop();
+                let scroll = document.querySelector('body').scrollTop;
 
                 //Scrolling down
                 if (scroll > lastScroll + 10) {

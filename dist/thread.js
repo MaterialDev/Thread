@@ -7,27 +7,27 @@ var Thread;
 (function (Thread) {
     var Components;
     (function (Components) {
-        "use strict";
         var ScrollCollapse = (function () {
             function ScrollCollapse($window) {
+                var _this = this;
                 this.$window = $window;
                 this.restrict = 'A';
+                this.link = function (scope, element, attrs) {
+                    var lastScroll = 0;
+                    angular.element(_this.$window).on('scroll', function () {
+                        var scroll = document.querySelector('body').scrollTop;
+                        //Scrolling down
+                        if (scroll > lastScroll + 10) {
+                            element.addClass('collapsed');
+                            lastScroll = scroll;
+                        }
+                        else if (scroll < lastScroll - 10) {
+                            element.removeClass('collapsed');
+                            lastScroll = scroll;
+                        }
+                    });
+                };
             }
-            ScrollCollapse.prototype.link = function (scope, element, attrs) {
-                var lastScroll = 0;
-                angular.element(this.$window).on('scroll', function () {
-                    var scroll = angular.element(document.querySelector('body')).scrollTop();
-                    //Scrolling down
-                    if (scroll > lastScroll + 10) {
-                        element.addClass('collapsed');
-                        lastScroll = scroll;
-                    }
-                    else if (scroll < lastScroll - 10) {
-                        element.removeClass('collapsed');
-                        lastScroll = scroll;
-                    }
-                });
-            };
             ScrollCollapse.factory = function () {
                 var directive = function ($window) { return new ScrollCollapse($window); };
                 directive.$inject = ['$window'];
@@ -45,6 +45,7 @@ var Thread;
     (function (Components) {
         var Menu = (function () {
             function Menu($timeout) {
+                var _this = this;
                 this.$timeout = $timeout;
                 this.scope = {};
                 this.transclude = true;
@@ -52,28 +53,27 @@ var Thread;
                 this.bindToController = true;
                 this.controllerAs = '$menu';
                 this.template = "<div class=\"c-menu\">\n                        <div class=\"c-menu__backdrop\"></div>\n                        <ng-transclude></ng-transclude>\n                    </div>";
+                this.link = function (scope, element, attrs, ctrl) {
+                    ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
+                    ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
+                    if (attrs.hasOwnProperty('moveToBody')) {
+                        ctrl.moveToBody();
+                    }
+                    if (attrs.hasOwnProperty('position')) {
+                        var splitPos = attrs.position.split(' ');
+                        ctrl.setPosition(splitPos[0], splitPos[1]);
+                    }
+                    else {
+                        ctrl.setPosition('top', 'left');
+                    }
+                    ctrl.backdrop.on('click', function () {
+                        ctrl.close();
+                    });
+                    angular.element(element[0].querySelector('.c-menu__item')).on('click', function () {
+                        _this.$timeout(function () { return ctrl.close(); }, 100);
+                    });
+                };
             }
-            Menu.prototype.link = function (scope, element, attrs, ctrl) {
-                var _this = this;
-                ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
-                ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
-                if (attrs.hasOwnProperty('moveToBody')) {
-                    ctrl.moveToBody();
-                }
-                if (attrs.hasOwnProperty('position')) {
-                    var splitPos = attrs.position.split(' ');
-                    ctrl.setPosition(splitPos[0], splitPos[1]);
-                }
-                else {
-                    ctrl.setPosition('top', 'left');
-                }
-                ctrl.backdrop.on('click', function () {
-                    ctrl.close();
-                });
-                angular.element(element[0].querySelector('.c-menu__item')).on('click', function () {
-                    _this.$timeout(function () { return ctrl.close(); }, 100);
-                });
-            };
             Menu.prototype.controller = function ($scope, $element) {
                 var _this = this;
                 angular.extend(this, {
@@ -169,10 +169,10 @@ var Thread;
                 this.replace = true;
                 this.scope = true;
                 this.template = "<button\n                    class=\"c-menu__target c-button\"\n                    ng-transclude\n                    ng-click=\"$menu.open()\"></button>";
+                this.link = function (scope, element, attrs, ctrl) {
+                    scope.$menu = ctrl;
+                };
             }
-            MenuTarget.prototype.link = function (scope, element, attrs, ctrl) {
-                scope.$menu = ctrl;
-            };
             MenuTarget.factory = function () {
                 return function () { return new MenuTarget(); };
             };
@@ -218,20 +218,137 @@ var Thread;
 (function (Thread) {
     var Components;
     (function (Components) {
+        var waveEffect = (function () {
+            function waveEffect($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'A';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.hasOwnProperty('noWave')) {
+                        return;
+                    }
+                    var waveEl;
+                    var rawElement = element[0];
+                    var isFab = false;
+                    var removeActiveTriggered = false;
+                    var removeActiveTimeout = null;
+                    _this.$timeout(function () {
+                        var width;
+                        var height;
+                        waveEl = angular.element('<span class="wave-effect"></span>');
+                        if (element.hasClass('c-button--fab') ||
+                            element.hasClass('c-button--fab-mini') ||
+                            element.hasClass('c-button--icon')) {
+                            waveEl.addClass('wave-effect--fab');
+                            isFab = true;
+                        }
+                        if (isFab) {
+                            //circle, height must match the width
+                            width = rawElement.offsetWidth;
+                            height = rawElement.offsetWidth;
+                        }
+                        else {
+                            width = Math.ceil(rawElement.offsetWidth);
+                            height = Math.ceil(rawElement.offsetWidth);
+                        }
+                        waveEl[0].style.width = width + "px";
+                        waveEl[0].style.height = height + "px";
+                        element.append(waveEl);
+                    });
+                    angular.element(document.querySelector('body')).on('mouseup', onMouseUp);
+                    element.on('mousedown', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if (e.which === 1) {
+                            if (!isFab) {
+                                var pos = { left: e.clientX, top: e.clientY };
+                                var parentPos = e.target.getBoundingClientRect();
+                                waveEl[0].style.left = (pos.left - parentPos.left) + "px";
+                                waveEl[0].style.top = (pos.top - parentPos.top) + "px";
+                            }
+                            waveEl.removeClass('wave-effect--focus');
+                            waveEl.addClass('wave-effect--active');
+                            removeActiveTimeout = _this.$timeout(function () {
+                                if (removeActiveTriggered) {
+                                    removeActiveTriggered = false;
+                                    waveEl.removeClass('wave-effect--active');
+                                }
+                                removeActiveTimeout = null;
+                            }, 300);
+                        }
+                    });
+                    element.on('focus', function () {
+                        waveEl[0].style.left = '';
+                        waveEl[0].style.top = '';
+                        if (!element.hasClass('wave-effect--active')) {
+                            waveEl.addClass('wave-effect--focus');
+                        }
+                        else {
+                            rawElement.blur();
+                        }
+                    });
+                    element.on('blur', function () {
+                        waveEl.removeClass('wave-effect--focus');
+                    });
+                    function onMouseUp() {
+                        if (removeActiveTimeout) {
+                            removeActiveTriggered = true;
+                        }
+                        else {
+                            waveEl.removeClass('wave-effect--active');
+                        }
+                        rawElement.blur();
+                    }
+                    scope.$on('$destroy', function () {
+                        waveEl.remove();
+                        angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
+                    });
+                };
+            }
+            waveEffect.factory = function () {
+                var directive = function ($timeout) { return new Thread.Components.waveEffect($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return waveEffect;
+        }());
+        Components.waveEffect = waveEffect;
+        var waveEffectButton = (function (_super) {
+            __extends(waveEffectButton, _super);
+            function waveEffectButton() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            waveEffectButton.factory = function () {
+                var directive = function ($timeout) { return new Thread.Components.waveEffectButton($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return waveEffectButton;
+        }(waveEffect));
+        Components.waveEffectButton = waveEffectButton;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
+angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
         var Tabs = (function () {
             function Tabs() {
                 this.scope = {
                     currentTab: '='
                 };
                 this.restrict = 'E';
-                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header\"></div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
+                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
                 this.replace = true;
                 this.transclude = true;
                 this.bindToController = true;
                 this.controllerAs = '$tabs';
+                this.link = function (scope, element, attrs) {
+                };
             }
-            Tabs.prototype.link = function (scope, element, attrs) {
-            };
             Tabs.prototype.controller = function ($scope, $timeout, $element) {
                 var _this = this;
                 angular.extend(this, {
@@ -311,12 +428,12 @@ var Thread;
                 this.restrict = 'E';
                 this.require = '^tdTabs';
                 this.scope = true;
+                this.link = function (scope, element, attrs, ctrl) {
+                    var header = angular.element(element[0].querySelector('.js-tab__title'));
+                    var body = angular.element(element[0].querySelector('.js-tab__body'));
+                    ctrl.addTab(header, body);
+                };
             }
-            Tab.prototype.link = function (scope, element, attrs, ctrl) {
-                var header = angular.element(element[0].querySelector('.js-tab__title'));
-                var body = angular.element(element[0].querySelector('.js-tab__body'));
-                ctrl.addTab(header, body);
-            };
             Tab.prototype.controller = function () {
             };
             Tab.factory = function () {
@@ -331,10 +448,10 @@ var Thread;
                 this.require = '^tdTabs';
                 this.transclude = true;
                 this.template = "<button class=\"c-tab__header-item c-button c-button--tab js-tab__title\"\n                            ng-click=\"$tabs.changeTab($event)\"\n                            ng-transclude></button>";
+                this.link = function (scope, element, attrs, ctrl) {
+                    scope.$tabs = ctrl;
+                };
             }
-            TabTitle.prototype.link = function (scope, element, attrs, ctrl) {
-                scope.$tabs = ctrl;
-            };
             TabTitle.factory = function () {
                 return function () { return new TabTitle(); };
             };
@@ -361,123 +478,6 @@ tab.directive('tdTabs', Thread.Components.Tabs.factory());
 tab.directive('tdTab', Thread.Components.Tab.factory());
 tab.directive('tdTabTitle', Thread.Components.TabTitle.factory());
 tab.directive('tdTabBody', Thread.Components.TabBody.factory());
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var waveEffect = (function () {
-            function waveEffect($timeout) {
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-            }
-            waveEffect.prototype.link = function (scope, element, attrs) {
-                var _this = this;
-                if (attrs.hasOwnProperty('noWave')) {
-                    return;
-                }
-                var waveEl;
-                var rawElement = element[0];
-                var isFab = false;
-                var removeActiveTriggered = false;
-                var removeActiveTimeout = null;
-                this.$timeout(function () {
-                    var width;
-                    var height;
-                    waveEl = angular.element('<span class="wave-effect"></span>');
-                    if (element.hasClass('c-button--fab') ||
-                        element.hasClass('c-button--fab-mini') ||
-                        element.hasClass('c-button--icon')) {
-                        waveEl.addClass('wave-effect--fab');
-                        isFab = true;
-                    }
-                    if (isFab) {
-                        //cirle, height must match the width
-                        width = rawElement.offsetWidth;
-                        height = rawElement.offsetWidth;
-                    }
-                    else {
-                        width = Math.ceil(rawElement.offsetWidth);
-                        height = Math.ceil(rawElement.offsetWidth);
-                    }
-                    waveEl[0].style.width = width + "px";
-                    waveEl[0].style.height = height + "px";
-                    element.append(waveEl);
-                });
-                angular.element(document.querySelector('body')).on('mouseup', onMouseUp);
-                element.on('mousedown', function (e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    if (e.which === 1) {
-                        if (!isFab) {
-                            var pos = { left: e.clientX, top: e.clientY };
-                            var parentPos = e.target.getBoundingClientRect();
-                            waveEl[0].style.left = (pos.left - parentPos.left) + "px";
-                            waveEl[0].style.top = (pos.top - parentPos.top) + "px";
-                        }
-                        waveEl.removeClass('wave-effect--focus');
-                        waveEl.addClass('wave-effect--active');
-                        removeActiveTimeout = _this.$timeout(function () {
-                            if (removeActiveTriggered) {
-                                removeActiveTriggered = false;
-                                waveEl.removeClass('wave-effect--active');
-                            }
-                            removeActiveTimeout = null;
-                        }, 300);
-                    }
-                });
-                element.on('focus', function () {
-                    waveEl[0].style.left = '';
-                    waveEl[0].style.top = '';
-                    if (!element.hasClass('wave-effect--active')) {
-                        waveEl.addClass('wave-effect--focus');
-                    }
-                    else {
-                        rawElement.blur();
-                    }
-                });
-                element.on('blur', function () {
-                    waveEl.removeClass('wave-effect--focus');
-                });
-                function onMouseUp() {
-                    if (removeActiveTimeout) {
-                        removeActiveTriggered = true;
-                    }
-                    else {
-                        waveEl.removeClass('wave-effect--active');
-                    }
-                    rawElement.blur();
-                }
-                scope.$on('$destroy', function () {
-                    waveEl.remove();
-                    angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
-                });
-            };
-            waveEffect.factory = function () {
-                var directive = function ($timeout) { return new Thread.Components.waveEffect($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return waveEffect;
-        }());
-        Components.waveEffect = waveEffect;
-        var waveEffectButton = (function (_super) {
-            __extends(waveEffectButton, _super);
-            function waveEffectButton() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
-            }
-            waveEffectButton.factory = function () {
-                var directive = function ($timeout) { return new Thread.Components.waveEffectButton($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return waveEffectButton;
-        }(waveEffect));
-        Components.waveEffectButton = waveEffectButton;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
-angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
 /// <reference path="typings/angularjs/angular.d.ts" />
 var thread;
 (function (thread) {

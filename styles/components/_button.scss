@@ -32,6 +32,7 @@
 }
 
 %button {
+    color: inherit;
     text-align: center;
     cursor: pointer;
     display: inline-block;
@@ -59,7 +60,6 @@
 
 .c-button {
     @extend %button;
-    @include button-color($dark-primary-text);
 
     &--raised {
         @include button-raised();
