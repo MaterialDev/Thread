@@ -31,7 +31,7 @@
     overflow: visible;
 }
 
-%button {
+.c-button {
     color: inherit;
     text-align: center;
     cursor: pointer;
@@ -56,10 +56,6 @@
     &:focus {
         outline: none;
     }
-}
-
-.c-button {
-    @extend %button;
 
     &--raised {
         @include button-raised();

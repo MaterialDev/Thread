@@ -18,7 +18,7 @@
     }
 }
 
-%input {
+.c-input {
     margin-bottom: 16px;
     background: none;
     font-size: 16px;
@@ -45,10 +45,6 @@
     }
 
     @include font();
-}
-
-.c-input {
-    @extend %input;
 
     &__container {
         display: inline-flex;

@@ -18,7 +18,9 @@ gulp.task('build:css', () => {
         './styles/base/_variables.scss',
         './styles/base/*.scss',
         './styles/components/*.scss',
+        './styles/layout/*.scss',
         './styles/main.scss',
+        './styles/healthcheck.scss',
         './components/**/*.scss'
     ])
     //.pipe(sourcemaps.init())

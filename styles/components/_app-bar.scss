@@ -4,7 +4,7 @@
     color: $text;
 }
 
-%app-bar {
+.c-app-bar {
     top: 0;
     left: 0;
     right: 0;
@@ -16,16 +16,13 @@
     transform-origin: top;
     position: fixed;
     transition: transform 0.2s;
-}
-
-.c-app-bar {
-    @extend %app-bar;
 
     &__back {
         margin-left: 12px;
     }
 
     &__logo {
+        display: inline-block;
         margin-left: 12px;
     }
 

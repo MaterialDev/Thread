@@ -218,123 +218,6 @@ var Thread;
 (function (Thread) {
     var Components;
     (function (Components) {
-        var waveEffect = (function () {
-            function waveEffect($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-                this.link = function (scope, element, attrs, ctrl) {
-                    if (attrs.hasOwnProperty('noWave')) {
-                        return;
-                    }
-                    var waveEl;
-                    var rawElement = element[0];
-                    var isFab = false;
-                    var removeActiveTriggered = false;
-                    var removeActiveTimeout = null;
-                    _this.$timeout(function () {
-                        var width;
-                        var height;
-                        waveEl = angular.element('<span class="wave-effect"></span>');
-                        if (element.hasClass('c-button--fab') ||
-                            element.hasClass('c-button--fab-mini') ||
-                            element.hasClass('c-button--icon')) {
-                            waveEl.addClass('wave-effect--fab');
-                            isFab = true;
-                        }
-                        if (isFab) {
-                            //circle, height must match the width
-                            width = rawElement.offsetWidth;
-                            height = rawElement.offsetWidth;
-                        }
-                        else {
-                            width = Math.ceil(rawElement.offsetWidth);
-                            height = Math.ceil(rawElement.offsetWidth);
-                        }
-                        waveEl[0].style.width = width + "px";
-                        waveEl[0].style.height = height + "px";
-                        element.append(waveEl);
-                    });
-                    angular.element(document.querySelector('body')).on('mouseup', onMouseUp);
-                    element.on('mousedown', function (e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        if (e.which === 1) {
-                            if (!isFab) {
-                                var pos = { left: e.clientX, top: e.clientY };
-                                var parentPos = e.target.getBoundingClientRect();
-                                waveEl[0].style.left = (pos.left - parentPos.left) + "px";
-                                waveEl[0].style.top = (pos.top - parentPos.top) + "px";
-                            }
-                            waveEl.removeClass('wave-effect--focus');
-                            waveEl.addClass('wave-effect--active');
-                            removeActiveTimeout = _this.$timeout(function () {
-                                if (removeActiveTriggered) {
-                                    removeActiveTriggered = false;
-                                    waveEl.removeClass('wave-effect--active');
-                                }
-                                removeActiveTimeout = null;
-                            }, 300);
-                        }
-                    });
-                    element.on('focus', function () {
-                        waveEl[0].style.left = '';
-                        waveEl[0].style.top = '';
-                        if (!element.hasClass('wave-effect--active')) {
-                            waveEl.addClass('wave-effect--focus');
-                        }
-                        else {
-                            rawElement.blur();
-                        }
-                    });
-                    element.on('blur', function () {
-                        waveEl.removeClass('wave-effect--focus');
-                    });
-                    function onMouseUp() {
-                        if (removeActiveTimeout) {
-                            removeActiveTriggered = true;
-                        }
-                        else {
-                            waveEl.removeClass('wave-effect--active');
-                        }
-                        rawElement.blur();
-                    }
-                    scope.$on('$destroy', function () {
-                        waveEl.remove();
-                        angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
-                    });
-                };
-            }
-            waveEffect.factory = function () {
-                var directive = function ($timeout) { return new Thread.Components.waveEffect($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return waveEffect;
-        }());
-        Components.waveEffect = waveEffect;
-        var waveEffectButton = (function (_super) {
-            __extends(waveEffectButton, _super);
-            function waveEffectButton() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
-            }
-            waveEffectButton.factory = function () {
-                var directive = function ($timeout) { return new Thread.Components.waveEffectButton($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return waveEffectButton;
-        }(waveEffect));
-        Components.waveEffectButton = waveEffectButton;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
-angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
         var Tabs = (function () {
             function Tabs() {
                 this.scope = {
@@ -478,6 +361,123 @@ tab.directive('tdTabs', Thread.Components.Tabs.factory());
 tab.directive('tdTab', Thread.Components.Tab.factory());
 tab.directive('tdTabTitle', Thread.Components.TabTitle.factory());
 tab.directive('tdTabBody', Thread.Components.TabBody.factory());
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var waveEffect = (function () {
+            function waveEffect($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'A';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.hasOwnProperty('noWave')) {
+                        return;
+                    }
+                    var waveEl;
+                    var rawElement = element[0];
+                    var isFab = false;
+                    var removeActiveTriggered = false;
+                    var removeActiveTimeout = null;
+                    _this.$timeout(function () {
+                        var width;
+                        var height;
+                        waveEl = angular.element('<span class="wave-effect"></span>');
+                        if (element.hasClass('c-button--fab') ||
+                            element.hasClass('c-button--fab-mini') ||
+                            element.hasClass('c-button--icon')) {
+                            waveEl.addClass('wave-effect--fab');
+                            isFab = true;
+                        }
+                        if (isFab) {
+                            //circle, height must match the width
+                            width = rawElement.offsetWidth;
+                            height = rawElement.offsetWidth;
+                        }
+                        else {
+                            width = Math.ceil(rawElement.offsetWidth);
+                            height = Math.ceil(rawElement.offsetWidth);
+                        }
+                        waveEl[0].style.width = width + "px";
+                        waveEl[0].style.height = height + "px";
+                        element.append(waveEl);
+                    });
+                    angular.element(document.querySelector('body')).on('mouseup', onMouseUp);
+                    element.on('mousedown', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if (e.which === 1) {
+                            if (!isFab) {
+                                var pos = { left: e.clientX, top: e.clientY };
+                                var parentPos = e.target.getBoundingClientRect();
+                                waveEl[0].style.left = (pos.left - parentPos.left) + "px";
+                                waveEl[0].style.top = (pos.top - parentPos.top) + "px";
+                            }
+                            waveEl.removeClass('wave-effect--focus');
+                            waveEl.addClass('wave-effect--active');
+                            removeActiveTimeout = _this.$timeout(function () {
+                                if (removeActiveTriggered) {
+                                    removeActiveTriggered = false;
+                                    waveEl.removeClass('wave-effect--active');
+                                }
+                                removeActiveTimeout = null;
+                            }, 300);
+                        }
+                    });
+                    element.on('focus', function () {
+                        waveEl[0].style.left = '';
+                        waveEl[0].style.top = '';
+                        if (!element.hasClass('wave-effect--active')) {
+                            waveEl.addClass('wave-effect--focus');
+                        }
+                        else {
+                            rawElement.blur();
+                        }
+                    });
+                    element.on('blur', function () {
+                        waveEl.removeClass('wave-effect--focus');
+                    });
+                    function onMouseUp() {
+                        if (removeActiveTimeout) {
+                            removeActiveTriggered = true;
+                        }
+                        else {
+                            waveEl.removeClass('wave-effect--active');
+                        }
+                        rawElement.blur();
+                    }
+                    scope.$on('$destroy', function () {
+                        waveEl.remove();
+                        angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
+                    });
+                };
+            }
+            waveEffect.factory = function () {
+                var directive = function ($timeout) { return new Thread.Components.waveEffect($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return waveEffect;
+        }());
+        Components.waveEffect = waveEffect;
+        var waveEffectButton = (function (_super) {
+            __extends(waveEffectButton, _super);
+            function waveEffectButton() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            waveEffectButton.factory = function () {
+                var directive = function ($timeout) { return new Thread.Components.waveEffectButton($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return waveEffectButton;
+        }(waveEffect));
+        Components.waveEffectButton = waveEffectButton;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
+angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
 /// <reference path="typings/angularjs/angular.d.ts" />
 var thread;
 (function (thread) {

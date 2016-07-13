@@ -3,7 +3,7 @@
     color: $text;
 }
 
-%badge {
+.c-badge {
     border-radius: 10px;
     height: 20px;
     letter-spacing: 0.1em;
@@ -11,10 +11,6 @@
     line-height: 1.2;
     padding: 3px 12px;
     text-transform: uppercase;
-}
-
-.c-badge {
-    @extend %badge;
 
     &--success {
         @include badge-color($thread-green, $light-primary-text);
