@@ -23,12 +23,12 @@
     transition-timing-function: $td-ease;
     opacity: 0;
 
-    &--focus {
+    &.has-focus {
         opacity: 0.26;
         animation: wave-wobble 2s $td-ease infinite alternate;
     }
 
-    &--active {
+    &.is-active {
         opacity: 0.26;
         transform: translate3d(-50%, -50%, 0) scale(2);
         transition: transform 300ms 60ms, opacity 200ms;
@@ -37,14 +37,12 @@
     &--fab {
         transform: translate3d(-50%, -50%, 0) scale(0);
 
-        &.wave-effect {
-            &--active {
-                transform: translate3d(-50%, -50%, 0) scale(1);
-            }
+        &.is-active {
+            transform: translate3d(-50%, -50%, 0) scale(1);
+        }
 
-            &--focus {
-                animation-name: wave-wobble-fab;
-            }
+        &.has-focus {
+            animation-name: wave-wobble-fab;
         }
     }
 }

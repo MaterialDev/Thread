@@ -59,13 +59,13 @@ module Thread.Components {
                         waveEl[0].style.top = `${pos.top - parentPos.top}px`;
                     }
 
-                    waveEl.removeClass('wave-effect--focus');
-                    waveEl.addClass('wave-effect--active');
+                    waveEl.removeClass('has-focus');
+                    waveEl.addClass('is-active');
 
                     removeActiveTimeout = this.$timeout(() => {
                         if (removeActiveTriggered) {
                             removeActiveTriggered = false;
-                            waveEl.removeClass('wave-effect--active');
+                            waveEl.removeClass('is-active');
                         }
                         removeActiveTimeout = null;
                     }, 300);
@@ -77,22 +77,22 @@ module Thread.Components {
                 waveEl[0].style.left = '';
                 waveEl[0].style.top = '';
 
-                if (!element.hasClass('wave-effect--active')) {
-                    waveEl.addClass('wave-effect--focus');
+                if (!element.hasClass('is-active')) {
+                    waveEl.addClass('has-focus');
                 } else {
                     rawElement.blur();
                 }
             });
 
             element.on('blur', () => {
-                waveEl.removeClass('wave-effect--focus');
+                waveEl.removeClass('has-focus');
             });
 
             function onMouseUp() {
                 if (removeActiveTimeout) {
                     removeActiveTriggered = true;
                 } else {
-                    waveEl.removeClass('wave-effect--active');
+                    waveEl.removeClass('is-active');
                 }
                 rawElement.blur();
             }
@@ -101,7 +101,7 @@ module Thread.Components {
                 waveEl.remove();
                 angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
             });
-        }
+        };
 
         static factory() : ng.IDirectiveFactory {
             var directive = ($timeout: ng.ITimeoutService) => new Thread.Components.waveEffect($timeout);

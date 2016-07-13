@@ -11,7 +11,7 @@
     .c-tab__header-item {
         color: $text;
 
-        &.active,
+        &.is-active,
         &:hover {
             @if $text-active != 'inherit' {
                 color: $text-active;
@@ -44,11 +44,11 @@
             background: transparent;
         }
 
-        &:not(.active) {
+        &:not(.is-active) {
             padding-bottom: 4px;
         }
 
-        &.active {
+        &.is-active {
             border-bottom: 4px solid $thread-primary;
         }
     }
@@ -82,7 +82,7 @@
         display: inline-block;
         transition: transform 500ms $td-ease;
 
-        &.active {
+        &.is-active {
             position: relative;
             transform: translate3d(0, 0, 0);
         }

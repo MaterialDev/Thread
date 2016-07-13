@@ -424,12 +424,12 @@ var Thread;
                                 waveEl[0].style.left = (pos.left - parentPos.left) + "px";
                                 waveEl[0].style.top = (pos.top - parentPos.top) + "px";
                             }
-                            waveEl.removeClass('wave-effect--focus');
-                            waveEl.addClass('wave-effect--active');
+                            waveEl.removeClass('has-focus');
+                            waveEl.addClass('is-active');
                             removeActiveTimeout = _this.$timeout(function () {
                                 if (removeActiveTriggered) {
                                     removeActiveTriggered = false;
-                                    waveEl.removeClass('wave-effect--active');
+                                    waveEl.removeClass('is-active');
                                 }
                                 removeActiveTimeout = null;
                             }, 300);
@@ -438,22 +438,22 @@ var Thread;
                     element.on('focus', function () {
                         waveEl[0].style.left = '';
                         waveEl[0].style.top = '';
-                        if (!element.hasClass('wave-effect--active')) {
-                            waveEl.addClass('wave-effect--focus');
+                        if (!element.hasClass('is-active')) {
+                            waveEl.addClass('has-focus');
                         }
                         else {
                             rawElement.blur();
                         }
                     });
                     element.on('blur', function () {
-                        waveEl.removeClass('wave-effect--focus');
+                        waveEl.removeClass('has-focus');
                     });
                     function onMouseUp() {
                         if (removeActiveTimeout) {
                             removeActiveTriggered = true;
                         }
                         else {
-                            waveEl.removeClass('wave-effect--active');
+                            waveEl.removeClass('is-active');
                         }
                         rawElement.blur();
                     }
