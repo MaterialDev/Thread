@@ -5,8 +5,8 @@ module Thread.Components {
         restrict = 'E';
         bindToController = true;
         controllerAs = '$menu';
-        template = `<div class="c-menu">
-                        <div class="c-menu__backdrop"></div>
+        template = `<div class="c-menu js-menu">
+                        <div class="c-menu__backdrop js-menu__backdrop"></div>
                         <ng-transclude></ng-transclude>
                     </div>`;
 
@@ -16,8 +16,8 @@ module Thread.Components {
         constructor(private $timeout: ng.ITimeoutService) {}
 
         link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
-            ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
-            ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
+            ctrl.menuContent = angular.element(element[0].querySelector('.js-menu__content'));
+            ctrl.backdrop = angular.element(element[0].querySelector('.js-menu__backdrop'));
 
             if (attrs.hasOwnProperty('moveToBody')) {
                 ctrl.moveToBody();
@@ -34,7 +34,7 @@ module Thread.Components {
                 ctrl.close();
             });
 
-            angular.element(element[0].querySelector('.c-menu__item')).on('click', () => {
+            angular.element(element[0].querySelector('.js-menu__item')).on('click', () => {
                 this.$timeout(() => ctrl.close(), 100);
             });
         };
@@ -58,11 +58,11 @@ module Thread.Components {
             });
 
             function open() {
-                let menuTarget = angular.element($element[0].querySelector('.c-menu__target'));
+                let menuTarget = angular.element($element[0].querySelector('.js-menu__target'));
 
-                angular.element($element[0].querySelector('.c-menu')).addClass('c-menu--open');
-                this.menuContent.addClass('c-menu__content--open');
-                this.backdrop.addClass('c-menu__backdrop--open');
+                angular.element($element[0].querySelector('.js-menu')).addClass('is-open');
+                this.menuContent.addClass('is-open');
+                this.backdrop.addClass('is-open');
 
                 if (this.onBody) {
                     let targetPos = menuTarget[0].getBoundingClientRect();
@@ -97,9 +97,9 @@ module Thread.Components {
             }
 
             function close() {
-                angular.element($element[0].querySelector('.c-menu')).removeClass('c-menu--open');
-                this.menuContent.removeClass('c-menu__content--open');
-                this.backdrop.removeClass('c-menu__backdrop--open');
+                angular.element($element[0].querySelector('.js-menu')).removeClass('is-open');
+                this.menuContent.removeClass('is-open');
+                this.backdrop.removeClass('is-open');
             }
 
             function setPosition(yPosition, xPosition) {
@@ -129,7 +129,7 @@ module Thread.Components {
 
             function moveToBody() {
                 this.onBody = true;
-                this.menuContent.addClass('c-menu__content--on-body');
+                this.menuContent.addClass('js-menu__content--on-body');
                 angular.element(document.querySelector('body')).append(this.menuContent);
                 angular.element(document.querySelector('body')).append(this.backdrop);
             }
@@ -148,13 +148,13 @@ module Thread.Components {
         replace = true;
         scope = true;
         template = `<button
-                    class="c-menu__target c-button"
+                    class="c-menu__target c-button js-menu__target"
                     ng-transclude
                     ng-click="$menu.open()"></button>`;
 
         link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             (<any>scope).$menu = ctrl;
-        }
+        };
 
         static factory() : ng.IDirectiveFactory {
             return () => new MenuTarget();
@@ -166,7 +166,7 @@ module Thread.Components {
         transclude = true;
         replace = true;
         scope = true;
-        template = '<ul class="c-menu__content" ng-transclude></ul>';
+        template = '<ul class="c-menu__content js-menu__content" ng-transclude></ul>';
 
         static factory() : ng.IDirectiveFactory {
             return () => new MenuContent();
@@ -178,7 +178,7 @@ module Thread.Components {
         transclude = true;
         replace = true;
         scope = true;
-        template = '<a class="c-button c-button--menu c-menu__item" ng-transclude></a>'
+        template = '<a class="c-button c-button--menu c-menu__item js-menu__item" ng-transclude></a>';
 
         static factory() : ng.IDirectiveFactory {
             return () => new MenuItem();

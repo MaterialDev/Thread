@@ -52,10 +52,10 @@ var Thread;
                 this.restrict = 'E';
                 this.bindToController = true;
                 this.controllerAs = '$menu';
-                this.template = "<div class=\"c-menu\">\n                        <div class=\"c-menu__backdrop\"></div>\n                        <ng-transclude></ng-transclude>\n                    </div>";
+                this.template = "<div class=\"c-menu js-menu\">\n                        <div class=\"c-menu__backdrop js-menu__backdrop\"></div>\n                        <ng-transclude></ng-transclude>\n                    </div>";
                 this.link = function (scope, element, attrs, ctrl) {
-                    ctrl.menuContent = angular.element(element[0].querySelector('.c-menu__content'));
-                    ctrl.backdrop = angular.element(element[0].querySelector('.c-menu__backdrop'));
+                    ctrl.menuContent = angular.element(element[0].querySelector('.js-menu__content'));
+                    ctrl.backdrop = angular.element(element[0].querySelector('.js-menu__backdrop'));
                     if (attrs.hasOwnProperty('moveToBody')) {
                         ctrl.moveToBody();
                     }
@@ -69,7 +69,7 @@ var Thread;
                     ctrl.backdrop.on('click', function () {
                         ctrl.close();
                     });
-                    angular.element(element[0].querySelector('.c-menu__item')).on('click', function () {
+                    angular.element(element[0].querySelector('.js-menu__item')).on('click', function () {
                         _this.$timeout(function () { return ctrl.close(); }, 100);
                     });
                 };
@@ -92,10 +92,10 @@ var Thread;
                     _this.menuContent = null;
                 });
                 function open() {
-                    var menuTarget = angular.element($element[0].querySelector('.c-menu__target'));
-                    angular.element($element[0].querySelector('.c-menu')).addClass('c-menu--open');
-                    this.menuContent.addClass('c-menu__content--open');
-                    this.backdrop.addClass('c-menu__backdrop--open');
+                    var menuTarget = angular.element($element[0].querySelector('.js-menu__target'));
+                    angular.element($element[0].querySelector('.js-menu')).addClass('is-open');
+                    this.menuContent.addClass('is-open');
+                    this.backdrop.addClass('is-open');
                     if (this.onBody) {
                         var targetPos = menuTarget[0].getBoundingClientRect();
                         var left = void 0;
@@ -123,9 +123,9 @@ var Thread;
                     }
                 }
                 function close() {
-                    angular.element($element[0].querySelector('.c-menu')).removeClass('c-menu--open');
-                    this.menuContent.removeClass('c-menu__content--open');
-                    this.backdrop.removeClass('c-menu__backdrop--open');
+                    angular.element($element[0].querySelector('.js-menu')).removeClass('is-open');
+                    this.menuContent.removeClass('is-open');
+                    this.backdrop.removeClass('is-open');
                 }
                 function setPosition(yPosition, xPosition) {
                     switch (yPosition) {
@@ -149,7 +149,7 @@ var Thread;
                 }
                 function moveToBody() {
                     this.onBody = true;
-                    this.menuContent.addClass('c-menu__content--on-body');
+                    this.menuContent.addClass('js-menu__content--on-body');
                     angular.element(document.querySelector('body')).append(this.menuContent);
                     angular.element(document.querySelector('body')).append(this.backdrop);
                 }
@@ -168,7 +168,7 @@ var Thread;
                 this.transclude = true;
                 this.replace = true;
                 this.scope = true;
-                this.template = "<button\n                    class=\"c-menu__target c-button\"\n                    ng-transclude\n                    ng-click=\"$menu.open()\"></button>";
+                this.template = "<button\n                    class=\"c-menu__target c-button js-menu__target\"\n                    ng-transclude\n                    ng-click=\"$menu.open()\"></button>";
                 this.link = function (scope, element, attrs, ctrl) {
                     scope.$menu = ctrl;
                 };
@@ -185,7 +185,7 @@ var Thread;
                 this.transclude = true;
                 this.replace = true;
                 this.scope = true;
-                this.template = '<ul class="c-menu__content" ng-transclude></ul>';
+                this.template = '<ul class="c-menu__content js-menu__content" ng-transclude></ul>';
             }
             MenuContent.factory = function () {
                 return function () { return new MenuContent(); };
@@ -199,7 +199,7 @@ var Thread;
                 this.transclude = true;
                 this.replace = true;
                 this.scope = true;
-                this.template = '<a class="c-button c-button--menu c-menu__item" ng-transclude></a>';
+                this.template = '<a class="c-button c-button--menu c-menu__item js-menu__item" ng-transclude></a>';
             }
             MenuItem.factory = function () {
                 return function () { return new MenuItem(); };
@@ -224,7 +224,7 @@ var Thread;
                     currentTab: '='
                 };
                 this.restrict = 'E';
-                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
+                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header js-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content js-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
                 this.replace = true;
                 this.transclude = true;
                 this.bindToController = true;
@@ -257,20 +257,21 @@ var Thread;
                     for (var i = 0; i < this.tabs.length; i++) {
                         width += this.tabs[i].header[0].offsetWidth;
                     }
-                    var tabHeader = $element[0].querySelector('.c-tab__header');
+                    var tabHeader = $element[0].querySelector('.js-tab__header');
                     tabHeader.style.width = width + "px";
-                    console.log(width);
                 }
                 function addTab(header, body) {
                     var idx = this.tabs.push({
                         header: header,
                         body: body
                     });
-                    angular.element($element[0].querySelector('.c-tab__header')).append(header);
+                    angular.element($element[0].querySelector('.js-tab__header')).append(header);
                     header.attr('td-tab-index', idx);
                     body.attr('td-tab-index', idx);
-                    this.resizeTabs();
+                    body[0].style.transition = 'none';
                     this.updateTabs();
+                    this.resizeTabs();
+                    body[0].style.transition = '';
                 }
                 function changeTab(event, index) {
                     if (index == null) {
@@ -285,7 +286,7 @@ var Thread;
                 function updateTabs() {
                     if (this.lastTab) {
                         var height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
-                        var content = $element[0].querySelector('.c-tab__content');
+                        var content = $element[0].querySelector('.js-tab__content');
                         content.style.height = height + "px";
                         content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                     }
@@ -293,22 +294,22 @@ var Thread;
                         var idx = i + 1;
                         this.clearTab(i);
                         if (idx === this.activeTab) {
-                            this.tabs[i].header.addClass('active');
-                            this.tabs[i].body.addClass('active');
+                            this.tabs[i].header.addClass('is-active');
+                            this.tabs[i].body.addClass('is-active');
                         }
                         else if (idx < this.activeTab) {
-                            this.tabs[i].header.addClass('left');
-                            this.tabs[i].body.addClass('left');
+                            this.tabs[i].header.addClass('is-left');
+                            this.tabs[i].body.addClass('is-left');
                         }
                         else {
-                            this.tabs[i].header.addClass('right');
-                            this.tabs[i].body.addClass('right');
+                            this.tabs[i].header.addClass('is-right');
+                            this.tabs[i].body.addClass('is-right');
                         }
                     }
                 }
                 function clearTab(idx) {
-                    this.tabs[idx].header.removeClass('active right left');
-                    this.tabs[idx].body.removeClass('active right left');
+                    this.tabs[idx].header.removeClass('is-active is-right is-left');
+                    this.tabs[idx].body.removeClass('is-active is-right is-left');
                 }
             };
             Tabs.factory = function () {

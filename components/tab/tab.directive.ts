@@ -8,10 +8,10 @@ module Thread.Components {
         restrict = 'E';
         template = `<div class="c-tab">
                         <div class="c-tab__header-wrapper">
-                            <div class="c-tab__header"></div>
+                            <div class="c-tab__header js-tab__header"></div>
                         </div>
                         <div class="c-tab__content-wrapper">
-                            <div class="c-tab__content" ng-transclude></div>
+                            <div class="c-tab__content js-tab__content" ng-transclude></div>
                         </div>
                     </div>`;
         replace = true;
@@ -53,9 +53,8 @@ module Thread.Components {
                     width += this.tabs[i].header[0].offsetWidth;
                 }
 
-                let tabHeader = <HTMLElement>$element[0].querySelector('.c-tab__header');
+                let tabHeader = <HTMLElement>$element[0].querySelector('.js-tab__header');
                 tabHeader.style.width = `${width}px`;
-                console.log(width);
             }
 
             function addTab(header : IAugmentedJQuery, body : IAugmentedJQuery) {
@@ -64,13 +63,17 @@ module Thread.Components {
                     body: body
                 });
 
-                angular.element($element[0].querySelector('.c-tab__header')).append(header);
+                angular.element($element[0].querySelector('.js-tab__header')).append(header);
 
                 header.attr('td-tab-index', idx);
                 body.attr('td-tab-index', idx);
 
-                this.resizeTabs();
+                body[0].style.transition = 'none';
+
                 this.updateTabs();
+                this.resizeTabs();
+
+                body[0].style.transition = '';
             }
 
             function changeTab(event: JQueryEventObject, index: number) {
@@ -88,7 +91,7 @@ module Thread.Components {
             function updateTabs() {
                 if(this.lastTab) {
                     let height : Number = this.tabs[this.activeTab - 1].body[0].offsetHeight;
-                    let content : HTMLElement = <HTMLElement>$element[0].querySelector('.c-tab__content');
+                    let content : HTMLElement = <HTMLElement>$element[0].querySelector('.js-tab__content');
                     content.style.height = `${height}px`;
                     content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 }
@@ -99,22 +102,22 @@ module Thread.Components {
                     this.clearTab(i);
 
                     if(idx === this.activeTab) {
-                        this.tabs[i].header.addClass('active');
-                        this.tabs[i].body.addClass('active');
+                        this.tabs[i].header.addClass('is-active');
+                        this.tabs[i].body.addClass('is-active');
                     } else if (idx < this.activeTab) {
-                        this.tabs[i].header.addClass('left');
-                        this.tabs[i].body.addClass('left');
+                        this.tabs[i].header.addClass('is-left');
+                        this.tabs[i].body.addClass('is-left');
                     } else {
-                        this.tabs[i].header.addClass('right');
-                        this.tabs[i].body.addClass('right');
+                        this.tabs[i].header.addClass('is-right');
+                        this.tabs[i].body.addClass('is-right');
                     }
 
                 }
             }
 
             function clearTab(idx: number) {
-                this.tabs[idx].header.removeClass('active right left');
-                this.tabs[idx].body.removeClass('active right left');
+                this.tabs[idx].header.removeClass('is-active is-right is-left');
+                this.tabs[idx].body.removeClass('is-active is-right is-left');
             }
         }
 
