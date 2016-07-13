@@ -240,6 +240,7 @@ var Thread;
                     addTab: addTab,
                     changeTab: changeTab,
                     updateTabs: updateTabs,
+                    resizeTabs: resizeTabs,
                     clearTab: clearTab
                 });
                 $scope.$watch(function () { return _this.currentTab; }, function (newValue, oldValue) {
@@ -251,6 +252,15 @@ var Thread;
                         _this.changeTab(null, newValue);
                     }
                 });
+                function resizeTabs() {
+                    var width = 0;
+                    for (var i = 0; i < this.tabs.length; i++) {
+                        width += this.tabs[i].header[0].offsetWidth;
+                    }
+                    var tabHeader = $element[0].querySelector('.c-tab__header');
+                    tabHeader.style.width = width + "px";
+                    console.log(width);
+                }
                 function addTab(header, body) {
                     var idx = this.tabs.push({
                         header: header,
@@ -259,6 +269,7 @@ var Thread;
                     angular.element($element[0].querySelector('.c-tab__header')).append(header);
                     header.attr('td-tab-index', idx);
                     body.attr('td-tab-index', idx);
+                    this.resizeTabs();
                     this.updateTabs();
                 }
                 function changeTab(event, index) {

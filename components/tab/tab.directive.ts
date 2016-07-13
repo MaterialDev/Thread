@@ -34,6 +34,7 @@ module Thread.Components {
                 addTab,
                 changeTab,
                 updateTabs,
+                resizeTabs,
                 clearTab
             });
 
@@ -46,6 +47,17 @@ module Thread.Components {
                 }
             });
 
+            function resizeTabs() {
+                let width: Number = 0;
+                for(let i = 0; i < this.tabs.length; i++) {
+                    width += this.tabs[i].header[0].offsetWidth;
+                }
+
+                let tabHeader = <HTMLElement>$element[0].querySelector('.c-tab__header');
+                tabHeader.style.width = `${width}px`;
+                console.log(width);
+            }
+
             function addTab(header : IAugmentedJQuery, body : IAugmentedJQuery) {
                 let idx : number = this.tabs.push({
                     header: header,
@@ -57,6 +69,7 @@ module Thread.Components {
                 header.attr('td-tab-index', idx);
                 body.attr('td-tab-index', idx);
 
+                this.resizeTabs();
                 this.updateTabs();
             }
 
@@ -79,8 +92,6 @@ module Thread.Components {
                     content.style.height = `${height}px`;
                     content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 }
-
-
 
                 for(let i = 0; i < this.tabs.length; i++) {
                     let idx = i + 1;
