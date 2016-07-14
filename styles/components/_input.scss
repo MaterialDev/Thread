@@ -4,10 +4,10 @@
         .c-input__label {
             color: $color;
         }
+    }
 
-        &.c-input:before {
-            background: $color;
-        }
+    &.c-input:before {
+        background: $color;
     }
 }
 
@@ -34,6 +34,7 @@
         transform: translate3d(0, 20px, 0);
         transform-origin: top left;
         transition: transform 200ms $td-ease;
+        pointer-events: none;
     }
 
     &__field {
@@ -54,9 +55,12 @@
 
     &.has-focus, &.has-value {
         .c-input__label {
+            pointer-events: auto;
             transform: scale(0.75) translate3d(0, 0, 0);
         }
+    }
 
+    &.has-focus {
         &.c-input:before {
             transform: scale(1);
         }
