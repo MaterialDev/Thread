@@ -7,6 +7,7 @@ module thread {
         'thread.scrollCollapse',
         'thread.waveEffect',
         'thread.menu',
-        'thread.tab'
+        'thread.tab',
+        'thread.floatingLabel'
     ]);
 }

@@ -17,6 +17,10 @@ ul {
 a {
   text-decoration: none; }
 
+input {
+  border: none;
+  outline: none; }
+
 .u-center {
   text-align: center !important; }
 
@@ -479,105 +483,39 @@ a {
     font-size: 48px; }
 
 .c-input {
-  margin-bottom: 16px;
-  background: none;
-  font-size: 16px;
-  -ms-flex-order: 1;
-  order: 1;
-  width: 100%;
-  border-top-style: none;
-  border-right-style: none;
-  border-left-style: none;
-  border-bottom: 1px solid;
-  padding-bottom: 4px;
-  font-family: 'Lato', sans-serif; }
-  .c-input:focus {
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    outline: none;
-    padding-bottom: 3px; }
-  select.c-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_white.svg) no-repeat right;
-    padding-right: 24px; }
-  .c-input__container {
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    vertical-align: bottom; }
-  .c-input__addon {
-    font-weight: normal;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    padding-bottom: 4px;
-    -ms-flex-order: 0;
-    order: 0;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  position: relative; }
+  .c-input:before {
+    content: '';
+    height: 2px;
+    transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+    transform: scale(0);
+    position: absolute;
     left: 0;
-    position: relative; }
-  .c-input:focus ~ .c-input__addon {
-    border-bottom-width: 2px;
-    padding-bottom: 3px; }
-  .c-input--large {
-    font-size: 24px; }
-    @media screen and (min-width: 600px) {
-      .c-input--large {
-        font-size: 36px; } }
-  .c-input--natural-language.c-input--light {
-    color: white;
-    border-color: white; }
-    .c-input--natural-language.c-input--light ~ .c-input__addon {
-      color: white;
-      border-color: white; }
-  .c-input--natural-language.c-input--dark {
+    right: 0;
+    bottom: 0; }
+  .c-input__label {
+    color: rgba(0, 0, 0, 0.54);
+    display: inline-block;
+    font-size: 16px;
+    transform: translate3d(0, 20px, 0);
+    transform-origin: top left;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+  .c-input__field {
+    font-size: 16px;
     color: rgba(0, 0, 0, 0.87);
-    border-color: #FFAB00; }
-    .c-input--natural-language.c-input--dark ~ .c-input__addon {
-      color: rgba(0, 0, 0, 0.87);
-      border-color: #FFAB00; }
-  .c-input--light {
-    color: white;
-    border-color: rgba(255, 255, 255, 0.12); }
-    .c-input--light ~ .c-input__addon {
-      color: white;
-      border-color: rgba(255, 255, 255, 0.12); }
-    .c-input--light:focus {
-      border-color: white; }
-      .c-input--light:focus ~ .c-input--light:focus__addon {
-        border-color: white; }
-  .c-input--dark {
-    color: rgba(0, 0, 0, 0.87);
-    border-color: rgba(0, 0, 0, 0.12); }
-    .c-input--dark ~ .c-input__addon {
-      color: rgba(0, 0, 0, 0.87);
-      border-color: rgba(0, 0, 0, 0.12); }
-    .c-input--dark:focus {
-      border-color: #FFAB00; }
-      .c-input--dark:focus ~ .c-input--dark:focus__addon {
-        border-color: #FFAB00; }
-  .c-input--inline {
-    margin-bottom: 0;
-    padding-bottom: 1px; }
-    .c-input--inline ~ .c-input__addon {
-      padding-bottom: 1px; }
-    .c-input--inline:focus {
-      padding-bottom: 0; }
-      .c-input--inline:focus ~ .c-input__addon {
-        padding-bottom: 1px; }
-  .c-input--number {
-    width: 1.7577em; }
-  .c-input--number-1 {
-    width: 0.5859em; }
-  .c-input--number-2 {
-    width: 1.1718em; }
-  .c-input--number-3 {
-    width: 1.7577em; }
-  .c-input--number-4 {
-    width: 2.3436em; }
-  .c-input--number-5 {
-    width: 2.9295em; }
-  .c-input--number-6 {
-    width: 3.5154em; }
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom: 8px;
+    width: 100%; }
+  .c-input.has-focus .c-input__label, .c-input.has-value .c-input__label {
+    transform: scale(0.75) translate3d(0, 0, 0); }
+  .c-input.has-focus.c-input:before, .c-input.has-value.c-input:before {
+    transform: scale(1); }
+  .c-input--primary.has-focus .c-input__label {
+    color: #FFAB00; }
+  .c-input--primary.has-focus.c-input:before {
+    background: #FFAB00; }
 
 .c-natural-language {
   font-weight: lighter;
