@@ -43,69 +43,6 @@ var Thread;
 (function (Thread) {
     var Components;
     (function (Components) {
-        var FloatingLabel = (function () {
-            function FloatingLabel($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-                this.require = '?ngModel';
-                this.link = function (scope, element, attrs, ctrl) {
-                    if (attrs.noFloat !== undefined) {
-                        return;
-                    }
-                    _this.$timeout(function () {
-                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                        if (ctrl) {
-                            element.toggleClass('has-value', ctrl.$viewValue);
-                            ctrl.$formatters.push(function (value) {
-                                element.toggleClass('has-value', value);
-                            });
-                        }
-                        else {
-                            element.toggleClass('has-value', inputField.val());
-                            inputField.on('input', function () {
-                                element.toggleClass('has-value', this.value);
-                            });
-                        }
-                        inputField.on('focus', function () {
-                            element.addClass('has-focus');
-                        });
-                        inputField.on('blur', function () {
-                            element.removeClass('has-focus');
-                        });
-                        scope.$on('$destroy', function () {
-                            inputField.off('focus');
-                            inputField.off('blur');
-                        });
-                    });
-                };
-            }
-            FloatingLabel.factory = function () {
-                return function ($timeout) { return new FloatingLabel($timeout); };
-            };
-            return FloatingLabel;
-        }());
-        Components.FloatingLabel = FloatingLabel;
-        var FloatingLabelInput = (function (_super) {
-            __extends(FloatingLabelInput, _super);
-            function FloatingLabelInput() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
-            }
-            FloatingLabelInput.factory = function () {
-                return function ($timeout) { return new FloatingLabelInput($timeout); };
-            };
-            return FloatingLabelInput;
-        }(FloatingLabel));
-        Components.FloatingLabelInput = FloatingLabelInput;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
-angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
         var Menu = (function () {
             function Menu($timeout) {
                 var _this = this;
@@ -277,6 +214,69 @@ menu.directive('tdMenu', Thread.Components.Menu.factory());
 menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var FloatingLabel = (function () {
+            function FloatingLabel($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'A';
+                this.require = '?ngModel';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.noFloat !== undefined) {
+                        return;
+                    }
+                    _this.$timeout(function () {
+                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                        if (ctrl) {
+                            element.toggleClass('has-value', ctrl.$viewValue);
+                            ctrl.$formatters.push(function (value) {
+                                element.toggleClass('has-value', value);
+                            });
+                        }
+                        else {
+                            element.toggleClass('has-value', !!inputField.val());
+                            inputField.on('input', function () {
+                                element.toggleClass('has-value', !!this.value);
+                            });
+                        }
+                        inputField.on('focus', function () {
+                            element.addClass('has-focus');
+                        });
+                        inputField.on('blur', function () {
+                            element.removeClass('has-focus');
+                        });
+                        scope.$on('$destroy', function () {
+                            inputField.off('focus');
+                            inputField.off('blur');
+                        });
+                    });
+                };
+            }
+            FloatingLabel.factory = function () {
+                return function ($timeout) { return new FloatingLabel($timeout); };
+            };
+            return FloatingLabel;
+        }());
+        Components.FloatingLabel = FloatingLabel;
+        var FloatingLabelInput = (function (_super) {
+            __extends(FloatingLabelInput, _super);
+            function FloatingLabelInput() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            FloatingLabelInput.factory = function () {
+                return function ($timeout) { return new FloatingLabelInput($timeout); };
+            };
+            return FloatingLabelInput;
+        }(FloatingLabel));
+        Components.FloatingLabelInput = FloatingLabelInput;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
+angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
 var Thread;
 (function (Thread) {
     var Components;

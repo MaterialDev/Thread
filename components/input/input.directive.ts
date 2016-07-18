@@ -21,9 +21,9 @@ module Thread.Components {
                         element.toggleClass('has-value', value);
                     });
                 } else {
-                    element.toggleClass('has-value', inputField.val());
+                    element.toggleClass('has-value', !!inputField.val());
                     inputField.on('input', function() {
-                        element.toggleClass('has-value', this.value);
+                        element.toggleClass('has-value', !!this.value);
                     });
                 }
 
