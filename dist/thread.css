@@ -519,7 +519,6 @@ select {
     pointer-events: none; }
   .c-input__field {
     font-size: 16px;
-    border-bottom: 1px solid;
     padding-bottom: 8px;
     width: 100%; }
   .c-input__icon {
@@ -1047,48 +1046,6 @@ textarea {
       opacity: 1;
       transform: translate3d(0, 0, 0); }
 
-@keyframes wave-wobble {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(0.6); }
-  50% {
-    transform: translate3d(-50%, -50%, 0) scale(0.7); }
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(0.6); } }
-
-@keyframes wave-wobble-fab {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(0.9); }
-  50% {
-    transform: translate3d(-50%, -50%, 0) scale(1.1); }
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(0.9); } }
-
-.wave-effect {
-  pointer-events: none;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  background: currentColor;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0) scale(0.67);
-  transition: opacity 200ms, transform 0ms 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0; }
-  .wave-effect.has-focus {
-    opacity: 0.26;
-    animation: wave-wobble 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-  .wave-effect.is-active {
-    opacity: 0.26;
-    transform: translate3d(-50%, -50%, 0) scale(2);
-    transition: transform 300ms 60ms, opacity 200ms; }
-  .wave-effect--fab {
-    transform: translate3d(-50%, -50%, 0) scale(0); }
-    .wave-effect--fab.is-active {
-      transform: translate3d(-50%, -50%, 0) scale(1); }
-    .wave-effect--fab.has-focus {
-      animation-name: wave-wobble-fab; }
-
 .c-tab__header-wrapper {
   width: 100%;
   overflow: auto; }
@@ -1165,3 +1122,45 @@ textarea {
 
 .js-tab__title > * {
   pointer-events: none; }
+
+@keyframes wave-wobble {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.6); }
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(0.7); }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(0.6); } }
+
+@keyframes wave-wobble-fab {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.9); }
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(1.1); }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(0.9); } }
+
+.wave-effect {
+  pointer-events: none;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  background: currentColor;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(0.67);
+  transition: opacity 200ms, transform 0ms 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0; }
+  .wave-effect.has-focus {
+    opacity: 0.26;
+    animation: wave-wobble 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+  .wave-effect.is-active {
+    opacity: 0.26;
+    transform: translate3d(-50%, -50%, 0) scale(2);
+    transition: transform 300ms 60ms, opacity 200ms; }
+  .wave-effect--fab {
+    transform: translate3d(-50%, -50%, 0) scale(0); }
+    .wave-effect--fab.is-active {
+      transform: translate3d(-50%, -50%, 0) scale(1); }
+    .wave-effect--fab.has-focus {
+      animation-name: wave-wobble-fab; }
