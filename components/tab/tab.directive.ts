@@ -137,7 +137,7 @@ module Thread.Components {
         require = '^tdTabs';
         scope = true;
 
-        constructor() {
+        constructor(private $timeout: ng.ITimeoutService) {
 
         }
 
@@ -145,7 +145,9 @@ module Thread.Components {
             let header = angular.element(element[0].querySelector('.js-tab__title'));
             let body = angular.element(element[0].querySelector('.js-tab__body'));
 
-            ctrl.addTab(header, body);
+            this.$timeout(() => {
+                ctrl.addTab(header, body);
+            });
         };
 
         controller() {
@@ -153,7 +155,9 @@ module Thread.Components {
         }
 
         static factory() : ng.IDirectiveFactory {
-            return () => new Tab();
+            let directive = ($timeout: ng.ITimeoutService) => new Tab($timeout);
+            directive.$inject = ['$timeout'];
+            return directive;
         }
     }
 
@@ -171,7 +175,7 @@ module Thread.Components {
 
         link = (scope: ng.IScope, element: IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             (<any>scope).$tabs = ctrl;
-        }
+        };
 
         static factory() : ng.IDirectiveFactory {
             return () => new TabTitle();

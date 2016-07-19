@@ -40,75 +40,6 @@ var Thread;
 })(Thread || (Thread = {}));
 angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var FloatingLabel = (function () {
-            function FloatingLabel($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-                this.require = '?ngModel';
-                this.link = function (scope, element, attrs, ctrl) {
-                    if (attrs.noFloat !== undefined) {
-                        return;
-                    }
-                    _this.$timeout(function () {
-                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                        if (ctrl) {
-                            element.toggleClass('has-value', ctrl.$viewValue);
-                            ctrl.$formatters.push(function (value) {
-                                element.toggleClass('has-value', value);
-                            });
-                        }
-                        else {
-                            element.toggleClass('has-value', !!inputField.val());
-                            inputField.on('input', function () {
-                                element.toggleClass('has-value', !!this.value);
-                            });
-                        }
-                        inputField.on('focus', function () {
-                            element.addClass('has-focus');
-                        });
-                        inputField.on('blur', function () {
-                            element.removeClass('has-focus');
-                        });
-                        scope.$on('$destroy', function () {
-                            inputField.off('focus');
-                            inputField.off('blur');
-                        });
-                    });
-                };
-            }
-            FloatingLabel.factory = function () {
-                return function ($timeout) { return new FloatingLabel($timeout); };
-            };
-            return FloatingLabel;
-        }());
-        Components.FloatingLabel = FloatingLabel;
-        var FloatingLabelInput = (function (_super) {
-            __extends(FloatingLabelInput, _super);
-            function FloatingLabelInput() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
-            }
-            FloatingLabelInput.factory = function () {
-                return function ($timeout) { return new FloatingLabelInput($timeout); };
-            };
-            return FloatingLabelInput;
-        }(FloatingLabel));
-        Components.FloatingLabelInput = FloatingLabelInput;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
-angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
-/**
  * Menu
  * A component that shows/hides a list of items based on target click
  * @author Zach Barnes
@@ -290,6 +221,75 @@ menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
 /**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var FloatingLabel = (function () {
+            function FloatingLabel($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'A';
+                this.require = '?ngModel';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.noFloat !== undefined) {
+                        return;
+                    }
+                    _this.$timeout(function () {
+                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                        if (ctrl) {
+                            element.toggleClass('has-value', ctrl.$viewValue);
+                            ctrl.$formatters.push(function (value) {
+                                element.toggleClass('has-value', value);
+                            });
+                        }
+                        else {
+                            element.toggleClass('has-value', !!inputField.val());
+                            inputField.on('input', function () {
+                                element.toggleClass('has-value', !!this.value);
+                            });
+                        }
+                        inputField.on('focus', function () {
+                            element.addClass('has-focus');
+                        });
+                        inputField.on('blur', function () {
+                            element.removeClass('has-focus');
+                        });
+                        scope.$on('$destroy', function () {
+                            inputField.off('focus');
+                            inputField.off('blur');
+                        });
+                    });
+                };
+            }
+            FloatingLabel.factory = function () {
+                return function ($timeout) { return new FloatingLabel($timeout); };
+            };
+            return FloatingLabel;
+        }());
+        Components.FloatingLabel = FloatingLabel;
+        var FloatingLabelInput = (function (_super) {
+            __extends(FloatingLabelInput, _super);
+            function FloatingLabelInput() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            FloatingLabelInput.factory = function () {
+                return function ($timeout) { return new FloatingLabelInput($timeout); };
+            };
+            return FloatingLabelInput;
+        }(FloatingLabel));
+        Components.FloatingLabelInput = FloatingLabelInput;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
+angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
+/**
  * Progressive Disclosure
  * A natural language component that shows one
  * section at a time centered in the middle of the screen
@@ -361,172 +361,6 @@ angular.module('thread.prodis').directive('prodisSection', function () {
         }
     };
 });
-/**
- * Tab component
- * A component that allows switching between
- * sets of content separated into groups by tabs
- * @author Zach Barnes
- * @created 07/08/2016
- */
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var Tabs = (function () {
-            function Tabs() {
-                this.scope = {
-                    currentTab: '='
-                };
-                this.restrict = 'E';
-                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header js-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content js-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
-                this.replace = true;
-                this.transclude = true;
-                this.bindToController = true;
-                this.controllerAs = '$tabs';
-                this.link = function (scope, element, attrs) {
-                };
-            }
-            Tabs.prototype.controller = function ($scope, $timeout, $element) {
-                var _this = this;
-                angular.extend(this, {
-                    activeTab: 1,
-                    tabs: [],
-                    addTab: addTab,
-                    changeTab: changeTab,
-                    updateTabs: updateTabs,
-                    resizeTabs: resizeTabs,
-                    clearTab: clearTab
-                });
-                $scope.$watch(function () { return _this.currentTab; }, function (newValue, oldValue) {
-                    if (newValue && newValue === oldValue) {
-                        _this.activeTab = newValue;
-                        _this.updateTabs();
-                    }
-                    else if (newValue) {
-                        _this.changeTab(null, newValue);
-                    }
-                });
-                function resizeTabs() {
-                    var width = 0;
-                    for (var i = 0; i < this.tabs.length; i++) {
-                        width += this.tabs[i].header[0].offsetWidth;
-                    }
-                    var tabHeader = $element[0].querySelector('.js-tab__header');
-                    tabHeader.style.width = width + "px";
-                }
-                function addTab(header, body) {
-                    var idx = this.tabs.push({
-                        header: header,
-                        body: body
-                    });
-                    angular.element($element[0].querySelector('.js-tab__header')).append(header);
-                    header.attr('td-tab-index', idx);
-                    body.attr('td-tab-index', idx);
-                    body[0].style.transition = 'none';
-                    this.updateTabs();
-                    this.resizeTabs();
-                    body[0].style.transition = '';
-                }
-                function changeTab(event, index) {
-                    if (index == null) {
-                        index = parseInt(event.target.getAttribute('td-tab-index'));
-                    }
-                    if (index && index !== this.activeTab) {
-                        this.lastTab = this.activeTab;
-                        this.activeTab = index;
-                        this.updateTabs();
-                    }
-                }
-                function updateTabs() {
-                    if (this.lastTab) {
-                        var height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
-                        var content = $element[0].querySelector('.js-tab__content');
-                        content.style.height = height + "px";
-                        content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    }
-                    for (var i = 0; i < this.tabs.length; i++) {
-                        var idx = i + 1;
-                        this.clearTab(i);
-                        if (idx === this.activeTab) {
-                            this.tabs[i].header.addClass('is-active');
-                            this.tabs[i].body.addClass('is-active');
-                        }
-                        else if (idx < this.activeTab) {
-                            this.tabs[i].header.addClass('is-left');
-                            this.tabs[i].body.addClass('is-left');
-                        }
-                        else {
-                            this.tabs[i].header.addClass('is-right');
-                            this.tabs[i].body.addClass('is-right');
-                        }
-                    }
-                }
-                function clearTab(idx) {
-                    this.tabs[idx].header.removeClass('is-active is-right is-left');
-                    this.tabs[idx].body.removeClass('is-active is-right is-left');
-                }
-            };
-            Tabs.factory = function () {
-                return function () { return new Tabs(); };
-            };
-            return Tabs;
-        }());
-        Components.Tabs = Tabs;
-        var Tab = (function () {
-            function Tab() {
-                this.restrict = 'E';
-                this.require = '^tdTabs';
-                this.scope = true;
-                this.link = function (scope, element, attrs, ctrl) {
-                    var header = angular.element(element[0].querySelector('.js-tab__title'));
-                    var body = angular.element(element[0].querySelector('.js-tab__body'));
-                    ctrl.addTab(header, body);
-                };
-            }
-            Tab.prototype.controller = function () {
-            };
-            Tab.factory = function () {
-                return function () { return new Tab(); };
-            };
-            return Tab;
-        }());
-        Components.Tab = Tab;
-        var TabTitle = (function () {
-            function TabTitle() {
-                this.replace = true;
-                this.require = '^tdTabs';
-                this.transclude = true;
-                this.template = "<button class=\"c-tab__header-item c-button c-button--tab js-tab__title\"\n                            ng-click=\"$tabs.changeTab($event)\"\n                            ng-transclude></button>";
-                this.link = function (scope, element, attrs, ctrl) {
-                    scope.$tabs = ctrl;
-                };
-            }
-            TabTitle.factory = function () {
-                return function () { return new TabTitle(); };
-            };
-            return TabTitle;
-        }());
-        Components.TabTitle = TabTitle;
-        var TabBody = (function () {
-            function TabBody() {
-                this.replace = true;
-                this.require = '^tdTab';
-                this.transclude = true;
-                this.template = '<div class="c-tab__body js-tab__body" ng-transclude></div>';
-            }
-            TabBody.factory = function () {
-                return function () { return new TabBody(); };
-            };
-            return TabBody;
-        }());
-        Components.TabBody = TabBody;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-var tab = angular.module('thread.tab', []);
-tab.directive('tdTabs', Thread.Components.Tabs.factory());
-tab.directive('tdTab', Thread.Components.Tab.factory());
-tab.directive('tdTabTitle', Thread.Components.TabTitle.factory());
-tab.directive('tdTabBody', Thread.Components.TabBody.factory());
 /**
  * Wave effect
  * A directive that shows a growing circle in the background
@@ -651,6 +485,178 @@ var Thread;
 })(Thread || (Thread = {}));
 angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
 angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
+/**
+ * Tab component
+ * A component that allows switching between
+ * sets of content separated into groups by tabs
+ * @author Zach Barnes
+ * @created 07/08/2016
+ */
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var Tabs = (function () {
+            function Tabs() {
+                this.scope = {
+                    currentTab: '='
+                };
+                this.restrict = 'E';
+                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header js-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content js-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
+                this.replace = true;
+                this.transclude = true;
+                this.bindToController = true;
+                this.controllerAs = '$tabs';
+                this.link = function (scope, element, attrs) {
+                };
+            }
+            Tabs.prototype.controller = function ($scope, $timeout, $element) {
+                var _this = this;
+                angular.extend(this, {
+                    activeTab: 1,
+                    tabs: [],
+                    addTab: addTab,
+                    changeTab: changeTab,
+                    updateTabs: updateTabs,
+                    resizeTabs: resizeTabs,
+                    clearTab: clearTab
+                });
+                $scope.$watch(function () { return _this.currentTab; }, function (newValue, oldValue) {
+                    if (newValue && newValue === oldValue) {
+                        _this.activeTab = newValue;
+                        _this.updateTabs();
+                    }
+                    else if (newValue) {
+                        _this.changeTab(null, newValue);
+                    }
+                });
+                function resizeTabs() {
+                    var width = 0;
+                    for (var i = 0; i < this.tabs.length; i++) {
+                        width += this.tabs[i].header[0].offsetWidth;
+                    }
+                    var tabHeader = $element[0].querySelector('.js-tab__header');
+                    tabHeader.style.width = width + "px";
+                }
+                function addTab(header, body) {
+                    var idx = this.tabs.push({
+                        header: header,
+                        body: body
+                    });
+                    angular.element($element[0].querySelector('.js-tab__header')).append(header);
+                    header.attr('td-tab-index', idx);
+                    body.attr('td-tab-index', idx);
+                    body[0].style.transition = 'none';
+                    this.updateTabs();
+                    this.resizeTabs();
+                    body[0].style.transition = '';
+                }
+                function changeTab(event, index) {
+                    if (index == null) {
+                        index = parseInt(event.target.getAttribute('td-tab-index'));
+                    }
+                    if (index && index !== this.activeTab) {
+                        this.lastTab = this.activeTab;
+                        this.activeTab = index;
+                        this.updateTabs();
+                    }
+                }
+                function updateTabs() {
+                    if (this.lastTab) {
+                        var height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
+                        var content = $element[0].querySelector('.js-tab__content');
+                        content.style.height = height + "px";
+                        content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    }
+                    for (var i = 0; i < this.tabs.length; i++) {
+                        var idx = i + 1;
+                        this.clearTab(i);
+                        if (idx === this.activeTab) {
+                            this.tabs[i].header.addClass('is-active');
+                            this.tabs[i].body.addClass('is-active');
+                        }
+                        else if (idx < this.activeTab) {
+                            this.tabs[i].header.addClass('is-left');
+                            this.tabs[i].body.addClass('is-left');
+                        }
+                        else {
+                            this.tabs[i].header.addClass('is-right');
+                            this.tabs[i].body.addClass('is-right');
+                        }
+                    }
+                }
+                function clearTab(idx) {
+                    this.tabs[idx].header.removeClass('is-active is-right is-left');
+                    this.tabs[idx].body.removeClass('is-active is-right is-left');
+                }
+            };
+            Tabs.factory = function () {
+                return function () { return new Tabs(); };
+            };
+            return Tabs;
+        }());
+        Components.Tabs = Tabs;
+        var Tab = (function () {
+            function Tab($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'E';
+                this.require = '^tdTabs';
+                this.scope = true;
+                this.link = function (scope, element, attrs, ctrl) {
+                    var header = angular.element(element[0].querySelector('.js-tab__title'));
+                    var body = angular.element(element[0].querySelector('.js-tab__body'));
+                    _this.$timeout(function () {
+                        ctrl.addTab(header, body);
+                    });
+                };
+            }
+            Tab.prototype.controller = function () {
+            };
+            Tab.factory = function () {
+                var directive = function ($timeout) { return new Tab($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return Tab;
+        }());
+        Components.Tab = Tab;
+        var TabTitle = (function () {
+            function TabTitle() {
+                this.replace = true;
+                this.require = '^tdTabs';
+                this.transclude = true;
+                this.template = "<button class=\"c-tab__header-item c-button c-button--tab js-tab__title\"\n                            ng-click=\"$tabs.changeTab($event)\"\n                            ng-transclude></button>";
+                this.link = function (scope, element, attrs, ctrl) {
+                    scope.$tabs = ctrl;
+                };
+            }
+            TabTitle.factory = function () {
+                return function () { return new TabTitle(); };
+            };
+            return TabTitle;
+        }());
+        Components.TabTitle = TabTitle;
+        var TabBody = (function () {
+            function TabBody() {
+                this.replace = true;
+                this.require = '^tdTab';
+                this.transclude = true;
+                this.template = '<div class="c-tab__body js-tab__body" ng-transclude></div>';
+            }
+            TabBody.factory = function () {
+                return function () { return new TabBody(); };
+            };
+            return TabBody;
+        }());
+        Components.TabBody = TabBody;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+var tab = angular.module('thread.tab', []);
+tab.directive('tdTabs', Thread.Components.Tabs.factory());
+tab.directive('tdTab', Thread.Components.Tab.factory());
+tab.directive('tdTabTitle', Thread.Components.TabTitle.factory());
+tab.directive('tdTabBody', Thread.Components.TabBody.factory());
 /// <reference path="typings/angularjs/angular.d.ts" />
 var thread;
 (function (thread) {
