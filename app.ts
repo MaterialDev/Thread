@@ -8,6 +8,7 @@ module thread {
         'thread.waveEffect',
         'thread.menu',
         'thread.tab',
-        'thread.floatingLabel'
+        'thread.floatingLabel',
+        'thread.prodis'
     ]);
 }

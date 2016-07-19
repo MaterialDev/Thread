@@ -53,6 +53,9 @@
     background: none;
     transition: background 200ms $td-ease;
 
+    //masks elements inside border radius
+    z-index: 1;
+
     &:focus {
         outline: none;
     }

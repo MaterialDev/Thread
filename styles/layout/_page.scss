@@ -2,6 +2,10 @@
     .l-page__background {
         background: $color;
     }
+
+    &.l-page--full-screen {
+        background: $color;
+    }
 }
 
 .l-page {
@@ -37,4 +41,5 @@
     }
 
     &--orange { @include page-color($thread-orange); }
+    &--full-screen { height: 100%; }
 }

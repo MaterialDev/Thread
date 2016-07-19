@@ -1,3 +1,9 @@
+/**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
 module Thread.Components {
     export class FloatingLabel implements ng.IDirective {
         restrict = 'A';

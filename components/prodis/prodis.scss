@@ -1,0 +1,25 @@
+.c-prodis {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    position: relative;
+
+    &__section {
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+
+        &--complete {
+            display: block;
+            margin-top: 48px;
+            margin-bottom: 0;
+        }
+
+        &.ng-enter {
+            opacity: 0;
+            transform: translate3d(0, 50px, 0);
+        }
+
+        &.ng-enter-active {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}

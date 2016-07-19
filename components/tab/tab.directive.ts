@@ -1,4 +1,10 @@
-
+/**
+ * Tab component
+ * A component that allows switching between
+ * sets of content separated into groups by tabs
+ * @author Zach Barnes
+ * @created 07/08/2016
+ */
 module Thread.Components {
     import IAugmentedJQuery = angular.IAugmentedJQuery;
     export class Tabs implements ng.IDirective {

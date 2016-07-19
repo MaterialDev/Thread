@@ -14,7 +14,7 @@
     <script src="./dist/thread.js"></script>
 
 </head>
-<body ng-app="thread" class="l-page l-page--orange l-page--has-app-bar" scroll-collapse>
+<body ng-app="thread" class="l-page l-page--orange l-page--has-app-bar l-page--full-screen" scroll-collapse>
 <div class="c-app-bar c-app-bar--orange" scroll-collapse>
     <div class="c-app-bar__left">
         <span class="c-app-bar__logo">
@@ -32,80 +32,57 @@
         </td-menu>
     </div>
 </div>
-<td-tabs class="c-tab--orange">
-    <td-tab>
-        <td-tab-title>
-            <span>Tab 1</span> <span class="c-badge c-badge--success">test</span>
-        </td-tab-title>
-        <td-tab-body>
-            <div class="c-card u-no-margin-top">
-                <div class="c-card__content">
-                    <div class="c-card__header">
-                        <div class="c-card__title">Title</div>
-                    </div>
-                    <div class="c-card__body">
-                        <div class="c-input c-input--primary">
-                            <label class="c-input__label">Test Label</label>
-                            <input type="text" class="c-input__field">
-                        </div>
-                    </div>
-                    <div class="c-card__footer">footer</div>
-                </div>
-            </div>
-        </td-tab-body>
-    </td-tab>
-    <td-tab>
-        <td-tab-title>
-            Tab 2
-        </td-tab-title>
-        <td-tab-body>
-            <div class="c-card u-no-margin-top">
-                <div class="c-card__content">
-                    <div class="c-card__header">
-                        <div class="c-card__title">Title</div>
-                    </div>
-                    <div class="c-card__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis nisl elit. Vestibulum tincidunt consequat congue. Fusce a elit est. Curabitur sapien nisi, blandit in finibus quis, rutrum sed nisi. Nam vulputate lacus ut lacus ullamcorper, sed efficitur lorem commodo. Pellentesque cursus nisl eu lorem sodales hendrerit. Duis interdum, nibh viverra blandit fringilla, nulla nisl eleifend enim, sed fringilla mauris nibh vel sapien. In magna mauris, accumsan at nibh et, rhoncus consequat tellus. Maecenas fermentum, risus a sodales posuere, leo diam tristique tortor, eget consectetur tellus arcu eget dui. Vivamus non augue lorem.
 
-                        Nam congue pellentesque ligula, tempus lobortis felis elementum id. Mauris non aliquam felis. Donec lectus nisi, tristique quis luctus ut, congue vitae augue. Nam non rhoncus odio. Curabitur volutpat sed elit sed lacinia. Etiam ac tortor ante. Pellentesque tincidunt enim nisl, in varius lectus hendrerit in. Ut eget fermentum odio. Ut accumsan eros vel purus mollis, vel pellentesque turpis suscipit. Proin ullamcorper velit libero, sed gravida velit iaculis in. Donec sem sem, sagittis ut risus vitae, placerat pulvinar eros. Fusce condimentum iaculis tristique. Morbi sit amet mattis eros.
+<prodis class="c-natural-language--light u-full-height u-center">
+    <prodis-section name="state">
+        I am located in the state of
+        <div class="c-input c-input--inline c-input--secondary c-input--large c-input--natural-language">
+            <select ng-model="state" ng-change="$prodis.goTo('payment')" select-resize class="c-input__field">
+                <option value="tx">Texas</option>
+                <option value="somewhere else">Somewhere else</option>
+                <option value="tx">Texas</option>
+                <option value="tx">Texas</option>
+                <option value="tx">Texas</option>
+            </select>
+        </div>
+    </prodis-section>
+    <prodis-section name="payment">
+        I will use
+        <div class="c-input c-input--inline c-input--secondary c-input--large c-input--natural-language">
+            <select ng-change="$prodis.goTo('shipping')" ng-model="paymentModel" select-resize class="c-input__field">
+                <option value="paypal">Paypal</option>
+                <option value="stripe">Stripe</option>
+            </select>
+        </div>
+        to collect payment.
+    </prodis-section>
+    <prodis-section name="shipping">
+        I will
+        <div class="c-input c-input--inline c-input--secondary c-input--large c-input--natural-language">
+            <select select-resize class="c-input__field" ng-model="shipping">
+                <option value="freeShipping">Offer free shipping</option>
+                <option value="notFree">Not offer free shipping</option>
+            </select>
+        </div>
+        for all orders over
+        <div class="c-input c-input--inline c-input--secondary c-input--large c-input--number-4 c-input--natural-language">
+            <span class="c-input__addon" ng-show="over">$</span>
+            <input type="text" ng-model="over" class="c-input__field">
+        </div>
+        , otherwise I'll charge
+        <div class="c-input c-input--inline c-input--secondary c-input--large c-input--number-4 c-input--natural-language">
+            <span class="c-input__addon" ng-show="cost">$</span>
+            <input type="text" ng-model="cost" class="c-input__field" ng-change="$prodis.goTo('complete')">
+        </div>
+        per order.*
+    </prodis-section>
+    <prodis-section name="complete" class="c-prodis__section--complete">
+        <button class="c-button c-button--huge c-button--primary">
+            Configure Settings
+            <i class="mi c-button__icon c-button__icon--right">arrow_forward</i>
+        </button>
+    </prodis-section>
+</prodis>
 
-                        Donec aliquet lobortis neque vitae condimentum. Nullam finibus fringilla mauris, at sodales sapien congue nec. Nunc mollis mauris ut lacus ullamcorper, at ultricies libero consectetur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque semper dignissim consequat. Cras pellentesque, mauris et malesuada venenatis, purus velit malesuada neque, sit amet mattis eros lectus in urna. Proin efficitur facilisis est, in vestibulum tellus rhoncus at. Nullam vehicula, dui ac eleifend vestibulum, arcu orci sagittis quam, a eleifend purus orci eget ligula. Integer ut velit vel nulla vestibulum consectetur.</div>
-                    <div class="c-card__footer">footer</div>
-                </div>
-            </div>
-        </td-tab-body>
-    </td-tab>
-    <td-tab>
-        <td-tab-title>
-            <span>Tab 1</span> <span class="c-badge c-badge--success">test</span>
-        </td-tab-title>
-        <td-tab-body>
-            <div class="c-card u-no-margin-top">
-                <div class="c-card__content">
-                    <div class="c-card__header">
-                        <div class="c-card__title">Title</div>
-                    </div>
-                    <div class="c-card__body">body</div>
-                    <div class="c-card__footer">footer</div>
-                </div>
-            </div>
-        </td-tab-body>
-    </td-tab>
-    <td-tab>
-        <td-tab-title>
-            <span>Tab 1</span> <span class="c-badge c-badge--success">test</span>
-        </td-tab-title>
-        <td-tab-body>
-            <div class="c-card u-no-margin-top">
-                <div class="c-card__content">
-                    <div class="c-card__header">
-                        <div class="c-card__title">Title</div>
-                    </div>
-                    <div class="c-card__body">body</div>
-                    <div class="c-card__footer">footer</div>
-                </div>
-            </div>
-        </td-tab-body>
-    </td-tab>
-</td-tabs>
 </body>
 </html>

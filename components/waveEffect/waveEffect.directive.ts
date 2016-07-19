@@ -1,3 +1,10 @@
+/**
+ * Wave effect
+ * A directive that shows a growing circle in the background
+ * of components it's attached to
+ * @author Zach Barnes
+ * @created 07/11/2016
+ */
 module Thread.Components {
     export class waveEffect implements ng.IDirective {
         restrict = 'A';

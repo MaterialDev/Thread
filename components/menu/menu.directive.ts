@@ -1,3 +1,9 @@
+/**
+ * Menu
+ * A component that shows/hides a list of items based on target click
+ * @author Zach Barnes
+ * @created 07/06/2016
+ */
 module Thread.Components {
     export class Menu implements ng.IDirective {
         scope = {};

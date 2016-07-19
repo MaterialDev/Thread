@@ -8,6 +8,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 ul {
@@ -20,7 +21,9 @@ a {
     text-decoration: none;
 }
 
-input {
+input,
+select {
     border: none;
     outline: none;
+    background: transparent;
 }

@@ -1,13 +1,36 @@
 
-@mixin input-color($color) {
-    &.has-focus {
-        .c-input__label {
-            color: $color;
-        }
+@mixin input-color(
+    $active-color,
+    $text-color: $dark-primary-text,
+    $border-color: $dark-divider,
+    $label-color: $dark-secondary-text
+) {
+    .c-input__field {
+        color: $text-color;
     }
 
-    &.c-input:before {
-        background: $color;
+    .c-input__label {
+        color: $label-color;
+    }
+
+    &.c-input {
+        &.has-focus {
+            .c-input__label {
+                color: $active-color;
+            }
+
+            .c-input__addon {
+                color: $active-color;
+            }
+        }
+
+        &:before {
+            background: $active-color;
+        }
+
+        &:after {
+            background: $border-color;
+        }
     }
 }
 
@@ -25,10 +48,20 @@
         left: 0;
         right: 0;
         bottom: 0;
+        z-index: 10;
+    }
+
+    &:after {
+        content: '';
+        height: 1px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
     }
 
     &__label {
-        color: $dark-secondary-text;
         display: inline-block;
         font-size: 16px;
         transform: translate3d(0, 20px, 0);
@@ -39,21 +72,32 @@
 
     &__field {
         font-size: 16px;
-        color: $dark-primary-text;
-        border-bottom: 1px solid $dark-divider;
+        border-bottom: 1px solid;
         padding-bottom: 8px;
         width: 100%;
     }
 
-    &__container {
-
+    &__icon {
+        font-size: 24px;
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
+
+    /* stylelint-disable block-no-empty */
+    &__container { }
+    /* stylelint-enable */
 
     &__addon {
-
+        transition: color 200ms $td-ease;
+        margin-right: -6px;
+        font-size: 16px;
     }
 
-    &.has-focus, &.has-value {
+    &.has-focus,
+    &.has-value {
         .c-input__label {
             pointer-events: auto;
             transform: scale(0.75) translate3d(0, 0, 0);
@@ -68,6 +112,53 @@
 
     &--primary {
         @include input-color($thread-primary);
+    }
+
+    &--secondary {
+        @include input-color($light-primary-text, $light-primary-text, $light-divider, $light-secondary-text);
+    }
+
+    &--large {
+        .c-input__field,
+        .c-input__addon {
+            font-size: 36px;
+        }
+    }
+
+    &--with-icon {
+        width: calc(100% - 52px);
+        display: inline-block;
+        bottom: 8px;
+    }
+
+    &--inline {
+        width: auto;
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    &--natural-language {
+        &.c-input--primary {
+            @include input-color($thread-primary,$dark-primary-text, $thread-primary);
+        }
+
+        &.c-input--secondary {
+            @include input-color($light-primary-text, $light-primary-text, $light-primary-text, $light-secondary-text);
+        }
+    }
+
+    &--number {
+        .c-input__field {
+            width: 0.5859em * 3;
+        }
+    }
+
+    @for $i from 1 through 6 {
+        &--number-#{$i} {
+            .c-input__field {
+                width: 0.5859em * $i;
+            }
+        }
     }
 }
 
