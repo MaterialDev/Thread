@@ -6,7 +6,6 @@
     transition: height 300ms $td-ease-out;
 
     &__section {
-        display: inline-block;
         opacity: 0;
         transition: opacity 200ms $td-ease-out 100ms;
 

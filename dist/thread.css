@@ -1036,7 +1036,6 @@ textarea {
   overflow: hidden;
   transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
   .c-prodis__section {
-    display: inline-block;
     opacity: 0;
     transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
     .c-prodis__section--complete {
