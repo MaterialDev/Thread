@@ -2,9 +2,13 @@
     top: 50%;
     transform: translate3d(0, -50%, 0);
     position: relative;
+    overflow: hidden;
+    transition: height 300ms $td-ease-out;
 
     &__section {
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        display: inline-block;
+        opacity: 0;
+        transition: opacity 200ms $td-ease-out 100ms;
 
         &--complete {
             display: block;
@@ -12,14 +16,8 @@
             margin-bottom: 0;
         }
 
-        &.ng-enter {
-            opacity: 0;
-            transform: translate3d(0, 50px, 0);
-        }
-
-        &.ng-enter-active {
+        &--visible {
             opacity: 1;
-            transform: translate3d(0, 0, 0);
         }
     }
 }

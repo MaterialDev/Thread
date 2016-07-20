@@ -9,6 +9,7 @@ module thread {
         'thread.menu',
         'thread.tab',
         'thread.floatingLabel',
-        'thread.prodis'
+        'thread.prodis',
+        'thread.selectResize'
     ]);
 }

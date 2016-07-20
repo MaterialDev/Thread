@@ -40,6 +40,75 @@ var Thread;
 })(Thread || (Thread = {}));
 angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var FloatingLabel = (function () {
+            function FloatingLabel($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'A';
+                this.require = '?ngModel';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.noFloat !== undefined) {
+                        return;
+                    }
+                    _this.$timeout(function () {
+                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                        if (ctrl) {
+                            element.toggleClass('has-value', ctrl.$viewValue);
+                            ctrl.$formatters.push(function (value) {
+                                element.toggleClass('has-value', value);
+                            });
+                        }
+                        else {
+                            element.toggleClass('has-value', !!inputField.val());
+                            inputField.on('input', function () {
+                                element.toggleClass('has-value', !!this.value);
+                            });
+                        }
+                        inputField.on('focus', function () {
+                            element.addClass('has-focus');
+                        });
+                        inputField.on('blur', function () {
+                            element.removeClass('has-focus');
+                        });
+                        scope.$on('$destroy', function () {
+                            inputField.off('focus');
+                            inputField.off('blur');
+                        });
+                    });
+                };
+            }
+            FloatingLabel.factory = function () {
+                return function ($timeout) { return new FloatingLabel($timeout); };
+            };
+            return FloatingLabel;
+        }());
+        Components.FloatingLabel = FloatingLabel;
+        var FloatingLabelInput = (function (_super) {
+            __extends(FloatingLabelInput, _super);
+            function FloatingLabelInput() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            FloatingLabelInput.factory = function () {
+                return function ($timeout) { return new FloatingLabelInput($timeout); };
+            };
+            return FloatingLabelInput;
+        }(FloatingLabel));
+        Components.FloatingLabelInput = FloatingLabelInput;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
+angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
+/**
  * Menu
  * A component that shows/hides a list of items based on target click
  * @author Zach Barnes
@@ -221,75 +290,6 @@ menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
 /**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var FloatingLabel = (function () {
-            function FloatingLabel($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-                this.require = '?ngModel';
-                this.link = function (scope, element, attrs, ctrl) {
-                    if (attrs.noFloat !== undefined) {
-                        return;
-                    }
-                    _this.$timeout(function () {
-                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                        if (ctrl) {
-                            element.toggleClass('has-value', ctrl.$viewValue);
-                            ctrl.$formatters.push(function (value) {
-                                element.toggleClass('has-value', value);
-                            });
-                        }
-                        else {
-                            element.toggleClass('has-value', !!inputField.val());
-                            inputField.on('input', function () {
-                                element.toggleClass('has-value', !!this.value);
-                            });
-                        }
-                        inputField.on('focus', function () {
-                            element.addClass('has-focus');
-                        });
-                        inputField.on('blur', function () {
-                            element.removeClass('has-focus');
-                        });
-                        scope.$on('$destroy', function () {
-                            inputField.off('focus');
-                            inputField.off('blur');
-                        });
-                    });
-                };
-            }
-            FloatingLabel.factory = function () {
-                return function ($timeout) { return new FloatingLabel($timeout); };
-            };
-            return FloatingLabel;
-        }());
-        Components.FloatingLabel = FloatingLabel;
-        var FloatingLabelInput = (function (_super) {
-            __extends(FloatingLabelInput, _super);
-            function FloatingLabelInput() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
-            }
-            FloatingLabelInput.factory = function () {
-                return function ($timeout) { return new FloatingLabelInput($timeout); };
-            };
-            return FloatingLabelInput;
-        }(FloatingLabel));
-        Components.FloatingLabelInput = FloatingLabelInput;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
-angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
-/**
  * Progressive Disclosure
  * A natural language component that shows one
  * section at a time centered in the middle of the screen
@@ -301,7 +301,8 @@ var Thread;
     var Components;
     (function (Components) {
         var ProdisController = (function () {
-            function ProdisController() {
+            function ProdisController($element) {
+                this.$element = $element;
                 this.currentSection = 0;
                 this.sections = [];
             }
@@ -323,13 +324,28 @@ var Thread;
             ProdisController.prototype.getCurrent = function () {
                 return this.currentSection;
             };
-            ProdisController.prototype.updateSections = function () { };
+            ProdisController.prototype.updateSections = function () {
+                var height = 0;
+                var prodisEl;
+                for (var i = 0; i <= this.currentSection; i++) {
+                    height += this.getSectionHeight(this.sections[i].element);
+                }
+                prodisEl = this.$element[0].querySelector('.js-prodis');
+                prodisEl.style.height = height + "px";
+            };
             ProdisController.prototype.registerSection = function (element, name) {
                 this.sections.push({
                     element: element,
                     name: name
                 });
+                this.updateSections();
                 return this.sections.length - 1;
+            };
+            ProdisController.prototype.getSectionHeight = function (section) {
+                var height = section.offsetHeight;
+                var style = getComputedStyle(section);
+                height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+                return height;
             };
             return ProdisController;
         }());
@@ -338,7 +354,7 @@ var Thread;
 })(Thread || (Thread = {}));
 angular.module('thread.prodis', []).directive('prodis', function () {
     return {
-        template: "<div class=\"c-natural-language\">\n                        <div class=\"c-prodis\" ng-transclude></div>\n                   </div>",
+        template: "<div class=\"c-natural-language\">\n                        <div class=\"c-prodis js-prodis\" ng-transclude></div>\n                   </div>",
         bindToController: true,
         transclude: true,
         replace: true,
@@ -348,7 +364,7 @@ angular.module('thread.prodis', []).directive('prodis', function () {
 });
 angular.module('thread.prodis').directive('prodisSection', function () {
     return {
-        template: '<div class="c-natural-language__section c-prodis__section" ng-if="$prodis.currentSection >= $prodisSection.id" ng-transclude></div>',
+        template: "<div class=\"c-natural-language__section c-prodis__section js-prodis__section\"\n                        ng-class=\"{\n                            'c-prodis__section--complete': $prodisSection.isComplete,\n                            'c-prodis__section--visible': $prodisSection.id <= $prodis.currentSection\n                        }\" ng-transclude></div>",
         require: '^prodis',
         transclude: true,
         controllerAs: '$prodisSection',
@@ -357,134 +373,67 @@ angular.module('thread.prodis').directive('prodisSection', function () {
         scope: true,
         controller: function ($scope, $element, $attrs) {
             var $parent = $scope.$prodis;
-            this.id = $parent.registerSection($element, $attrs.name);
+            this.id = $parent.registerSection($element[0].querySelector('.js-prodis__section'), $attrs.name);
+            console.log($attrs);
+            this.isComplete = !!$attrs.isComplete;
         }
     };
 });
 /**
- * Wave effect
- * A directive that shows a growing circle in the background
- * of components it's attached to
+ * Select Resize
+ * Automatically resizes select elements to fit the text exactly
  * @author Zach Barnes
- * @created 07/11/2016
+ * @created 07/19/2016
  */
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var waveEffect = (function () {
-            function waveEffect($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-                this.link = function (scope, element, attrs, ctrl) {
-                    if (attrs.hasOwnProperty('noWave')) {
-                        return;
-                    }
-                    var waveEl;
-                    var rawElement = element[0];
-                    var isFab = false;
-                    var removeActiveTriggered = false;
-                    var removeActiveTimeout = null;
-                    _this.$timeout(function () {
-                        var width;
-                        var height;
-                        waveEl = angular.element('<span class="wave-effect"></span>');
-                        if (element.hasClass('c-button--fab') ||
-                            element.hasClass('c-button--fab-mini') ||
-                            element.hasClass('c-button--icon')) {
-                            waveEl.addClass('wave-effect--fab');
-                            isFab = true;
-                        }
-                        if (isFab) {
-                            //circle, height must match the width
-                            width = rawElement.offsetWidth;
-                            height = rawElement.offsetWidth;
-                        }
-                        else {
-                            width = Math.ceil(rawElement.offsetWidth);
-                            height = Math.ceil(rawElement.offsetWidth);
-                        }
-                        waveEl[0].style.width = width + "px";
-                        waveEl[0].style.height = height + "px";
-                        element.append(waveEl);
-                    });
-                    angular.element(document.querySelector('body')).on('mouseup', onMouseUp);
-                    element.on('mousedown', function (e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        if (e.which === 1) {
-                            if (!isFab) {
-                                var pos = { left: e.clientX, top: e.clientY };
-                                var parentPos = e.target.getBoundingClientRect();
-                                waveEl[0].style.left = (pos.left - parentPos.left) + "px";
-                                waveEl[0].style.top = (pos.top - parentPos.top) + "px";
-                            }
-                            waveEl.removeClass('has-focus');
-                            waveEl.addClass('is-active');
-                            removeActiveTimeout = _this.$timeout(function () {
-                                if (removeActiveTriggered) {
-                                    removeActiveTriggered = false;
-                                    waveEl.removeClass('is-active');
-                                }
-                                removeActiveTimeout = null;
-                            }, 300);
-                        }
-                    });
-                    element.on('focus', function () {
-                        waveEl[0].style.left = '';
-                        waveEl[0].style.top = '';
-                        if (!element.hasClass('is-active')) {
-                            waveEl.addClass('has-focus');
-                        }
-                        else {
-                            rawElement.blur();
-                        }
-                    });
-                    element.on('blur', function () {
-                        waveEl.removeClass('has-focus');
-                    });
-                    function onMouseUp() {
-                        if (removeActiveTimeout) {
-                            removeActiveTriggered = true;
-                        }
-                        else {
-                            waveEl.removeClass('is-active');
-                        }
-                        rawElement.blur();
-                    }
-                    scope.$on('$destroy', function () {
-                        waveEl.remove();
-                        angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
-                    });
-                };
+angular.module('thread.selectResize', []).directive('selectResizeParent', function () {
+    return {
+        bindToController: true,
+        controller: function ($element) {
+            this.getElement = getElement;
+            function getElement() {
+                return $element;
             }
-            waveEffect.factory = function () {
-                var directive = function ($timeout) { return new Thread.Components.waveEffect($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return waveEffect;
-        }());
-        Components.waveEffect = waveEffect;
-        var waveEffectButton = (function (_super) {
-            __extends(waveEffectButton, _super);
-            function waveEffectButton() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
+        }
+    };
+});
+angular.module('thread.selectResize').directive('selectResize', function ($timeout) {
+    return {
+        require: '?^selectResizeParent',
+        scope: {
+            onResize: '&selectResize',
+            resizeDefault: '@'
+        },
+        link: function (scope, element, attrs, ctrl) {
+            $timeout(function () {
+                resizeInput();
+            });
+            angular.element(element).on('change', function () {
+                resizeInput();
+            });
+            function resizeInput() {
+                var el = element[0];
+                var arrowWidth = 8;
+                var text = el.options[el.selectedIndex].text;
+                var width;
+                if (text) {
+                    var testEl = angular.element('<span>').html(text);
+                    var parent_1 = ctrl ? ctrl.getElement() : element.parent();
+                    parent_1.append(testEl);
+                    width = testEl[0].offsetWidth;
+                    testEl.remove();
+                    testEl = null;
+                }
+                else {
+                    width = scope.resizeDefault || 150;
+                }
+                element[0].style.width = (width + arrowWidth) + "px";
+                if (scope.onResize) {
+                    scope.onResize();
+                }
             }
-            waveEffectButton.factory = function () {
-                var directive = function ($timeout) { return new Thread.Components.waveEffectButton($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return waveEffectButton;
-        }(waveEffect));
-        Components.waveEffectButton = waveEffectButton;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
-angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
+        }
+    };
+});
 /**
  * Tab component
  * A component that allows switching between
@@ -657,6 +606,130 @@ tab.directive('tdTabs', Thread.Components.Tabs.factory());
 tab.directive('tdTab', Thread.Components.Tab.factory());
 tab.directive('tdTabTitle', Thread.Components.TabTitle.factory());
 tab.directive('tdTabBody', Thread.Components.TabBody.factory());
+/**
+ * Wave effect
+ * A directive that shows a growing circle in the background
+ * of components it's attached to
+ * @author Zach Barnes
+ * @created 07/11/2016
+ */
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var waveEffect = (function () {
+            function waveEffect($timeout) {
+                var _this = this;
+                this.$timeout = $timeout;
+                this.restrict = 'A';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.hasOwnProperty('noWave')) {
+                        return;
+                    }
+                    var waveEl;
+                    var rawElement = element[0];
+                    var isFab = false;
+                    var removeActiveTriggered = false;
+                    var removeActiveTimeout = null;
+                    _this.$timeout(function () {
+                        var width;
+                        var height;
+                        waveEl = angular.element('<span class="wave-effect"></span>');
+                        if (element.hasClass('c-button--fab') ||
+                            element.hasClass('c-button--fab-mini') ||
+                            element.hasClass('c-button--icon')) {
+                            waveEl.addClass('wave-effect--fab');
+                            isFab = true;
+                        }
+                        if (isFab) {
+                            //circle, height must match the width
+                            width = rawElement.offsetWidth;
+                            height = rawElement.offsetWidth;
+                        }
+                        else {
+                            width = Math.ceil(rawElement.offsetWidth);
+                            height = Math.ceil(rawElement.offsetWidth);
+                        }
+                        waveEl[0].style.width = width + "px";
+                        waveEl[0].style.height = height + "px";
+                        element.append(waveEl);
+                    });
+                    angular.element(document.querySelector('body')).on('mouseup', onMouseUp);
+                    element.on('mousedown', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if (e.which === 1) {
+                            if (!isFab) {
+                                var pos = { left: e.clientX, top: e.clientY };
+                                var parentPos = e.target.getBoundingClientRect();
+                                waveEl[0].style.left = (pos.left - parentPos.left) + "px";
+                                waveEl[0].style.top = (pos.top - parentPos.top) + "px";
+                            }
+                            waveEl.removeClass('has-focus');
+                            waveEl.addClass('is-active');
+                            removeActiveTimeout = _this.$timeout(function () {
+                                if (removeActiveTriggered) {
+                                    removeActiveTriggered = false;
+                                    waveEl.removeClass('is-active');
+                                }
+                                removeActiveTimeout = null;
+                            }, 300);
+                        }
+                    });
+                    element.on('focus', function () {
+                        waveEl[0].style.left = '';
+                        waveEl[0].style.top = '';
+                        if (!element.hasClass('is-active')) {
+                            waveEl.addClass('has-focus');
+                        }
+                        else {
+                            rawElement.blur();
+                        }
+                    });
+                    element.on('blur', function () {
+                        waveEl.removeClass('has-focus');
+                    });
+                    function onMouseUp() {
+                        if (removeActiveTimeout) {
+                            removeActiveTriggered = true;
+                        }
+                        else {
+                            waveEl.removeClass('is-active');
+                        }
+                        rawElement.blur();
+                    }
+                    scope.$on('$destroy', function () {
+                        waveEl.remove();
+                        angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
+                    });
+                };
+            }
+            waveEffect.factory = function () {
+                var directive = function ($timeout) { return new Thread.Components.waveEffect($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return waveEffect;
+        }());
+        Components.waveEffect = waveEffect;
+        var waveEffectButton = (function (_super) {
+            __extends(waveEffectButton, _super);
+            function waveEffectButton() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            waveEffectButton.factory = function () {
+                var directive = function ($timeout) { return new Thread.Components.waveEffectButton($timeout); };
+                directive.$inject = ['$timeout'];
+                return directive;
+            };
+            return waveEffectButton;
+        }(waveEffect));
+        Components.waveEffectButton = waveEffectButton;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
+angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
 /// <reference path="typings/angularjs/angular.d.ts" />
 var thread;
 (function (thread) {
@@ -667,6 +740,7 @@ var thread;
         'thread.menu',
         'thread.tab',
         'thread.floatingLabel',
-        'thread.prodis'
+        'thread.prodis',
+        'thread.selectResize'
     ]);
 })(thread || (thread = {}));

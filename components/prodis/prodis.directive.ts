@@ -11,7 +11,7 @@ module Thread.Components {
         currentSection: number;
         sections: any[];
 
-        constructor() {
+        constructor(private $element: ng.IAugmentedJQuery) {
             this.currentSection = 0;
             this.sections = [];
         }
@@ -37,7 +37,17 @@ module Thread.Components {
             return this.currentSection;
         }
 
-        updateSections() {}
+        updateSections() {
+            let height: number = 0;
+            let prodisEl : HTMLElement;
+
+            for(let i = 0; i <= this.currentSection; i++) {
+                height += this.getSectionHeight(this.sections[i].element);
+            }
+
+            prodisEl = <HTMLElement>this.$element[0].querySelector('.js-prodis');
+            prodisEl.style.height = `${height}px`;
+        }
 
         registerSection(element, name) {
             this.sections.push({
@@ -45,7 +55,16 @@ module Thread.Components {
                 name
             });
 
+            this.updateSections();
             return this.sections.length - 1;
+        }
+
+        getSectionHeight(section) {
+            let height: number = section.offsetHeight;
+            let style : CSSStyleDeclaration = getComputedStyle(section);
+
+            height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+            return height;
         }
     }
 }
@@ -53,7 +72,7 @@ module Thread.Components {
 angular.module('thread.prodis', []).directive('prodis', () => {
     return {
         template: `<div class="c-natural-language">
-                        <div class="c-prodis" ng-transclude></div>
+                        <div class="c-prodis js-prodis" ng-transclude></div>
                    </div>`,
         bindToController: true,
         transclude: true,
@@ -65,7 +84,11 @@ angular.module('thread.prodis', []).directive('prodis', () => {
 
 angular.module('thread.prodis').directive('prodisSection', () => {
     return {
-        template: '<div class="c-natural-language__section c-prodis__section" ng-if="$prodis.currentSection >= $prodisSection.id" ng-transclude></div>',
+        template: `<div class="c-natural-language__section c-prodis__section js-prodis__section"
+                        ng-class="{
+                            'c-prodis__section--complete': $prodisSection.isComplete,
+                            'c-prodis__section--visible': $prodisSection.id <= $prodis.currentSection
+                        }" ng-transclude></div>`,
         require: '^prodis',
         transclude: true,
         controllerAs: '$prodisSection',
@@ -74,7 +97,9 @@ angular.module('thread.prodis').directive('prodisSection', () => {
         scope: true,
         controller($scope, $element, $attrs) {
             let $parent = $scope.$prodis;
-            this.id = $parent.registerSection($element, $attrs.name);
+            this.id = $parent.registerSection($element[0].querySelector('.js-prodis__section'), $attrs.name);
+            console.log($attrs);
+            this.isComplete = !!$attrs.isComplete;
         }
     };
 });
