@@ -11,7 +11,7 @@ module Thread.Components {
         currentSection: number;
         sections: any[];
 
-        constructor(private $element: ng.IAugmentedJQuery) {
+        constructor(private $element: ng.IAugmentedJQuery, private $timeout: ng.ITimeoutService) {
             this.currentSection = 0;
             this.sections = [];
         }
@@ -55,7 +55,9 @@ module Thread.Components {
                 name
             });
 
-            this.updateSections();
+            this.$timeout(() => {
+                this.updateSections();
+            });
             return this.sections.length - 1;
         }
 
@@ -98,7 +100,6 @@ angular.module('thread.prodis').directive('prodisSection', () => {
         controller($scope, $element, $attrs) {
             let $parent = $scope.$prodis;
             this.id = $parent.registerSection($element[0].querySelector('.js-prodis__section'), $attrs.name);
-            console.log($attrs);
             this.isComplete = !!$attrs.isComplete;
         }
     };

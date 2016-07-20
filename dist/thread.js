@@ -301,8 +301,9 @@ var Thread;
     var Components;
     (function (Components) {
         var ProdisController = (function () {
-            function ProdisController($element) {
+            function ProdisController($element, $timeout) {
                 this.$element = $element;
+                this.$timeout = $timeout;
                 this.currentSection = 0;
                 this.sections = [];
             }
@@ -334,11 +335,14 @@ var Thread;
                 prodisEl.style.height = height + "px";
             };
             ProdisController.prototype.registerSection = function (element, name) {
+                var _this = this;
                 this.sections.push({
                     element: element,
                     name: name
                 });
-                this.updateSections();
+                this.$timeout(function () {
+                    _this.updateSections();
+                });
                 return this.sections.length - 1;
             };
             ProdisController.prototype.getSectionHeight = function (section) {
@@ -374,8 +378,62 @@ angular.module('thread.prodis').directive('prodisSection', function () {
         controller: function ($scope, $element, $attrs) {
             var $parent = $scope.$prodis;
             this.id = $parent.registerSection($element[0].querySelector('.js-prodis__section'), $attrs.name);
-            console.log($attrs);
             this.isComplete = !!$attrs.isComplete;
+        }
+    };
+});
+/**
+ * Select Resize
+ * Automatically resizes select elements to fit the text exactly
+ * @author Zach Barnes
+ * @created 07/19/2016
+ */
+angular.module('thread.selectResize', []).directive('selectResizeParent', function () {
+    return {
+        bindToController: true,
+        controller: function ($element) {
+            this.getElement = getElement;
+            function getElement() {
+                return $element;
+            }
+        }
+    };
+});
+angular.module('thread.selectResize').directive('selectResize', function ($timeout) {
+    return {
+        require: '?^selectResizeParent',
+        scope: {
+            onResize: '&selectResize',
+            resizeDefault: '@'
+        },
+        link: function (scope, element, attrs, ctrl) {
+            $timeout(function () {
+                resizeInput();
+            });
+            angular.element(element).on('change', function () {
+                resizeInput();
+            });
+            function resizeInput() {
+                var el = element[0];
+                var arrowWidth = 28;
+                var text = el.options[el.selectedIndex].text;
+                var width;
+                if (text) {
+                    var testEl = angular.element('<span>').html(text);
+                    var parent_1 = ctrl ? ctrl.getElement() : element.parent();
+                    parent_1.append(testEl);
+                    width = testEl[0].offsetWidth;
+                    testEl.remove();
+                    testEl = null;
+                }
+                else {
+                    width = scope.resizeDefault || 150;
+                }
+                element[0].style.width = (width + arrowWidth) + "px";
+                if (scope.onResize) {
+                    scope.onResize();
+                }
+            }
         }
     };
 });
@@ -675,61 +733,6 @@ var Thread;
 })(Thread || (Thread = {}));
 angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
 angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
-/**
- * Select Resize
- * Automatically resizes select elements to fit the text exactly
- * @author Zach Barnes
- * @created 07/19/2016
- */
-angular.module('thread.selectResize', []).directive('selectResizeParent', function () {
-    return {
-        bindToController: true,
-        controller: function ($element) {
-            this.getElement = getElement;
-            function getElement() {
-                return $element;
-            }
-        }
-    };
-});
-angular.module('thread.selectResize').directive('selectResize', function ($timeout) {
-    return {
-        require: '?^selectResizeParent',
-        scope: {
-            onResize: '&selectResize',
-            resizeDefault: '@'
-        },
-        link: function (scope, element, attrs, ctrl) {
-            $timeout(function () {
-                resizeInput();
-            });
-            angular.element(element).on('change', function () {
-                resizeInput();
-            });
-            function resizeInput() {
-                var el = element[0];
-                var arrowWidth = 28;
-                var text = el.options[el.selectedIndex].text;
-                var width;
-                if (text) {
-                    var testEl = angular.element('<span>').html(text);
-                    var parent_1 = ctrl ? ctrl.getElement() : element.parent();
-                    parent_1.append(testEl);
-                    width = testEl[0].offsetWidth;
-                    testEl.remove();
-                    testEl = null;
-                }
-                else {
-                    width = scope.resizeDefault || 150;
-                }
-                element[0].style.width = (width + arrowWidth) + "px";
-                if (scope.onResize) {
-                    scope.onResize();
-                }
-            }
-        }
-    };
-});
 /// <reference path="typings/angularjs/angular.d.ts" />
 var thread;
 (function (thread) {
