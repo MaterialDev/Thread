@@ -3,42 +3,75 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+/**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
 var Thread;
 (function (Thread) {
     var Components;
     (function (Components) {
-        var ScrollCollapse = (function () {
-            function ScrollCollapse($window) {
+        var FloatingLabel = (function () {
+            function FloatingLabel($timeout) {
                 var _this = this;
-                this.$window = $window;
+                this.$timeout = $timeout;
                 this.restrict = 'A';
-                this.link = function (scope, element, attrs) {
-                    var lastScroll = 0;
-                    angular.element(_this.$window).on('scroll', function () {
-                        var scroll = document.querySelector('body').scrollTop;
-                        //Scrolling down
-                        if (scroll > lastScroll + 10) {
-                            element.addClass('collapsed');
-                            lastScroll = scroll;
+                this.require = '?ngModel';
+                this.link = function (scope, element, attrs, ctrl) {
+                    if (attrs.noFloat !== undefined) {
+                        return;
+                    }
+                    _this.$timeout(function () {
+                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                        if (ctrl) {
+                            element.toggleClass('has-value', ctrl.$viewValue);
+                            ctrl.$formatters.push(function (value) {
+                                element.toggleClass('has-value', value);
+                            });
                         }
-                        else if (scroll < lastScroll - 10) {
-                            element.removeClass('collapsed');
-                            lastScroll = scroll;
+                        else {
+                            element.toggleClass('has-value', !!inputField.val());
+                            inputField.on('input', function () {
+                                element.toggleClass('has-value', !!this.value);
+                            });
                         }
+                        inputField.on('focus', function () {
+                            element.addClass('has-focus');
+                        });
+                        inputField.on('blur', function () {
+                            element.removeClass('has-focus');
+                        });
+                        scope.$on('$destroy', function () {
+                            inputField.off('focus');
+                            inputField.off('blur');
+                        });
                     });
                 };
             }
-            ScrollCollapse.factory = function () {
-                var directive = function ($window) { return new ScrollCollapse($window); };
-                directive.$inject = ['$window'];
-                return directive;
+            FloatingLabel.factory = function () {
+                return function ($timeout) { return new FloatingLabel($timeout); };
             };
-            return ScrollCollapse;
+            return FloatingLabel;
         }());
-        Components.ScrollCollapse = ScrollCollapse;
+        Components.FloatingLabel = FloatingLabel;
+        var FloatingLabelInput = (function (_super) {
+            __extends(FloatingLabelInput, _super);
+            function FloatingLabelInput() {
+                _super.apply(this, arguments);
+                this.restrict = 'C';
+            }
+            FloatingLabelInput.factory = function () {
+                return function ($timeout) { return new FloatingLabelInput($timeout); };
+            };
+            return FloatingLabelInput;
+        }(FloatingLabel));
+        Components.FloatingLabelInput = FloatingLabelInput;
     })(Components = Thread.Components || (Thread.Components = {}));
 })(Thread || (Thread = {}));
-angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
+angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
+angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
 /**
  * Menu
  * A component that shows/hides a list of items based on target click
@@ -221,75 +254,6 @@ menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
 /**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var FloatingLabel = (function () {
-            function FloatingLabel($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'A';
-                this.require = '?ngModel';
-                this.link = function (scope, element, attrs, ctrl) {
-                    if (attrs.noFloat !== undefined) {
-                        return;
-                    }
-                    _this.$timeout(function () {
-                        var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                        if (ctrl) {
-                            element.toggleClass('has-value', ctrl.$viewValue);
-                            ctrl.$formatters.push(function (value) {
-                                element.toggleClass('has-value', value);
-                            });
-                        }
-                        else {
-                            element.toggleClass('has-value', !!inputField.val());
-                            inputField.on('input', function () {
-                                element.toggleClass('has-value', !!this.value);
-                            });
-                        }
-                        inputField.on('focus', function () {
-                            element.addClass('has-focus');
-                        });
-                        inputField.on('blur', function () {
-                            element.removeClass('has-focus');
-                        });
-                        scope.$on('$destroy', function () {
-                            inputField.off('focus');
-                            inputField.off('blur');
-                        });
-                    });
-                };
-            }
-            FloatingLabel.factory = function () {
-                return function ($timeout) { return new FloatingLabel($timeout); };
-            };
-            return FloatingLabel;
-        }());
-        Components.FloatingLabel = FloatingLabel;
-        var FloatingLabelInput = (function (_super) {
-            __extends(FloatingLabelInput, _super);
-            function FloatingLabelInput() {
-                _super.apply(this, arguments);
-                this.restrict = 'C';
-            }
-            FloatingLabelInput.factory = function () {
-                return function ($timeout) { return new FloatingLabelInput($timeout); };
-            };
-            return FloatingLabelInput;
-        }(FloatingLabel));
-        Components.FloatingLabelInput = FloatingLabelInput;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.floatingLabel', []).directive('floatingLabel', Thread.Components.FloatingLabel.factory());
-angular.module('thread.floatingLabel').directive('cInput', Thread.Components.FloatingLabelInput.factory());
-/**
  * Progressive Disclosure
  * A natural language component that shows one
  * section at a time centered in the middle of the screen
@@ -382,6 +346,42 @@ angular.module('thread.prodis').directive('prodisSection', function () {
         }
     };
 });
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var ScrollCollapse = (function () {
+            function ScrollCollapse($window) {
+                var _this = this;
+                this.$window = $window;
+                this.restrict = 'A';
+                this.link = function (scope, element, attrs) {
+                    var lastScroll = 0;
+                    angular.element(_this.$window).on('scroll', function () {
+                        var scroll = document.querySelector('body').scrollTop;
+                        //Scrolling down
+                        if (scroll > lastScroll + 10) {
+                            element.addClass('collapsed');
+                            lastScroll = scroll;
+                        }
+                        else if (scroll < lastScroll - 10) {
+                            element.removeClass('collapsed');
+                            lastScroll = scroll;
+                        }
+                    });
+                };
+            }
+            ScrollCollapse.factory = function () {
+                var directive = function ($window) { return new ScrollCollapse($window); };
+                directive.$inject = ['$window'];
+                return directive;
+            };
+            return ScrollCollapse;
+        }());
+        Components.ScrollCollapse = ScrollCollapse;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
  * Select Resize
  * Automatically resizes select elements to fit the text exactly
