@@ -50,6 +50,8 @@ gulp.task('build:js', () => {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('build', ['build:css', 'build:js']);
+
 gulp.task('default', ['build:css', 'build:js'], () => {
     gulp.watch(['./styles/**/*.scss', './components/**/*.scss'], ['build:css']);
     gulp.watch(['app.ts', './components/**/*.ts'], ['build:js']);

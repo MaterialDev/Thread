@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- node
+install:
+- npm install
+env:
+  global:
+  - GH_REF: github.com/MaterialDev/Thread
+  - secure: fhyXDo8hHDhhoW2tp0dekPEuRgxtHVpaz7sYOFXyH2GRNipLK7tDslkyQRdRGjViw1iLnCTWduHjCTRrGuz+aQrsR/jHmuFNm+AA40VUhb5xEa5YoR3m6M6Kwy8NeYWUamry6DZcLENj7QKWqxm49EVmscVKLCUyDl2ZDvJWLbZcabvBW/nb3DzFfczGRhBnCur3KUVT4FTjPYPDaflV/k7kYjCXR7rTn+Y6ITeAFc/AcH1qJOca7E7rPOxp3t8pRm2/bxwGhPcu+VBx3DYaghotXqGPi64IkqW7HeOZ5Ks78Nf7vjtW8UVFjw18Hs57hDkGHgp7wlB7+d/Bbj00VDz4DwtFJRlDxI/3DuCW1C+FGkI7ghhGIq/2QHU9b8B27FIN2J+5HjDRv1No1h/0w88ukilwleJXk06YQAtxyi5ZEhB1YYZhCC0ZrncF5qo/d91DM7cPf0FJRmy/SRLmOnFaEYMxn6G4DBZ4znpp22JbKajbaSepVBvuWTCY4yL4iYtXLdZoEav5a2Aa7AytFRkj9FSGsV8ZQiYt9n7alo1zw0GiGyk3pc7OQeWB+EGFB/V3yRAAeyE0OunRJ38JiznWHr8Thp3uuOtAH1KJQ2LgFVP5h9BrxH95ZGbg82j+yc31ECijPsJTzSBvHGQD/U48OmSUcN88Lya3ZzDDSpE=
+before_script:
+- npm install -g gulp
+script:
+- gulp build
+after_success:
+- bash deploy.sh
