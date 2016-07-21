@@ -21,7 +21,7 @@ module Thread.Components {
                     lastScroll = scroll;
                 }
             });
-        }
+        };
 
         static factory(): ng.IDirectiveFactory {
             const directive = ($window: ng.IWindowService) => new ScrollCollapse($window);

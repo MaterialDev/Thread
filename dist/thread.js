@@ -108,7 +108,7 @@ var Thread;
                     ctrl.backdrop.on('click', function () {
                         ctrl.close();
                     });
-                    angular.element(element[0].querySelector('.js-menu__item')).on('click', function () {
+                    angular.element(ctrl.menuContent[0].querySelectorAll('.js-menu__item')).on('click', function () {
                         _this.$timeout(function () { return ctrl.close(); }, 100);
                     });
                 };
@@ -155,8 +155,8 @@ var Thread;
                                 top_1 = targetPos.bottom - this.menuContent[0].offsetHeight;
                                 break;
                         }
-                        this.menuContent[0].style.left = left;
-                        this.menuContent[0].style.top = top_1;
+                        this.menuContent[0].style.left = left + "px";
+                        this.menuContent[0].style.top = top_1 + "px";
                         this.menuContent[0].style.right = 'initial';
                         this.menuContent[0].style.bottom = 'initial';
                     }

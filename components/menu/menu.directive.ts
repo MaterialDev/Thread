@@ -40,7 +40,7 @@ module Thread.Components {
                 ctrl.close();
             });
 
-            angular.element(element[0].querySelector('.js-menu__item')).on('click', () => {
+            angular.element(ctrl.menuContent[0].querySelectorAll('.js-menu__item')).on('click', () => {
                 this.$timeout(() => ctrl.close(), 100);
             });
         };
@@ -95,8 +95,8 @@ module Thread.Components {
                         //no default
                     }
 
-                    this.menuContent[0].style.left = left;
-                    this.menuContent[0].style.top = top;
+                    this.menuContent[0].style.left = `${left}px`;
+                    this.menuContent[0].style.top = `${top}px`;
                     this.menuContent[0].style.right = 'initial';
                     this.menuContent[0].style.bottom = 'initial';
                 }
