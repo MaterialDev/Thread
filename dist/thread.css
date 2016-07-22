@@ -901,9 +901,7 @@ p {
 
 .l-page {
   position: relative;
-  overflow: auto;
-  /* stylelint-disable block-no-empty */
-  /* stylelint-enable */ }
+  overflow: auto; }
   .l-page__background {
     position: absolute;
     top: 0;
@@ -914,6 +912,12 @@ p {
     transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
     .l-page__background.collapsed {
       transform: translate3d(0, -136px, 0); }
+  .l-page__primary, .l-page__secondary {
+    position: relative;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%; }
   .l-page--has-app-bar {
     padding-top: 64px;
     transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
