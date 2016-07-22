@@ -51,7 +51,7 @@
     font-family: 'Lato', sans-serif;
     letter-spacing: 0.05em;
     background: none;
-    transition: background 200ms $td-ease;
+    transition: background 200ms $td-ease, box-shadow 200ms $td-ease;
 
     //masks elements inside border radius
     z-index: 1;
