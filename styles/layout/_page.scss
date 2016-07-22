@@ -26,10 +26,14 @@
         }
     }
 
-    /* stylelint-disable block-no-empty */
-    &__primary {}
-    &__secondary {}
-    /* stylelint-enable */
+    &__primary,
+    &__secondary {
+        position: relative;
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
 
     &--has-app-bar {
         padding-top: 64px;
