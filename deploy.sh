@@ -11,7 +11,7 @@ gulp build;
 git checkout $TARGET_BRANCH
 git config user.name "Travis-CI"
 git config user.email "travis@material.com"
-cp -r ../dist ./dist
+cp -r ../dist ./
 git add .
 git commit -m "Travis deploy to Github Pages"
 git push "https://${GH_TOKEN}@${GH_REF}" gh-pages
