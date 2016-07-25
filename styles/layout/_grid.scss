@@ -1,9 +1,9 @@
 .l-row {
     overflow: auto;
-    margin-left: -$size-unit;
-    margin-right: -$size-unit;
-    padding-top: $size-unit;
-    padding-bottom: $size-unit;
+    margin-left: -$unit;
+    margin-right: -$unit;
+    padding-top: $unit;
+    padding-bottom: $unit;
 
     &:before {
         display: table;
@@ -12,12 +12,12 @@
 }
 
 .l-container {
-    margin-top: -$size-unit;
+    margin-top: -$unit;
 }
 
 [class^="l-col"] {
-    padding-left: $size-unit;
-    padding-right: $size-unit;
+    padding-left: $unit;
+    padding-right: $unit;
     float: left;
     width: 100%;
 

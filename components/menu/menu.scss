@@ -1,5 +1,5 @@
 .c-menu {
-    $menu-unit: $size-unit * 7;
+    $menu-unit: $unit * 7;
 
     position: relative;
     display: inline-block;
@@ -19,8 +19,8 @@
     }
 
     &__content {
-        padding-top: $size-unit;
-        padding-bottom: $size-unit;
+        padding-top: $unit;
+        padding-bottom: $unit;
         box-shadow: $shadow;
 
         width: $menu-unit * 2;

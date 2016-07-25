@@ -12,7 +12,7 @@
     box-shadow: $shadow;
     background: white;
     border-radius: 2px;
-    margin: $size-unit;
+    margin: $unit;
 
     @media screen and (min-width: $bp-mobile) {
         flex-direction: row;
@@ -50,12 +50,12 @@
     }
 
     &__header {
-        min-height: $size-unit * 8;
+        min-height: $unit * 8;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-left: $size-unit * 2;
-        padding-right: $size-unit * 2;
+        padding-left: $unit * 2;
+        padding-right: $unit * 2;
     }
 
     &__help {
@@ -73,15 +73,15 @@
     }
 
     &__body {
-        padding-left: $size-unit * 2;
-        padding-right: $size-unit * 2;
-        padding-bottom: $size-unit * 3;
+        padding-left: $unit * 2;
+        padding-right: $unit * 2;
+        padding-bottom: $unit * 3;
     }
 
     &__footer {
-        padding-left: $size-unit * 2;
-        padding-right: $size-unit * 2;
-        min-height: $size-unit * 8;
+        padding-left: $unit * 2;
+        padding-right: $unit * 2;
+        min-height: $unit * 8;
         display: flex;
         align-items: center;
         flex-wrap: wrap;

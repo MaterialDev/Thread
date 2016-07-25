@@ -36,11 +36,11 @@
     }
 
     &--has-app-bar {
-        padding-top: $size-unit * 8;
+        padding-top: $unit * 8;
         transition: transform 0.3s $td-ease-out;
 
         &.collapsed {
-            transform: translate3d(0, -$size-unit * 8, 0);
+            transform: translate3d(0, -$unit * 8, 0);
         }
     }
 

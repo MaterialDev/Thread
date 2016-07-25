@@ -9,8 +9,8 @@
  */
 
 .c-input {
-    margin-top: $size-unit * 2;
-    margin-bottom: $size-unit;
+    margin-top: $unit * 2;
+    margin-bottom: $unit;
     position: relative;
 
     &:before {
@@ -46,14 +46,14 @@
 
     &__field {
         font-size: 16px;
-        padding-bottom: $size-unit;
+        padding-bottom: $unit;
         width: 100%;
     }
 
     &__icon {
         font-size: 24px;
-        width: $size-unit * 6;
-        height: $size-unit * 6;
+        width: $unit * 6;
+        height: $unit * 6;
         display: inline-flex;
         align-items: center;
         justify-content: center;
