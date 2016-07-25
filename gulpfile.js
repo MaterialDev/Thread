@@ -26,7 +26,13 @@ gulp.task('build:js', () => {
     .pipe(gulp.dest('./public'));
 });
 
-gulp.task('default', ['build:js', 'build:html'], () => {
+gulp.task('build:css', () => {
+    return gulp.src('app/prettyprint.css')
+    .pipe(gulp.dest('./public'));
+});
+
+gulp.task('default', ['build:js', 'build:html', 'build:css'], () => {
     gulp.watch('app/**/*.ts', ['build:js']);
     gulp.watch('app/**/*.html', ['build:html']);
+    gulp.watch('app/**/*.css', ['build:css']);
 });

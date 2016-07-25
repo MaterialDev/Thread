@@ -25,11 +25,6 @@ angular.module('app', [
     $urlRouterProvider.otherwise('/button');
 })
     .run(function ($rootScope, $timeout) {
-    $rootScope.$on('$viewContentLoaded', function () {
-        $timeout(function () {
-            window.Prism.highlightAll();
-        });
-    });
     $rootScope.$on('$stateChangeError', function () {
         console.log(arguments);
     });
