@@ -1,7 +1,12 @@
-@mixin badge-color($background, $text) {
-    background: $background;
-    color: $text;
-}
+/* ===========================================================================
+    Badge
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
 
 .c-badge {
     border-radius: 10px;
@@ -11,8 +16,18 @@
     line-height: 1.2;
     padding: 3px 12px;
     text-transform: uppercase;
-
-    &--success {
-        @include badge-color($thread-green, $light-primary-text);
-    }
 }
+
+
+
+/* Configuration mixins
+   =========================================================================== */
+@mixin badge-color($background, $text) {
+    background: $background;
+    color: $text;
+}
+
+
+/* Color Variants
+   =========================================================================== */
+.c-badge--success { @include badge-color($thread-green, $light-primary-text); }

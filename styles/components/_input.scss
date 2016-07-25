@@ -1,38 +1,12 @@
+/* ===========================================================================
+    Input
+   =========================================================================== */
 
-@mixin input-color(
-$active-color,
-$text-color: $dark-primary-text,
-$border-color: $dark-divider,
-$label-color: $dark-secondary-text
-) {
-    .c-input__field {
-        color: $text-color;
-    }
-
-    .c-input__label {
-        color: $label-color;
-    }
-
-    &.c-input {
-        &.has-focus {
-            .c-input__label {
-                color: $active-color;
-            }
-
-            .c-input__addon {
-                color: $active-color;
-            }
-        }
-
-        &:before {
-            background: $active-color;
-        }
-
-        &:after {
-            background: $border-color;
-        }
-    }
-}
+/**
+ *
+ * Description goes here
+ *
+ */
 
 .c-input {
     margin-top: 16px;
@@ -108,178 +82,101 @@ $label-color: $dark-secondary-text
             transform: scale(1);
         }
     }
+}
 
-    &--primary {
-        @include input-color($thread-primary);
+
+
+/* Configuration mixins
+   =========================================================================== */
+@mixin input-color(
+$active-color,
+$text-color: $dark-primary-text,
+$border-color: $dark-divider,
+$label-color: $dark-secondary-text
+) {
+    .c-input__field {
+        color: $text-color;
     }
 
-    &--secondary {
-        @include input-color($light-primary-text, $light-primary-text, $light-divider, $light-secondary-text);
+    .c-input__label {
+        color: $label-color;
     }
 
-    &--large {
-        .c-input__field,
+    &.has-focus {
+        .c-input__label {
+            color: $active-color;
+        }
+
         .c-input__addon {
-            font-size: 36px;
+            color: $active-color;
         }
     }
 
-    &--with-icon {
-        width: calc(100% - 52px);
-        display: inline-block;
-        bottom: 8px;
+    &:before {
+        background: $active-color;
     }
 
-    &--inline {
-        width: auto;
-        display: inline-block;
-        margin-bottom: 0;
+    &:after {
+        background: $border-color;
     }
 
-    &--natural-language {
-        &.c-input--primary {
-            @include input-color($thread-primary,$dark-primary-text, $thread-primary);
-        }
+}
 
-        &.c-input--secondary {
-            @include input-color($light-primary-text, $light-primary-text, $light-primary-text, $light-secondary-text);
-        }
+
+
+/* Color variants
+   =========================================================================== */
+.c-input--primary {
+    @include input-color($thread-primary);
+}
+
+.c-input--secondary {
+    @include input-color($light-primary-text, $light-primary-text, $light-divider, $light-secondary-text);
+}
+
+.c-input--natural-language {
+    &.c-input--primary {
+        @include input-color($thread-primary,$dark-primary-text, $thread-primary);
     }
 
-    &--number {
-        .c-input__field {
-            width: 0.5859em * 3;
-        }
-    }
-
-    @for $i from 1 through 6 {
-        &--number-#{$i} {
-            .c-input__field {
-                width: 0.5859em * $i;
-            }
-        }
+    &.c-input--secondary {
+        @include input-color($light-primary-text, $light-primary-text, $light-primary-text, $light-secondary-text);
     }
 }
 
-//@mixin input-color($text-color, $border-color, $border-color-focus: none) {
-//    color: $text-color;
-//    border-color: $border-color;
-//
-//    ~ .c-input__addon {
-//        color: $text-color;
-//        border-color: $border-color;
-//    }
-//
-//    @if $border-color-focus != none {
-//        &:focus {
-//            border-color: $border-color-focus;
-//
-//            & ~ &__addon {
-//                border-color: $border-color-focus;
-//            }
-//        }
-//    }
-//}
-//
-//.c-input {
-//    margin-bottom: 16px;
-//    background: none;
-//    font-size: 16px;
-//    order: 1;
-//    width: 100%;
-//
-//    border-top-style: none;
-//    border-right-style: none;
-//    border-left-style: none;
-//    border-bottom: 1px solid;
-//    padding-bottom: 4px;
-//
-//    &:focus {
-//        border-bottom-width: 2px;
-//        border-bottom-style: solid;
-//        outline: none;
-//        padding-bottom: 3px;
-//    }
-//
-//    @at-root select#{&} {
-//        appearance: none;
-//        background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_white.svg) no-repeat right;
-//        padding-right: 24px;
-//    }
-//
-//    @include font();
-//
-//    &__container {
-//        display: inline-flex;
-//        vertical-align: bottom;
-//    }
-//
-//    &__addon {
-//        font-weight: normal;
-//        border-bottom-width: 1px;
-//        border-bottom-style: solid;
-//        padding-bottom: 4px;
-//        order: 0;
-//        left: 0;
-//        position: relative;
-//    }
-//
-//    &:focus ~ &__addon {
-//        border-bottom-width: 2px;
-//        padding-bottom: 3px;
-//    }
-//
-//    &--large {
-//        font-size: 24px;
-//
-//        @media screen and (min-width: $bp-mobile) {
-//            font-size: 36px;
-//        }
-//    }
-//
-//    &--natural-language {
-//        &.c-input--light {
-//            @include input-color($light-primary-text, $light-primary-text);
-//        }
-//
-//        &.c-input--dark {
-//            @include input-color($dark-primary-text, $thread-primary);
-//        }
-//    }
-//
-//    &--light {
-//        @include input-color($light-primary-text, $light-divider, $light-primary-text);
-//    }
-//
-//    &--dark {
-//        @include input-color($dark-primary-text, $dark-divider, $thread-primary);
-//    }
-//
-//    &--inline {
-//        margin-bottom: 0;
-//        padding-bottom: 1px;
-//
-//        ~ .c-input__addon {
-//            padding-bottom: 1px;
-//        }
-//
-//        &:focus {
-//            padding-bottom: 0;
-//
-//            ~ .c-input__addon {
-//                padding-bottom: 1px;
-//            }
-//        }
-//    }
-//
-//    //Creates input with exact number width based on font size
-//    &--number {
-//        width: 0.5859em * 3;
-//    }
-//
-//    @for $i from 1 through 6 {
-//        &--number-#{$i} {
-//            width: 0.5859em * $i;
-//        }
-//    }
-//}
+
+
+/* Style variants
+   =========================================================================== */
+.c-input--large {
+    .c-input__field,
+    .c-input__addon {
+        font-size: 36px;
+    }
+}
+
+.c-input--with-icon {
+    width: calc(100% - 52px);
+    display: inline-block;
+    bottom: 8px;
+}
+
+.c-input--inline {
+    width: auto;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.c-input--number {
+    .c-input__field {
+        width: 0.5859em * 3;
+    }
+}
+
+@for $i from 1 through 6 {
+    .c-input--number-#{$i} {
+        .c-input__field {
+            width: 0.5859em * $i;
+        }
+    }
+}

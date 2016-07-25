@@ -1,9 +1,25 @@
-//Timing functions
+/* ===========================================================================
+    Variables
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+
+
+/* Timing functions
+   =========================================================================== */
 $td-ease: cubic-bezier(0.4, 0, 0.2, 1);
 $td-ease-in: cubic-bezier(0.4, 0, 1, 1);
 $td-ease-out: cubic-bezier(0, 0, 0.2, 1);
 
-//Font colors
+
+
+/* Text colors
+   =========================================================================== */
 $dark-primary-text: rgba(0, 0, 0, 0.87);
 $dark-secondary-text: rgba(0, 0, 0, 0.54);
 $dark-disabled-text: rgba(0, 0, 0, 0.38);
@@ -15,7 +31,10 @@ $light-disabled-text: rgba(255, 255, 255, 0.3);
 $light-divider: rgba(255, 255, 255, 0.12);
 $light-shadow: rgba(0, 0, 0, 0.2);
 
-//page colors
+
+
+/* Page colors
+   =========================================================================== */
 $thread-primary: #FFAB00;
 $thread-white: #FFF;
 $thread-light-gray: #EEE;
@@ -29,7 +48,10 @@ $thread-salmon: #BC7180;
 $thread-red-orange: #EC6060;
 $thread-pink: #C45898;
 
-//Breakpoints
+
+
+/* Breakpoints
+   =========================================================================== */
 $bp-desktop: 1200px;
 $bp-tablet: 960px;
 $bp-mobile: 600px;

@@ -1,4 +1,14 @@
-@mixin icon() {
+/* ===========================================================================
+    Icons
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+.mi {
     font-family: 'Material Icons';
     vertical-align: middle;
     font-weight: normal;
@@ -21,18 +31,19 @@
     font-feature-settings: 'liga';
 }
 
-.mi {
-    @include icon();
 
-    &--sm {
-        font-size: 18px;
-    }
 
-    &--lg {
-        font-size: 36px;
-    }
+/* Style variants
+   =========================================================================== */
 
-    &--xl {
-        font-size: 48px;
-    }
+.mi--sm {
+    font-size: 18px;
+}
+
+.mi--lg {
+    font-size: 36px;
+}
+
+.mi--xl {
+    font-size: 48px;
 }

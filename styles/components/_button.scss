@@ -1,3 +1,62 @@
+/* ===========================================================================
+    Buttons
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+.c-button {
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    line-height: 36px;
+    min-width: 88px;
+    border-radius: 2px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 8px;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.05em;
+    background: none;
+    transition: background 200ms $td-ease, box-shadow 200ms $td-ease;
+
+    //masks elements inside border radius
+    z-index: 1;
+
+    &:focus {
+        outline: none;
+    }
+
+    &__icon {
+        color: inherit;
+        fill: currentColor;
+
+        &--right {
+            margin-left: 8px;
+            margin-right: -8px;
+        }
+
+        &--left {
+            margin-left: -8px;
+            margin-right: 8px;
+        }
+    }
+}
+
+
+
+/* Configuration mixins
+   =========================================================================== */
 @mixin button-color($text-color, $background-color: none) {
     color: $text-color;
     background: $background-color;
@@ -31,107 +90,72 @@
     overflow: visible;
 }
 
-.c-button {
-    color: inherit;
-    text-align: center;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    line-height: 36px;
-    min-width: 88px;
-    border-radius: 2px;
-    border: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding-left: 8px;
-    padding-right: 8px;
-    margin: 8px;
-    font-size: 12px;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 0.05em;
-    background: none;
-    transition: background 200ms $td-ease, box-shadow 200ms $td-ease;
 
-    //masks elements inside border radius
-    z-index: 1;
 
+/* Style variants
+   =========================================================================== */
+
+.c-button--tab {
+    height: 48px;
+    line-height: 48px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 0;
+    margin: 0;
+}
+
+.c-button--raised {
+    @include button-raised();
+}
+
+.c-button--huge {
+    border-radius: 24px;
+    padding: 4px 24px;
+    @include button-raised();
+}
+
+.c-button--fab {
+    @include button-fab();
+    @include button-raised();
+}
+
+.c-button--fab-mini {
+    @include button-fab(40px, 40px);
+    @include button-raised();
+}
+
+.c-button--icon {
+    @include button-fab(40px, 40px);
+
+    &:hover,
     &:focus {
-        outline: none;
+        background: none !important;
     }
+}
 
-    &--raised {
-        @include button-raised();
+.c-button--menu {
+    margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+
+
+/* Color variants
+   =========================================================================== */
+
+.c-button--primary {
+    @include button-color($thread-primary);
+
+    //Reverse color and background if button is raised
+    &.c-button--raised,
+    &.c-button--fab,
+    &.c-button--fab-mini,
+    &.c-button--huge {
+        @include button-color($light-primary-text, $thread-primary);
     }
+}
 
-    &--fab {
-        @include button-fab();
-        @include button-raised();
-
-        &-mini {
-            @include button-fab(40px, 40px);
-            @include button-raised();
-        }
-    }
-
-    &--icon {
-        @include button-fab(40px, 40px);
-
-        &:hover,
-        &:focus {
-            background: none !important;
-        }
-    }
-
-    &--menu {
-        margin: 0;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    &--huge {
-        border-radius: 24px;
-        padding: 4px 24px;
-        @include button-raised();
-    }
-
-    &--primary {
-        @include button-color($thread-primary);
-
-        //Reverse color and background if button is raised
-        &.c-button--raised,
-        &.c-button--fab,
-        &.c-button--fab-mini,
-        &.c-button--huge {
-            @include button-color($light-primary-text, $thread-primary);
-        }
-    }
-
-    &--secondary-filled {
-        @include button-color($dark-disabled-text, rgba(158, 158, 158, 0.2));
-    }
-
-    &--tab {
-        height: 48px;
-        line-height: 48px;
-        padding-left: 24px;
-        padding-right: 24px;
-        border-radius: 0;
-        margin: 0;
-    }
-
-    &__icon {
-        color: inherit;
-        fill: currentColor;
-
-        &--right {
-            margin-left: 8px;
-            margin-right: -8px;
-        }
-
-        &--left {
-            margin-left: -8px;
-            margin-right: 8px;
-        }
-    }
+.c-button--secondary-filled {
+    @include button-color($dark-disabled-text, rgba(158, 158, 158, 0.2));
 }

@@ -31,7 +31,7 @@
     &.is-active {
         opacity: 0.26;
         transform: translate3d(-50%, -50%, 0) scale(2);
-        transition: transform 300ms 60ms, opacity 200ms;
+        transition: transform 300ms 60ms $td-ease-out, opacity 200ms $td-ease-out;
     }
 
     &--fab {

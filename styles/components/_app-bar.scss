@@ -1,8 +1,12 @@
+/* ===========================================================================
+    App Bar
+   =========================================================================== */
 
-@mixin app-bar-color($background, $text) {
-    background: $background;
-    color: $text;
-}
+/**
+ *
+ * Description goes here
+ *
+ */
 
 .c-app-bar {
     top: 0;
@@ -46,6 +50,19 @@
     & > * {
         transition: opacity 0.2s;
     }
-
-    &--orange { @include app-bar-color($thread-orange, $light-primary-text); }
 }
+
+
+
+/* Configuration mixins
+   =========================================================================== */
+@mixin app-bar-color($background, $text) {
+    background: $background;
+    color: $text;
+}
+
+
+/* Color Variants
+   =========================================================================== */
+
+.c-app-bar--orange { @include app-bar-color($thread-orange, $light-primary-text); }

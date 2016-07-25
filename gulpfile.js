@@ -15,12 +15,12 @@ let concat = require('gulp-concat');
 
 gulp.task('build:css', () => {
     gulp.src([
-        './styles/base/_variables.scss',
+        './styles/settings/*.scss',
+        './styles/tools/*.scss',
         './styles/base/*.scss',
         './styles/components/*.scss',
         './styles/layout/*.scss',
         './styles/main.scss',
-        './styles/healthcheck.scss',
         './components/**/*.scss'
     ])
     //.pipe(sourcemaps.init())
