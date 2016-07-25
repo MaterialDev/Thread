@@ -1,7 +1,7 @@
-<div class="button__scope l-page l-page--has-app-bar l-page--orange">
+<div class="button__scope l-page l-page--has-app-bar l-page--blue">
     <!-- TODO remove static height when background component is implemented -->
     <div class="l-page__background" style="height: 209px;"></div>
-    <div class="c-app-bar c-app-bar--orange">
+    <div class="c-app-bar c-app-bar--blue">
         <div class="c-app-bar__left">
             <button class="c-button c-button--icon"><i class="mi">menu</i></button>
             <span class="c-app-bar__title">Buttons</span>
@@ -11,10 +11,12 @@
         </div>
     </div>
     <div class="l-page__primary">
-        <p class="c-natural-language c-natural-language--light c-natural-language--sm u-center">
-            <span class="c-natural-language__bold">Buttons</span> are <code class="c-natural-language__bold">&lt;a&gt;</code> or <code class="c-natural-language__bold">&lt;button&gt;</code> elements used as
-            primary Calls to Action (CTAs)
-        </p>
+        <div class="c-natural-language c-natural-language--light c-natural-language--sm u-center">
+            <div class="c-natural-language__section">
+                <span class="c-natural-language__bold">Buttons</span> are <code class="c-natural-language__bold">&lt;a&gt;</code> or <code class="c-natural-language__bold">&lt;button&gt;</code> elements used as
+                primary Calls to Action (CTAs)
+            </div>
+        </div>
     </div>
     <div class="l-page__secondary">
         <!-- Base -->
@@ -53,10 +55,77 @@
                 </div>
                 <div class="c-card__body">
                     <button class="c-button c-button--fab c-button--primary"><i class="mi">add</i></button>
+                    <button class="c-button c-button--fab-mini c-button--primary"><i class="mi">add</i></button>
                     <pre class="prettyprint"><code>&lt;button class="c-button c-button--fab">&lt;i class="mi">add&lt;/i>&lt;/button></code></pre>
                 </div>
             </div>
         </div>
         <!-- End FAB -->
+
+        <!-- Icon -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Icon</h1>
+                </div>
+                <div class="c-card__body">
+                    <button class="c-button c-button--icon"><i class="mi">add</i></button>
+                    <pre class="prettyprint"><code>&lt;button class="c-button c-button--icon">&lt;i class="mi">add&lt;/i>&lt;/button></code></pre>
+                </div>
+            </div>
+        </div>
+        <!-- End Icon -->
+
+        <!-- Huge -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Huge</h1>
+                </div>
+                <div class="c-card__body">
+                    <button class="c-button c-button--huge c-button--primary">Button</button>
+                    <pre class="prettyprint"><code>&lt;button class="c-button c-button--huge">Button&lt;/button></code></pre>
+                </div>
+            </div>
+        </div>
+        <!-- End Huge -->
+
+        <!-- Colors -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Colors</h1>
+                </div>
+                <div class="c-card__body">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>Base</td>
+                            <td><button class="c-button">Button</button></td>
+                            <td><button class="c-button c-button--raised">Button</button></td>
+                        </tr>
+                        <tr>
+                            <td>Primary</td>
+                            <td><button class="c-button c-button--primary">Button</button></td>
+                            <td><button class="c-button c-button--raised c-button--primary">Button</button></td>
+                        </tr>
+                        <tr>
+                            <td>Secondary Filled</td>
+                            <td><button class="c-button c-button--secondary-filled">Button</button></td>
+                            <td><button class="c-button c-button--raised c-button--secondary-filled">Button</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <pre class="prettyprint"><code>&lt;button class="c-button c-button--primary">Button&lt;/button></code></pre>
+                    <p>Colors act differently depending on if they're on raised or flat buttons.</p>
+                    <p>Flat buttons <code class="u-dark-primary">class="c-button"</code> use the color as a text color </p>
+                    <p>Raised buttons <code class="u-dark-primary">class="c-button c-button--raised"</code> use the color as a background</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Colors -->
+
+
     </div>
 </div>
