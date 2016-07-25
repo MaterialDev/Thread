@@ -158,7 +158,7 @@ $label-color: $dark-secondary-text
 .c-input--with-icon {
     width: calc(100% - 52px);
     display: inline-block;
-    bottom: 8px;
+    bottom: $unit;
 }
 
 .c-input--inline {

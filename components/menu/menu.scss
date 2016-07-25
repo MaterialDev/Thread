@@ -1,3 +1,13 @@
+/* ===========================================================================
+    Menu
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
 .c-menu {
     $menu-unit: $unit * 7;
 
@@ -31,34 +41,6 @@
         position: absolute;
         z-index: 200;
 
-        @for $i from 1 through 5 {
-            &--width-#{$i} {
-                width: $menu-unit * $i;
-            }
-        }
-
-        &--top {
-            top: 0;
-            transform-origin: top;
-        }
-
-        &--left {
-            left: 8px;
-        }
-
-        &--right {
-            right: 8px;
-        }
-
-        &--bottom {
-            bottom: 0;
-            transform-origin: bottom;
-        }
-
-        &--on-body {
-            position: fixed;
-        }
-
         &.is-open {
             opacity: 1;
             transition: transform 200ms $td-ease-out;
@@ -84,4 +66,36 @@
         display: block;
         text-align: left;
     }
+}
+
+
+/* Style variants
+   =========================================================================== */
+
+@for $i from 1 through 5 {
+    .c-menu__content--width-#{$i} {
+        width: $menu-unit * $i;
+    }
+}
+
+.c-menu__content--top {
+    top: 0;
+    transform-origin: top;
+}
+
+.c-menu__content--left {
+    left: $unit;
+}
+
+.c-menu__content--right {
+    right: $unit;
+}
+
+.c-menu__content--bottom {
+    bottom: 0;
+    transform-origin: bottom;
+}
+
+.c-menu__content--on-body {
+    position: fixed;
 }
