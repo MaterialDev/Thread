@@ -1227,12 +1227,12 @@ code {
 
 /* Configuration Mixins
    =========================================================================== */
-/* Color variants
+/* Style variants
    =========================================================================== */
 .l-page--full-screen {
   height: 100%; }
 
-/* Style variants
+/* Color variants
    =========================================================================== */
 .l-page--white .l-page__background {
   background: #FFF; }
