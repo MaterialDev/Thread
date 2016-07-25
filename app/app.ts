@@ -2,7 +2,7 @@
 ///<reference path="../typings/angular-ui-router/angular-ui-router.d.ts"/>
 
 interface Window {
-    Prism: any;
+    prettyPrint: Function;
 }
 
 angular.module('app', [
@@ -13,7 +13,8 @@ angular.module('app', [
     //Pages
     'app.templates',
     'app.component',
-    'page.button'
+    'page.button',
+    'page.badge'
 ]).config(($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
     $stateProvider
         .state('app', {
@@ -21,9 +22,16 @@ angular.module('app', [
             template: '<app></app>'
         });
 
-    $urlRouterProvider.otherwise('/button');
+    $urlRouterProvider.otherwise('/badge');
 })
 .run(($rootScope: ng.IRootScopeService, $timeout: ng.ITimeoutService) => {
+
+    $rootScope.$on('$viewContentLoaded', function() {
+        $timeout(() => {
+            window.prettyPrint();
+        });
+    });
+
     $rootScope.$on('$stateChangeError', function() {
         console.log(arguments);
     });

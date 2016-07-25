@@ -1,3 +1,11 @@
+angular.module('page.badge', []).config(function ($stateProvider) {
+    $stateProvider
+        .state('badge', {
+        url: '/badge',
+        parent: 'app',
+        template: '<page-badge></page-badge>'
+    });
+});
 angular.module('page.button', []).config(function ($stateProvider) {
     $stateProvider
         .state('button', {
@@ -15,16 +23,22 @@ angular.module('app', [
     //Pages
     'app.templates',
     'app.component',
-    'page.button'
+    'page.button',
+    'page.badge'
 ]).config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('app', {
         abstract: true,
         template: '<app></app>'
     });
-    $urlRouterProvider.otherwise('/button');
+    $urlRouterProvider.otherwise('/badge');
 })
     .run(function ($rootScope, $timeout) {
+    $rootScope.$on('$viewContentLoaded', function () {
+        $timeout(function () {
+            window.prettyPrint();
+        });
+    });
     $rootScope.$on('$stateChangeError', function () {
         console.log(arguments);
     });
@@ -32,6 +46,9 @@ angular.module('app', [
 angular.module('app.component', []).component('app', {
     controllerAs: 'app',
     template: '<ui-view></ui-view>'
+});
+angular.module('page.badge').component('pageBadge', {
+    templateUrl: 'pages/components/badge/badge.html'
 });
 angular.module('page.button').component('pageButton', {
     templateUrl: 'pages/components/button/button.html'
