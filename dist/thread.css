@@ -46,6 +46,9 @@ p {
    =========================================================================== */
 /* Breakpoints
    =========================================================================== */
+/* ===========================================================================
+    Mixins
+   =========================================================================== */
 .s-healthcheck {
   /**
      * Outline all classes.
@@ -85,9 +88,6 @@ p {
   .s-healthcheck [class^="_"] {
     outline: 5px solid red; }
 
-/* ===========================================================================
-    Mixins
-   =========================================================================== */
 @keyframes wave-wobble {
   0% {
     transform: translate3d(-50%, -50%, 0) scale(0.6); }
@@ -110,6 +110,11 @@ p {
   font-size: 16px;
   color: rgba(0, 0, 0, 0.54);
   line-height: 1.5; }
+
+code {
+  background: rgba(0, 0, 0, 0.12);
+  text-shadow: none;
+  color: inherit; }
 
 /* ===========================================================================
     Utilities
@@ -342,12 +347,6 @@ p {
   .c-button__icon {
     color: inherit;
     fill: currentColor; }
-    .c-button__icon--right {
-      margin-left: 8px;
-      margin-right: -8px; }
-    .c-button__icon--left {
-      margin-left: -8px;
-      margin-right: 8px; }
 
 /* Configuration mixins
    =========================================================================== */
@@ -406,6 +405,14 @@ p {
   margin: 0;
   padding-left: 16px;
   padding-right: 16px; }
+
+.c-button__icon--left {
+  margin-left: -8px;
+  margin-right: 8px; }
+
+.c-button__icon--right {
+  margin-left: 8px;
+  margin-right: -8px; }
 
 /* Color variants
    =========================================================================== */
@@ -873,6 +880,9 @@ p {
   color: rgba(255, 255, 255, 0.7); }
   .c-natural-language--light option {
     color: rgba(0, 0, 0, 0.87); }
+  .c-natural-language--light .c-natural-language__bold {
+    color: white;
+    font-weight: bold; }
   .c-natural-language--light .c-natural-language__action {
     color: white;
     border-bottom-color: none; }
@@ -882,6 +892,9 @@ p {
   color: rgba(0, 0, 0, 0.87); }
   .c-natural-language--dark option {
     color: rgba(0, 0, 0, 0.87); }
+  .c-natural-language--dark .c-natural-language__bold {
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: bold; }
   .c-natural-language--dark .c-natural-language__action {
     color: rgba(0, 0, 0, 0.87);
     border-bottom-color: rgba(0, 0, 0, 0.87); }
@@ -890,6 +903,11 @@ p {
     border-color: #FFAB00; }
     select.c-natural-language--dark .c-natural-language__input {
       background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_secondary.svg) no-repeat right; }
+
+/* Style variants
+   =========================================================================== */
+.c-natural-language--sm {
+  font-size: 24px; }
 
 .l-row {
   overflow: auto;
@@ -1175,22 +1193,6 @@ select,
 textarea {
   font-family: 'Lato', sans-serif; }
 
-.c-prodis {
-  top: 50%;
-  transform: translate3d(0, -50%, 0);
-  position: relative;
-  overflow: hidden;
-  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
-  .c-prodis__section {
-    opacity: 0;
-    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
-    .c-prodis__section--complete {
-      display: block;
-      margin-top: 48px;
-      margin-bottom: 0; }
-    .c-prodis__section--visible {
-      opacity: 1; }
-
 /* ===========================================================================
     Menu
    =========================================================================== */
@@ -1243,6 +1245,54 @@ textarea {
 
 /* Style variants
    =========================================================================== */
+.c-menu__content--width-1 {
+  width: 56px; }
+
+.c-menu__content--width-2 {
+  width: 112px; }
+
+.c-menu__content--width-3 {
+  width: 168px; }
+
+.c-menu__content--width-4 {
+  width: 224px; }
+
+.c-menu__content--width-5 {
+  width: 280px; }
+
+.c-menu__content--top {
+  top: 0;
+  transform-origin: top; }
+
+.c-menu__content--left {
+  left: 8px; }
+
+.c-menu__content--right {
+  right: 8px; }
+
+.c-menu__content--bottom {
+  bottom: 0;
+  transform-origin: bottom; }
+
+.c-menu__content--on-body {
+  position: fixed; }
+
+.c-prodis {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
+  .c-prodis__section {
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
+    .c-prodis__section--complete {
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 0; }
+    .c-prodis__section--visible {
+      opacity: 1; }
+
 /* ===========================================================================
     Tabs
    =========================================================================== */
