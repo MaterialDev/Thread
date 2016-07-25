@@ -356,6 +356,14 @@ code {
   background: #7ED321;
   color: white; }
 
+.c-badge--primary {
+  background: #FFAB00;
+  color: white; }
+
+.c-badge--secondary {
+  background: rgba(158, 158, 158, 0.2);
+  color: white; }
+
 /* ===========================================================================
     Buttons
    =========================================================================== */
