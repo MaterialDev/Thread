@@ -59,12 +59,12 @@
     }
 }
 
-/* Color variants
+/* Style variants
    =========================================================================== */
 .l-page--full-screen { height: 100%; }
 
 
-/* Style variants
+/* Color variants
    =========================================================================== */
 .l-page--white { @include page-color($thread-white); }
 .l-page--purple { @include page-color($thread-purple); }
