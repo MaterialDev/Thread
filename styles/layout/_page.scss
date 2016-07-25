@@ -1,12 +1,12 @@
-@mixin page-color($color) {
-    .l-page__background {
-        background: $color;
-    }
+/* ===========================================================================
+    Page Layout
+   =========================================================================== */
 
-    &.l-page--full-screen {
-        background: $color;
-    }
-}
+/**
+ *
+ * Description goes here
+ *
+ */
 
 .l-page {
     position: relative;
@@ -43,7 +43,37 @@
             transform: translate3d(0, -$unit * 8, 0);
         }
     }
-
-    &--orange { @include page-color($thread-orange); }
-    &--full-screen { height: 100%; }
 }
+
+
+
+/* Configuration Mixins
+   =========================================================================== */
+@mixin page-color($color) {
+    .l-page__background {
+        background: $color;
+    }
+
+    &.l-page--full-screen {
+        background: $color;
+    }
+}
+
+/* Color variants
+   =========================================================================== */
+.l-page--full-screen { height: 100%; }
+
+
+/* Style variants
+   =========================================================================== */
+.l-page--white { @include page-color($thread-white); }
+.l-page--purple { @include page-color($thread-purple); }
+.l-page--green { @include page-color($thread-green); }
+.l-page--teal { @include page-color($thread-teal); }
+.l-page--orange { @include page-color($thread-orange); }
+.l-page--blue { @include page-color($thread-blue); }
+.l-page--salmon { @include page-color($thread-salmon); }
+.l-page--pink { @include page-color($thread-pink); }
+.l-page--red-orange { @include page-color($thread-red-orange); }
+.l-page--light-gray { @include page-color($thread-light-gray); }
+.l-page--dark-gray { @include page-color($thread-dark-gray); }

@@ -121,7 +121,17 @@
 
 /* Color variants
    =========================================================================== */
+.c-tab--white { @include c-tab-color($thread-white, $light-secondary-text, $light-primary-text); }
+.c-tab--purple { @include c-tab-color($thread-purple, $light-secondary-text, $light-primary-text); }
+.c-tab--green { @include c-tab-color($thread-green, $light-secondary-text, $light-primary-text); }
+.c-tab--teal { @include c-tab-color($thread-teal, $light-secondary-text, $light-primary-text); }
 .c-tab--orange { @include c-tab-color($thread-orange, $light-secondary-text, $light-primary-text); }
+.c-tab--blue { @include c-tab-color($thread-blue, $light-secondary-text, $light-primary-text); }
+.c-tab--salmon { @include c-tab-color($thread-salmon, $light-secondary-text, $light-primary-text); }
+.c-tab--pink { @include c-tab-color($thread-pink, $light-secondary-text, $light-primary-text); }
+.c-tab--red-orange { @include c-tab-color($thread-red-orange, $light-secondary-text, $light-primary-text); }
+.c-tab--light-gray { @include c-tab-color($thread-light-gray, $light-secondary-text, $light-primary-text); }
+.c-tab--dark-gray { @include c-tab-color($thread-dark-gray, $light-secondary-text, $light-primary-text); }
 
 
 

@@ -64,5 +64,14 @@
 
 /* Color Variants
    =========================================================================== */
-
+.c-app-bar--white { @include app-bar-color($thread-white, $light-primary-text); }
+.c-app-bar--purple { @include app-bar-color($thread-purple, $light-primary-text); }
+.c-app-bar--green { @include app-bar-color($thread-green, $light-primary-text); }
+.c-app-bar--teal { @include app-bar-color($thread-teal, $light-primary-text); }
 .c-app-bar--orange { @include app-bar-color($thread-orange, $light-primary-text); }
+.c-app-bar--blue { @include app-bar-color($thread-blue, $light-primary-text); }
+.c-app-bar--salmon { @include app-bar-color($thread-salmon, $light-primary-text); }
+.c-app-bar--pink { @include app-bar-color($thread-pink, $light-primary-text); }
+.c-app-bar--red-orange { @include app-bar-color($thread-red-orange, $light-primary-text); }
+.c-app-bar--light-gray { @include app-bar-color($thread-light-gray, $light-primary-text); }
+.c-app-bar--dark-gray { @include app-bar-color($thread-dark-gray, $light-primary-text); }
