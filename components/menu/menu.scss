@@ -1,4 +1,6 @@
 .c-menu {
+    $menu-unit: $size-unit * 7;
+
     position: relative;
     display: inline-block;
 
@@ -17,10 +19,11 @@
     }
 
     &__content {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        @include shadow();
-        width: 56px * 2;
+        padding-top: $size-unit;
+        padding-bottom: $size-unit;
+        box-shadow: $shadow;
+
+        width: $menu-unit * 2;
         transform: scale(1, 0);
         opacity: 0;
         background: white;
@@ -30,7 +33,7 @@
 
         @for $i from 1 through 5 {
             &--width-#{$i} {
-                width: 56px * $i;
+                width: $menu-unit * $i;
             }
         }
 

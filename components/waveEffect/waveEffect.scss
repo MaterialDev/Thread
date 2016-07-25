@@ -1,14 +1,12 @@
-@keyframes wave-wobble {
-    0% { transform: translate3d(-50%, -50%, 0) scale(0.6); }
-    50% { transform: translate3d(-50%, -50%, 0) scale(0.7); }
-    100% { transform: translate3d(-50%, -50%, 0) scale(0.6); }
-}
+/* ===========================================================================
+    Tabs
+   =========================================================================== */
 
-@keyframes wave-wobble-fab {
-    0% { transform: translate3d(-50%, -50%, 0) scale(0.9); }
-    50% { transform: translate3d(-50%, -50%, 0) scale(1.1); }
-    100% { transform: translate3d(-50%, -50%, 0) scale(0.9); }
-}
+/**
+ *
+ * Description goes here
+ *
+ */
 
 .wave-effect {
     pointer-events: none;
@@ -33,16 +31,20 @@
         transform: translate3d(-50%, -50%, 0) scale(2);
         transition: transform 300ms 60ms $td-ease-out, opacity 200ms $td-ease-out;
     }
+}
 
-    &--fab {
-        transform: translate3d(-50%, -50%, 0) scale(0);
 
-        &.is-active {
-            transform: translate3d(-50%, -50%, 0) scale(1);
-        }
 
-        &.has-focus {
-            animation-name: wave-wobble-fab;
-        }
+/* Style variants
+   =========================================================================== */
+.wave-effect--fab {
+    transform: translate3d(-50%, -50%, 0) scale(0);
+
+    &.is-active {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    &.has-focus {
+        animation-name: wave-wobble-fab;
     }
 }

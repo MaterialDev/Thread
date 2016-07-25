@@ -9,8 +9,8 @@
  */
 
 .c-input {
-    margin-top: 16px;
-    margin-bottom: 8px;
+    margin-top: $size-unit * 2;
+    margin-bottom: $size-unit;
     position: relative;
 
     &:before {
@@ -46,14 +46,14 @@
 
     &__field {
         font-size: 16px;
-        padding-bottom: 8px;
+        padding-bottom: $size-unit;
         width: 100%;
     }
 
     &__icon {
         font-size: 24px;
-        width: 48px;
-        height: 48px;
+        width: $size-unit * 6;
+        height: $size-unit * 6;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -169,6 +169,7 @@ $label-color: $dark-secondary-text
 
 .c-input--number {
     .c-input__field {
+        //0.5859em is the width of 1 number exactly
         width: 0.5859em * 3;
     }
 }
@@ -176,6 +177,7 @@ $label-color: $dark-secondary-text
 @for $i from 1 through 6 {
     .c-input--number-#{$i} {
         .c-input__field {
+            //0.5859em is the width of 1 number exactly
             width: 0.5859em * $i;
         }
     }

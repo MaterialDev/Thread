@@ -1,1 +1,11 @@
-/* stylelint-disable no-empty-source */
+@keyframes wave-wobble {
+    0% { transform: translate3d(-50%, -50%, 0) scale(0.6); }
+    50% { transform: translate3d(-50%, -50%, 0) scale(0.7); }
+    100% { transform: translate3d(-50%, -50%, 0) scale(0.6); }
+}
+
+@keyframes wave-wobble-fab {
+    0% { transform: translate3d(-50%, -50%, 0) scale(0.9); }
+    50% { transform: translate3d(-50%, -50%, 0) scale(1.1); }
+    100% { transform: translate3d(-50%, -50%, 0) scale(0.9); }
+}

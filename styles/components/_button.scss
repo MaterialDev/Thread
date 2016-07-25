@@ -74,11 +74,11 @@
 }
 
 @mixin button-raised() {
-    @include shadow();
+    box-shadow: $shadow;
 
     &:active,
     &:hover {
-        @include shadow-raised();
+        box-shadow: $shadow-raised;
     }
 }
 

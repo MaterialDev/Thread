@@ -10,7 +10,8 @@
                 "include",
                 "extend",
                 "at-root",
-                "mixin"
+                "mixin",
+                "content"
             ]
         }],
         "at-rule-empty-line-before": ["always", {

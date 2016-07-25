@@ -17,30 +17,30 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 176px;
+        height: 176px;  //TODO: remove when variable page background directive is finished
         pointer-events: none;
         transition: transform 0.3s $td-ease-out;
 
         &.collapsed {
-            transform: translate3d(0, -136px, 0);
+            transform: translate3d(0, -176px, 0);   //TODO: remove when variable page background directive is finished
         }
     }
 
     &__primary,
     &__secondary {
         position: relative;
-        width: 800px;
+        width: $content-width;
         margin-left: auto;
         margin-right: auto;
         max-width: 100%;
     }
 
     &--has-app-bar {
-        padding-top: 64px;
+        padding-top: $size-unit * 8;
         transition: transform 0.3s $td-ease-out;
 
         &.collapsed {
-            transform: translate3d(0, -64px, 0);
+            transform: translate3d(0, -$size-unit * 8, 0);
         }
     }
 

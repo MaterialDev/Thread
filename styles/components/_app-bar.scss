@@ -13,7 +13,7 @@
     left: 0;
     right: 0;
     z-index: 50;
-    height: 64px;
+    height: $size-unit * 8;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,12 +22,12 @@
     transition: transform 0.2s;
 
     &__back {
-        margin-left: 12px;
+        margin-left: round($size-unit * 1.5);
     }
 
     &__logo {
         display: inline-block;
-        margin-left: 12px;
+        margin-left: round($size-unit * 1.5);
     }
 
     &__title {
@@ -35,7 +35,7 @@
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin-left: 8px;
+        margin-left: $size-unit;
         vertical-align: middle;
     }
 

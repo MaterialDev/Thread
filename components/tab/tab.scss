@@ -1,26 +1,12 @@
-@mixin c-tab-color($background, $text, $text-active: inherit) {
-    .c-tab__header {
-        color: $text;
-        background: $background;
-    }
+/* ===========================================================================
+    Tabs
+   =========================================================================== */
 
-    .c-tab__header-wrapper {
-        background: $background;
-    }
-
-    .c-tab__header-item {
-        color: $text;
-
-        &.is-active,
-        &:hover {
-            @if $text-active != 'inherit' {
-                color: $text-active;
-            } @else {
-                color: $text;
-            }
-        }
-    }
-}
+/**
+ *
+ * Description goes here
+ *
+ */
 
 .c-tab {
     &__header-wrapper {
@@ -29,11 +15,11 @@
     }
 
     &__header {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: $size-unit;
+        padding-right: $size-unit;
         margin-left: auto;
         margin-right: auto;
-        max-width: 800px;
+        max-width: $content-width;
     }
 
     &__header-item {
@@ -56,7 +42,7 @@
     &__content-wrapper {
         margin-left: auto;
         margin-right: auto;
-        width: 800px;
+        width: $content-width;
         max-width: 100%;
         overflow: hidden;
         position: relative;
@@ -103,10 +89,44 @@
     &__item {
         transition: position 0ms 500ms;
     }
-
-    &--orange { @include c-tab-color($thread-orange, $light-secondary-text, $light-primary-text); }
 }
 
+
+
+/* Configuration Mixins
+   =========================================================================== */
+@mixin c-tab-color($background, $text, $text-active: inherit) {
+    .c-tab__header {
+        color: $text;
+        background: $background;
+    }
+
+    .c-tab__header-wrapper {
+        background: $background;
+    }
+
+    .c-tab__header-item {
+        color: $text;
+
+        &.is-active,
+        &:hover {
+            @if $text-active != 'inherit' {
+                color: $text-active;
+            } @else {
+                color: $text;
+            }
+        }
+    }
+}
+
+/* Color variants
+   =========================================================================== */
+.c-tab--orange { @include c-tab-color($thread-orange, $light-secondary-text, $light-primary-text); }
+
+
+
+/* Javascript specific styles
+   =========================================================================== */
 .js-tab__title {
     > * {
         pointer-events: none;
