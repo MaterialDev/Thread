@@ -114,7 +114,8 @@ p {
 code {
   background: rgba(0, 0, 0, 0.12);
   text-shadow: none;
-  color: inherit; }
+  color: inherit;
+  padding: 0 4px; }
 
 /* ===========================================================================
     Utilities
@@ -922,7 +923,7 @@ code {
     color: rgba(0, 0, 0, 0.87); }
   .c-natural-language--light .c-natural-language__bold {
     color: white;
-    font-weight: bold; }
+    font-weight: normal; }
   .c-natural-language--light .c-natural-language__action {
     color: white;
     border-bottom-color: none; }
@@ -934,7 +935,7 @@ code {
     color: rgba(0, 0, 0, 0.87); }
   .c-natural-language--dark .c-natural-language__bold {
     color: rgba(0, 0, 0, 0.87);
-    font-weight: bold; }
+    font-weight: normal; }
   .c-natural-language--dark .c-natural-language__action {
     color: rgba(0, 0, 0, 0.87);
     border-bottom-color: rgba(0, 0, 0, 0.87); }
