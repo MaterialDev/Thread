@@ -1,107 +1,62 @@
 <div class="button__scope l-page l-page--has-app-bar l-page--orange">
     <!-- TODO remove static height when background component is implemented -->
-    <div class="l-page__background" style="height: 136px;"></div>
+    <div class="l-page__background" style="height: 209px;"></div>
     <div class="c-app-bar c-app-bar--orange">
         <div class="c-app-bar__left">
             <button class="c-button c-button--icon"><i class="mi">menu</i></button>
             <span class="c-app-bar__title">Buttons</span>
         </div>
+        <div class="c-app-bar__right">
+            <button class="c-button c-button--icon"><i class="mi">more_vert</i></button>
+        </div>
     </div>
     <div class="l-page__primary">
+        <p class="c-natural-language c-natural-language--light c-natural-language--sm u-center">
+            <span class="c-natural-language--bold">Buttons</span> are <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> elements used as
+            primary Calls to Action (CTAs)
+        </p>
+    </div>
+    <div class="l-page__secondary">
+        <!-- Base -->
         <div class="c-card">
             <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Base (flat)</h1>
+                </div>
                 <div class="c-card__body">
-                    <!-- Shapes -->
-                    <div class="c-card__header">
-                        <div class="c-card__title">Shapes</div>
-                    </div>
-                    <button class="c-button">Base</button>
-                    <button class="c-button c-button--raised">Raised</button>
-                    <button class="c-button c-button--huge">Huge</button>
-                    <button class="c-button c-button--icon"><i class="mi">menu</i></button>
-                    <button class="c-button c-button--fab"><i class="mi">add</i></button>
-                    <button class="c-button c-button--fab-mini"><i class="mi">add</i></button>
-                    <!-- End Shapes -->
-
-                    <!-- Colors -->
-                    <div class="c-card__header">
-                        <div class="c-card__title">Colors</div>
-                    </div>
-                    <button class="c-button">Base</button>
-                    <button class="c-button c-button--primary">Primary</button>
-                    <button class="c-button c-button--primary c-button--raised">Primary raised</button>
-                    <button class="c-button c-button--secondary-filled">secondary filled</button>
-                    <!-- End Colors -->
-
-                    <!-- Code -->
-                    <div class="c-card__header">
-                        <div class="c-card__title">Code Example</div>
-                    </div>
-                    <pre><code class="language-markup">&lt;button class="c-button">Text&lt;/button></code></pre>
-                    <!-- End Code -->
-
-                    <!-- Options -->
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Class Name</th>
-                            <th>Usage</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>.c-button</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--raised</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--huge</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--icon</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--fab</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--fab-mini</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--primary</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>.c-button--secondary-filled</td>
-                            <td>
-                                <!-- Description here -->
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!-- End Options -->
+                    <button class="c-button">Button</button>
+                    <pre class="language-html"><code>&lt;button class="c-button">Button&lt;/button></code></pre>
                 </div>
             </div>
         </div>
+        <!-- End Base -->
+
+        <!-- Raised -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Raised</h1>
+                </div>
+                <div class="c-card__body">
+                    <button class="c-button c-button--raised c-button--primary">Button</button>
+                    <pre class="language-html"><code>&lt;button class="c-button c-button--raised">Button&lt;/button></code></pre>
+                </div>
+            </div>
+        </div>
+        <!-- End Raised -->
+
+        <!-- FAB -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Floating Action Button (FAB)</h1>
+                </div>
+                <div class="c-card__body">
+                    <button class="c-button c-button--fab c-button--primary"><i class="mi">add</i></button>
+                    <pre class="language-html"><code>&lt;button class="c-button c-button--fab">&lt;i class="mi">add&lt;/i>&lt;/button></code></pre>
+                </div>
+            </div>
+        </div>
+        <!-- End FAB -->
     </div>
 </div>
