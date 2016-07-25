@@ -1219,11 +1219,6 @@ code {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%; }
-  .l-page--has-app-bar {
-    padding-top: 64px;
-    transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
-    .l-page--has-app-bar.collapsed {
-      transform: translate3d(0, -64px, 0); }
 
 /* Configuration Mixins
    =========================================================================== */
@@ -1231,6 +1226,12 @@ code {
    =========================================================================== */
 .l-page--full-screen {
   height: 100%; }
+
+.l-page--has-app-bar {
+  padding-top: 64px;
+  transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .l-page--has-app-bar.collapsed {
+    transform: translate3d(0, -64px, 0); }
 
 /* Color variants
    =========================================================================== */
