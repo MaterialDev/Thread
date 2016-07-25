@@ -156,5 +156,5 @@
 }
 
 .c-button--secondary-filled {
-    @include button-color($dark-disabled-text, $thread-secondary);
+    @include button-color($dark-disabled-text, $thread-secondary-light);
 }
