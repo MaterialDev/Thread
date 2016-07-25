@@ -1,4 +1,3 @@
-/* stylelint-disable no-empty-source */
 *,
 *:before,
 *:after {
@@ -27,6 +26,84 @@ select {
 p {
   margin: 0; }
 
+/* ===========================================================================
+    Variables
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+/* Page flow
+   =========================================================================== */
+/* Shadows
+   =========================================================================== */
+/* Timing functions
+   =========================================================================== */
+/* Text colors
+   =========================================================================== */
+/* Page colors
+   =========================================================================== */
+/* Breakpoints
+   =========================================================================== */
+.s-healthcheck {
+  /**
+     * Outline all classes.
+     */
+  /**
+     * Outline all BEM Elements.
+     */
+  /**
+     * Outline all BEM Modifiers.
+     */
+  /**
+     * Outline all Object classes.
+     */
+  /**
+     * Outline all Component classes.
+     */
+  /**
+     * Outline all Responsive classes.
+     */
+  /**
+     * Outline all Hack classes.
+     */ }
+  .s-healthcheck [class] {
+    outline: 5px solid lightgrey; }
+  .s-healthcheck [class*="__"] {
+    outline: 5px solid grey; }
+  .s-healthcheck [class*="--"] {
+    outline: 5px solid darkgrey; }
+  .s-healthcheck [class^="o-"],
+  .s-healthcheck [class*=" o-"] {
+    outline: 5px solid orange; }
+  .s-healthcheck [class^="c-"],
+  .s-healthcheck [class*=" c-"] {
+    outline: 5px solid cyan; }
+  .s-healthcheck [class*="@"] {
+    outline: 5px solid rosybrown; }
+  .s-healthcheck [class^="_"] {
+    outline: 5px solid red; }
+
+/* ===========================================================================
+    Mixins
+   =========================================================================== */
+@keyframes wave-wobble {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.6); }
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(0.7); }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(0.6); } }
+
+@keyframes wave-wobble-fab {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.9); }
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(1.1); }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(0.9); } }
+
 p {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -34,9 +111,43 @@ p {
   color: rgba(0, 0, 0, 0.54);
   line-height: 1.5; }
 
+/* ===========================================================================
+    Utilities
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+/* Text alignment
+   =========================================================================== */
 .u-center {
   text-align: center !important; }
 
+.u-left {
+  text-align: left !important; }
+
+.u-right {
+  text-align: right !important; }
+
+@media screen and (max-width: 599px) {
+  .u-center-mobile {
+    text-align: center !important; }
+  .u-left-mobile {
+    text-align: left !important; }
+  .u-right-mobile {
+    text-align: right !important; } }
+
+@media screen and (min-width: 600px) {
+  .u-center-gt-mobile {
+    text-align: center !important; }
+  .u-left-gt-mobile {
+    text-align: left !important; }
+  .u-right-gt-mobile {
+    text-align: right !important; } }
+
+/* Colors
+   =========================================================================== */
 .u-light-primary {
   color: white !important; }
 
@@ -52,6 +163,8 @@ p {
 .u-dark-disabled {
   color: rgba(0, 0, 0, 0.38) !important; }
 
+/* Font styles
+   =========================================================================== */
 .u-bold {
   font-weight: bold !important; }
 
@@ -64,17 +177,8 @@ p {
 .u-uppercase {
   text-transform: uppercase !important; }
 
-.u-full-height {
-  height: 100% !important; }
-
-.u-flex-shrink {
-  -ms-flex-negative: 1;
-  flex-shrink: 1; }
-
-.u-flex-no-shrink {
-  -ms-flex-negative: 0;
-  flex-shrink: 0; }
-
+/* Display styles
+   =========================================================================== */
 .u-block {
   display: block !important; }
 
@@ -84,6 +188,24 @@ p {
 .u-hide {
   display: none !important; }
 
+@media screen and (max-width: 599px) {
+  .u-block-mobile {
+    display: block !important; }
+  .u-inline-block-mobile {
+    display: inline-block !important; }
+  .u-hide-mobile {
+    display: none !important; } }
+
+@media screen and (min-width: 600px) {
+  .u-block-gt-mobile {
+    display: block !important; }
+  .u-inline-block-gt-mobile {
+    display: inline-block !important; }
+  .u-hide-gt-mobile {
+    display: none !important; } }
+
+/* Padding & Margins
+   =========================================================================== */
 .u-no-margin {
   margin: 0 !important; }
 
@@ -102,38 +224,22 @@ p {
 .u-no-padding {
   padding: 0 !important; }
 
-@media screen and (min-width: 600px) {
-  .u-hide-gt-mobile {
-    display: none !important; }
-  .u-block-mobile-gt-mobile {
-    display: block !important; }
-  .u-left-gt-mobile {
-    text-align: left !important; }
-  .u-center-gt-mobile {
-    text-align: center !important; }
-  .u-flex-shrink-gt-mobile {
-    -ms-flex-negative: 1;
-    flex-shrink: 1; }
-  .u-flex-no-shrink-gt-mobile {
-    -ms-flex-negative: 0;
-    flex-shrink: 0; } }
+/* Width & Height
+   =========================================================================== */
+.u-full-height {
+  height: 100% !important; }
 
-@media screen and (max-width: 599px) {
-  .u-block-mobile {
-    display: block !important; }
-  .u-hide-mobile {
-    display: none !important; }
-  .u-left-mobile {
-    text-align: left !important; }
-  .u-center-mobile {
-    text-align: center !important; }
-  .u-flex-shrink-mobile {
-    -ms-flex-negative: 1;
-    flex-shrink: 1; }
-  .u-flex-no-shrink-mobile {
-    -ms-flex-negative: 0;
-    flex-shrink: 0; } }
+.u-full-width {
+  width: 100% !important; }
 
+/* ===========================================================================
+    App Bar
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-app-bar {
   top: 0;
   left: 0;
@@ -167,10 +273,23 @@ p {
       opacity: 0; }
   .c-app-bar > * {
     transition: opacity 0.2s; }
-  .c-app-bar--orange {
-    background: #FF8055;
-    color: white; }
 
+/* Configuration mixins
+   =========================================================================== */
+/* Color Variants
+   =========================================================================== */
+.c-app-bar--orange {
+  background: #FF8055;
+  color: white; }
+
+/* ===========================================================================
+    Badge
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-badge {
   border-radius: 10px;
   height: 20px;
@@ -179,10 +298,23 @@ p {
   line-height: 1.2;
   padding: 3px 12px;
   text-transform: uppercase; }
-  .c-badge--success {
-    background: #3EC671;
-    color: white; }
 
+/* Configuration mixins
+   =========================================================================== */
+/* Color Variants
+   =========================================================================== */
+.c-badge--success {
+  background: #3EC671;
+  color: white; }
+
+/* ===========================================================================
+    Buttons
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-button {
   color: inherit;
   text-align: center;
@@ -207,71 +339,6 @@ p {
   z-index: 1; }
   .c-button:focus {
     outline: none; }
-  .c-button--raised {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
-    .c-button--raised:active, .c-button--raised:hover {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
-  .c-button--fab {
-    width: 56px;
-    height: 56px;
-    min-width: auto;
-    border-radius: 50%;
-    overflow: visible;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
-    .c-button--fab:active, .c-button--fab:hover {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
-    .c-button--fab-mini {
-      width: 40px;
-      height: 40px;
-      min-width: auto;
-      border-radius: 50%;
-      overflow: visible;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
-      .c-button--fab-mini:active, .c-button--fab-mini:hover {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
-  .c-button--icon {
-    width: 40px;
-    height: 40px;
-    min-width: auto;
-    border-radius: 50%;
-    overflow: visible; }
-    .c-button--icon:hover, .c-button--icon:focus {
-      background: none !important; }
-  .c-button--menu {
-    margin: 0;
-    padding-left: 16px;
-    padding-right: 16px; }
-  .c-button--huge {
-    border-radius: 24px;
-    padding: 4px 24px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
-    .c-button--huge:active, .c-button--huge:hover {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
-  .c-button--primary {
-    color: #FFAB00;
-    background: none; }
-    .c-button--primary:focus, .c-button--primary:hover {
-      color: #FFAB00;
-      background: rgba(0, 0, 0, 0.12); }
-    .c-button--primary.c-button--raised, .c-button--primary.c-button--fab, .c-button--primary.c-button--fab-mini, .c-button--primary.c-button--huge {
-      color: white;
-      background: #FFAB00; }
-      .c-button--primary.c-button--raised:focus, .c-button--primary.c-button--raised:hover, .c-button--primary.c-button--fab:focus, .c-button--primary.c-button--fab:hover, .c-button--primary.c-button--fab-mini:focus, .c-button--primary.c-button--fab-mini:hover, .c-button--primary.c-button--huge:focus, .c-button--primary.c-button--huge:hover {
-        color: white;
-        background: #e69a00; }
-  .c-button--secondary-filled {
-    color: rgba(0, 0, 0, 0.38);
-    background: rgba(158, 158, 158, 0.2); }
-    .c-button--secondary-filled:focus, .c-button--secondary-filled:hover {
-      color: rgba(0, 0, 0, 0.38);
-      background: rgba(79, 79, 79, 0.28); }
-  .c-button--tab {
-    height: 48px;
-    line-height: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
-    border-radius: 0;
-    margin: 0; }
   .c-button__icon {
     color: inherit;
     fill: currentColor; }
@@ -282,16 +349,99 @@ p {
       margin-left: -8px;
       margin-right: 8px; }
 
+/* Configuration mixins
+   =========================================================================== */
+/* Style variants
+   =========================================================================== */
+.c-button--tab {
+  height: 48px;
+  line-height: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 0;
+  margin: 0; }
+
+.c-button--raised {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
+  .c-button--raised:active, .c-button--raised:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
+
+.c-button--huge {
+  border-radius: 24px;
+  padding: 4px 24px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
+  .c-button--huge:active, .c-button--huge:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
+
+.c-button--fab {
+  width: 56px;
+  height: 56px;
+  min-width: auto;
+  border-radius: 50%;
+  overflow: visible;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
+  .c-button--fab:active, .c-button--fab:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
+
+.c-button--fab-mini {
+  width: 40px;
+  height: 40px;
+  min-width: auto;
+  border-radius: 50%;
+  overflow: visible;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
+  .c-button--fab-mini:active, .c-button--fab-mini:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
+
+.c-button--icon {
+  width: 40px;
+  height: 40px;
+  min-width: auto;
+  border-radius: 50%;
+  overflow: visible; }
+  .c-button--icon:hover, .c-button--icon:focus {
+    background: none !important; }
+
+.c-button--menu {
+  margin: 0;
+  padding-left: 16px;
+  padding-right: 16px; }
+
+/* Color variants
+   =========================================================================== */
+.c-button--primary {
+  color: #FFAB00;
+  background: none; }
+  .c-button--primary:focus, .c-button--primary:hover {
+    color: #FFAB00;
+    background: rgba(0, 0, 0, 0.12); }
+  .c-button--primary.c-button--raised, .c-button--primary.c-button--fab, .c-button--primary.c-button--fab-mini, .c-button--primary.c-button--huge {
+    color: white;
+    background: #FFAB00; }
+    .c-button--primary.c-button--raised:focus, .c-button--primary.c-button--raised:hover, .c-button--primary.c-button--fab:focus, .c-button--primary.c-button--fab:hover, .c-button--primary.c-button--fab-mini:focus, .c-button--primary.c-button--fab-mini:hover, .c-button--primary.c-button--huge:focus, .c-button--primary.c-button--huge:hover {
+      color: white;
+      background: #e69a00; }
+
+.c-button--secondary-filled {
+  color: rgba(0, 0, 0, 0.38);
+  background: rgba(158, 158, 158, 0.2); }
+  .c-button--secondary-filled:focus, .c-button--secondary-filled:hover {
+    color: rgba(0, 0, 0, 0.38);
+    background: rgba(79, 79, 79, 0.28); }
+
+/* ===========================================================================
+    Card
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-card {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
   background: white;
   border-radius: 2px;
   margin: 8px; }
-  .c-card--with-media {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column; }
   @media screen and (min-width: 600px) {
     .c-card {
       -ms-flex-direction: row;
@@ -470,6 +620,22 @@ p {
       -ms-flex-item-align: auto;
       align-self: auto; } }
 
+/* Style variants
+   =========================================================================== */
+.c-card--with-media {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+/* ===========================================================================
+    Icons
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .mi {
   font-family: 'Material Icons';
   vertical-align: middle;
@@ -489,13 +655,26 @@ p {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga'; }
-  .mi--sm {
-    font-size: 18px; }
-  .mi--lg {
-    font-size: 36px; }
-  .mi--xl {
-    font-size: 48px; }
 
+/* Style variants
+   =========================================================================== */
+.mi--sm {
+  font-size: 18px; }
+
+.mi--lg {
+  font-size: 36px; }
+
+.mi--xl {
+  font-size: 48px; }
+
+/* ===========================================================================
+    Input
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-input {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -550,80 +729,128 @@ p {
     transform: scale(0.75) translate3d(0, 0, 0); }
   .c-input.has-focus.c-input:before {
     transform: scale(1); }
-  .c-input--primary .c-input__field {
-    color: rgba(0, 0, 0, 0.87); }
-  .c-input--primary .c-input__label {
-    color: rgba(0, 0, 0, 0.54); }
-  .c-input--primary.c-input.has-focus .c-input__label {
-    color: #FFAB00; }
-  .c-input--primary.c-input.has-focus .c-input__addon {
-    color: #FFAB00; }
-  .c-input--primary.c-input:before {
-    background: #FFAB00; }
-  .c-input--primary.c-input:after {
-    background: rgba(0, 0, 0, 0.12); }
-  .c-input--secondary .c-input__field {
-    color: white; }
-  .c-input--secondary .c-input__label {
-    color: rgba(255, 255, 255, 0.7); }
-  .c-input--secondary.c-input.has-focus .c-input__label {
-    color: white; }
-  .c-input--secondary.c-input.has-focus .c-input__addon {
-    color: white; }
-  .c-input--secondary.c-input:before {
-    background: white; }
-  .c-input--secondary.c-input:after {
-    background: rgba(255, 255, 255, 0.12); }
-  .c-input--large .c-input__field,
-  .c-input--large .c-input__addon {
-    font-size: 36px; }
-  .c-input--with-icon {
-    width: calc(100% - 52px);
-    display: inline-block;
-    bottom: 8px; }
-  .c-input--inline {
-    width: auto;
-    display: inline-block;
-    margin-bottom: 0; }
-  .c-input--natural-language.c-input--primary .c-input__field {
-    color: rgba(0, 0, 0, 0.87); }
-  .c-input--natural-language.c-input--primary .c-input__label {
-    color: rgba(0, 0, 0, 0.54); }
-  .c-input--natural-language.c-input--primary.c-input.has-focus .c-input__label {
-    color: #FFAB00; }
-  .c-input--natural-language.c-input--primary.c-input.has-focus .c-input__addon {
-    color: #FFAB00; }
-  .c-input--natural-language.c-input--primary.c-input:before {
-    background: #FFAB00; }
-  .c-input--natural-language.c-input--primary.c-input:after {
-    background: #FFAB00; }
-  .c-input--natural-language.c-input--secondary .c-input__field {
-    color: white; }
-  .c-input--natural-language.c-input--secondary .c-input__label {
-    color: rgba(255, 255, 255, 0.7); }
-  .c-input--natural-language.c-input--secondary.c-input.has-focus .c-input__label {
-    color: white; }
-  .c-input--natural-language.c-input--secondary.c-input.has-focus .c-input__addon {
-    color: white; }
-  .c-input--natural-language.c-input--secondary.c-input:before {
-    background: white; }
-  .c-input--natural-language.c-input--secondary.c-input:after {
-    background: white; }
-  .c-input--number .c-input__field {
-    width: 1.7577em; }
-  .c-input--number-1 .c-input__field {
-    width: 0.5859em; }
-  .c-input--number-2 .c-input__field {
-    width: 1.1718em; }
-  .c-input--number-3 .c-input__field {
-    width: 1.7577em; }
-  .c-input--number-4 .c-input__field {
-    width: 2.3436em; }
-  .c-input--number-5 .c-input__field {
-    width: 2.9295em; }
-  .c-input--number-6 .c-input__field {
-    width: 3.5154em; }
 
+/* Configuration mixins
+   =========================================================================== */
+/* Color variants
+   =========================================================================== */
+.c-input--primary .c-input__field {
+  color: rgba(0, 0, 0, 0.87); }
+
+.c-input--primary .c-input__label {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-input--primary.has-focus .c-input__label {
+  color: #FFAB00; }
+
+.c-input--primary.has-focus .c-input__addon {
+  color: #FFAB00; }
+
+.c-input--primary:before {
+  background: #FFAB00; }
+
+.c-input--primary:after {
+  background: rgba(0, 0, 0, 0.12); }
+
+.c-input--secondary .c-input__field {
+  color: white; }
+
+.c-input--secondary .c-input__label {
+  color: rgba(255, 255, 255, 0.7); }
+
+.c-input--secondary.has-focus .c-input__label {
+  color: white; }
+
+.c-input--secondary.has-focus .c-input__addon {
+  color: white; }
+
+.c-input--secondary:before {
+  background: white; }
+
+.c-input--secondary:after {
+  background: rgba(255, 255, 255, 0.12); }
+
+.c-input--natural-language.c-input--primary .c-input__field {
+  color: rgba(0, 0, 0, 0.87); }
+
+.c-input--natural-language.c-input--primary .c-input__label {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-input--natural-language.c-input--primary.has-focus .c-input__label {
+  color: #FFAB00; }
+
+.c-input--natural-language.c-input--primary.has-focus .c-input__addon {
+  color: #FFAB00; }
+
+.c-input--natural-language.c-input--primary:before {
+  background: #FFAB00; }
+
+.c-input--natural-language.c-input--primary:after {
+  background: #FFAB00; }
+
+.c-input--natural-language.c-input--secondary .c-input__field {
+  color: white; }
+
+.c-input--natural-language.c-input--secondary .c-input__label {
+  color: rgba(255, 255, 255, 0.7); }
+
+.c-input--natural-language.c-input--secondary.has-focus .c-input__label {
+  color: white; }
+
+.c-input--natural-language.c-input--secondary.has-focus .c-input__addon {
+  color: white; }
+
+.c-input--natural-language.c-input--secondary:before {
+  background: white; }
+
+.c-input--natural-language.c-input--secondary:after {
+  background: white; }
+
+/* Style variants
+   =========================================================================== */
+.c-input--large .c-input__field,
+.c-input--large .c-input__addon {
+  font-size: 36px; }
+
+.c-input--with-icon {
+  width: calc(100% - 52px);
+  display: inline-block;
+  bottom: 8px; }
+
+.c-input--inline {
+  width: auto;
+  display: inline-block;
+  margin-bottom: 0; }
+
+.c-input--number .c-input__field {
+  width: 1.7577em; }
+
+.c-input--number-1 .c-input__field {
+  width: 0.5859em; }
+
+.c-input--number-2 .c-input__field {
+  width: 1.1718em; }
+
+.c-input--number-3 .c-input__field {
+  width: 1.7577em; }
+
+.c-input--number-4 .c-input__field {
+  width: 2.3436em; }
+
+.c-input--number-5 .c-input__field {
+  width: 2.9295em; }
+
+.c-input--number-6 .c-input__field {
+  width: 3.5154em; }
+
+/* ===========================================================================
+    Natural Language
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-natural-language {
   font-weight: lighter;
   font-size: 24px;
@@ -635,26 +862,34 @@ p {
   @media screen and (min-width: 600px) {
     .c-natural-language {
       font-size: 36px; } }
-  .c-natural-language--light {
-    color: rgba(255, 255, 255, 0.7); }
-    .c-natural-language--light .c-natural-language__action {
-      color: white;
-      border-bottom-color: none; }
-  .c-natural-language--dark {
-    color: rgba(0, 0, 0, 0.87);
-    color: rgba(0, 0, 0, 0.87); }
-    .c-natural-language--dark .c-natural-language__action {
-      color: rgba(0, 0, 0, 0.87);
-      border-bottom-color: rgba(0, 0, 0, 0.87); }
-    .c-natural-language--dark .c-natural-language__input {
-      color: rgba(0, 0, 0, 0.87);
-      border-color: #FFAB00; }
-      select.c-natural-language--dark .c-natural-language__input {
-        background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_secondary.svg) no-repeat right; }
   .c-natural-language__section {
     margin-bottom: 24px; }
-  .c-natural-language option {
+
+/* Configuration Mixins
+   =========================================================================== */
+/* Color variants
+   =========================================================================== */
+.c-natural-language--light {
+  color: rgba(255, 255, 255, 0.7); }
+  .c-natural-language--light option {
     color: rgba(0, 0, 0, 0.87); }
+  .c-natural-language--light .c-natural-language__action {
+    color: white;
+    border-bottom-color: none; }
+
+.c-natural-language--dark {
+  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.87); }
+  .c-natural-language--dark option {
+    color: rgba(0, 0, 0, 0.87); }
+  .c-natural-language--dark .c-natural-language__action {
+    color: rgba(0, 0, 0, 0.87);
+    border-bottom-color: rgba(0, 0, 0, 0.87); }
+  .c-natural-language--dark .c-natural-language__input {
+    color: rgba(0, 0, 0, 0.87);
+    border-color: #FFAB00; }
+    select.c-natural-language--dark .c-natural-language__input {
+      background: url(//d3gr3cy7lgjff0.cloudfront.net/images/ic_arrow_drop_down_secondary.svg) no-repeat right; }
 
 .l-row {
   overflow: auto;
@@ -911,7 +1146,7 @@ p {
     pointer-events: none;
     transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
     .l-page__background.collapsed {
-      transform: translate3d(0, -136px, 0); }
+      transform: translate3d(0, -176px, 0); }
   .l-page__primary, .l-page__secondary {
     position: relative;
     width: 800px;
@@ -940,45 +1175,30 @@ select,
 textarea {
   font-family: 'Lato', sans-serif; }
 
-.s-healthcheck {
-  /**
-     * Outline all classes.
-     */
-  /**
-     * Outline all BEM Elements.
-     */
-  /**
-     * Outline all BEM Modifiers.
-     */
-  /**
-     * Outline all Object classes.
-     */
-  /**
-     * Outline all Component classes.
-     */
-  /**
-     * Outline all Responsive classes.
-     */
-  /**
-     * Outline all Hack classes.
-     */ }
-  .s-healthcheck [class] {
-    outline: 5px solid lightgrey; }
-  .s-healthcheck [class*="__"] {
-    outline: 5px solid grey; }
-  .s-healthcheck [class*="--"] {
-    outline: 5px solid darkgrey; }
-  .s-healthcheck [class^="o-"],
-  .s-healthcheck [class*=" o-"] {
-    outline: 5px solid orange; }
-  .s-healthcheck [class^="c-"],
-  .s-healthcheck [class*=" c-"] {
-    outline: 5px solid cyan; }
-  .s-healthcheck [class*="@"] {
-    outline: 5px solid rosybrown; }
-  .s-healthcheck [class^="_"] {
-    outline: 5px solid red; }
+.c-prodis {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
+  .c-prodis__section {
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
+    .c-prodis__section--complete {
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 0; }
+    .c-prodis__section--visible {
+      opacity: 1; }
 
+/* ===========================================================================
+    Menu
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-menu {
   position: relative;
   display: inline-block; }
@@ -1003,28 +1223,6 @@ textarea {
     transition: opacity 200ms cubic-bezier(0.4, 0, 1, 1), transform 0ms 200ms;
     position: absolute;
     z-index: 200; }
-    .c-menu__content--width-1 {
-      width: 56px; }
-    .c-menu__content--width-2 {
-      width: 112px; }
-    .c-menu__content--width-3 {
-      width: 168px; }
-    .c-menu__content--width-4 {
-      width: 224px; }
-    .c-menu__content--width-5 {
-      width: 280px; }
-    .c-menu__content--top {
-      top: 0;
-      transform-origin: top; }
-    .c-menu__content--left {
-      left: 8px; }
-    .c-menu__content--right {
-      right: 8px; }
-    .c-menu__content--bottom {
-      bottom: 0;
-      transform-origin: bottom; }
-    .c-menu__content--on-body {
-      position: fixed; }
     .c-menu__content.is-open {
       opacity: 1;
       transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
@@ -1043,22 +1241,16 @@ textarea {
     display: block;
     text-align: left; }
 
-.c-prodis {
-  top: 50%;
-  transform: translate3d(0, -50%, 0);
-  position: relative;
-  overflow: hidden;
-  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
-  .c-prodis__section {
-    opacity: 0;
-    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
-    .c-prodis__section--complete {
-      display: block;
-      margin-top: 48px;
-      margin-bottom: 0; }
-    .c-prodis__section--visible {
-      opacity: 1; }
-
+/* Style variants
+   =========================================================================== */
+/* ===========================================================================
+    Tabs
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-tab__header-wrapper {
   width: 100%;
   overflow: auto; }
@@ -1121,6 +1313,10 @@ textarea {
 .c-tab__item {
   transition: position 0ms 500ms; }
 
+/* Configuration Mixins
+   =========================================================================== */
+/* Color variants
+   =========================================================================== */
 .c-tab--orange .c-tab__header {
   color: rgba(255, 255, 255, 0.7);
   background: #FF8055; }
@@ -1133,25 +1329,19 @@ textarea {
   .c-tab--orange .c-tab__header-item.is-active, .c-tab--orange .c-tab__header-item:hover {
     color: white; }
 
+/* Javascript specific styles
+   =========================================================================== */
 .js-tab__title > * {
   pointer-events: none; }
 
-@keyframes wave-wobble {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(0.6); }
-  50% {
-    transform: translate3d(-50%, -50%, 0) scale(0.7); }
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(0.6); } }
-
-@keyframes wave-wobble-fab {
-  0% {
-    transform: translate3d(-50%, -50%, 0) scale(0.9); }
-  50% {
-    transform: translate3d(-50%, -50%, 0) scale(1.1); }
-  100% {
-    transform: translate3d(-50%, -50%, 0) scale(0.9); } }
-
+/* ===========================================================================
+    Tabs
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .wave-effect {
   pointer-events: none;
   border-radius: 50%;
@@ -1170,10 +1360,13 @@ textarea {
   .wave-effect.is-active {
     opacity: 0.26;
     transform: translate3d(-50%, -50%, 0) scale(2);
-    transition: transform 300ms 60ms, opacity 200ms; }
-  .wave-effect--fab {
-    transform: translate3d(-50%, -50%, 0) scale(0); }
-    .wave-effect--fab.is-active {
-      transform: translate3d(-50%, -50%, 0) scale(1); }
-    .wave-effect--fab.has-focus {
-      animation-name: wave-wobble-fab; }
+    transition: transform 300ms 60ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1); }
+
+/* Style variants
+   =========================================================================== */
+.wave-effect--fab {
+  transform: translate3d(-50%, -50%, 0) scale(0); }
+  .wave-effect--fab.is-active {
+    transform: translate3d(-50%, -50%, 0) scale(1); }
+  .wave-effect--fab.has-focus {
+    animation-name: wave-wobble-fab; }
