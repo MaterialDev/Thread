@@ -28,6 +28,9 @@
 }
 
 
+
 /* Color Variants
    =========================================================================== */
 .c-badge--success { @include badge-color($thread-success, $light-primary-text); }
+.c-badge--primary { @include badge-color($thread-primary, $light-primary-text); }
+.c-badge--secondary { @include badge-color($thread-secondary, $light-primary-text); }
