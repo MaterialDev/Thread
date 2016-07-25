@@ -30,4 +30,4 @@
 
 /* Color Variants
    =========================================================================== */
-.c-badge--success { @include badge-color($thread-green, $light-primary-text); }
+.c-badge--success { @include badge-color($thread-success, $light-primary-text); }
