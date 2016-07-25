@@ -5,3 +5,9 @@ p {
     color: $dark-secondary-text;
     line-height: 1.5;
 }
+
+code {
+    background: rgba(0,0,0,0.12);
+    text-shadow: none;
+    color: inherit;
+}

@@ -37,6 +37,11 @@
         color: $dark-primary-text;
     }
 
+    .c-natural-language__bold {
+        color: $action-color;
+        font-weight: bold;
+    }
+
     .c-natural-language__action {
         color: $action-color;
 
@@ -70,4 +75,12 @@
     }
 
     color: $dark-primary-text;
+}
+
+
+/* Style variants
+   =========================================================================== */
+
+.c-natural-language--sm {
+    font-size: 24px;
 }
