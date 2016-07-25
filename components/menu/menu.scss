@@ -8,9 +8,9 @@
  *
  */
 
-.c-menu {
-    $menu-unit: $unit * 7;
+$menu-unit: $unit * 7;
 
+.c-menu {
     position: relative;
     display: inline-block;
 
