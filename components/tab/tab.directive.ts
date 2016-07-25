@@ -6,7 +6,6 @@
  * @created 07/08/2016
  */
 module Thread.Components {
-    import IAugmentedJQuery = angular.IAugmentedJQuery;
     export class Tabs implements ng.IDirective {
         scope = {
             currentTab: '='
@@ -63,7 +62,7 @@ module Thread.Components {
                 tabHeader.style.width = `${width}px`;
             }
 
-            function addTab(header : IAugmentedJQuery, body : IAugmentedJQuery) {
+            function addTab(header : ng.IAugmentedJQuery, body : ng.IAugmentedJQuery) {
                 let idx : number = this.tabs.push({
                     header: header,
                     body: body
@@ -173,7 +172,7 @@ module Thread.Components {
 
         }
 
-        link = (scope: ng.IScope, element: IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             (<any>scope).$tabs = ctrl;
         };
 
