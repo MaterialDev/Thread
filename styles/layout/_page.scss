@@ -34,15 +34,6 @@
         margin-right: auto;
         max-width: 100%;
     }
-
-    &--has-app-bar {
-        padding-top: $unit * 8;
-        transition: transform 0.3s $td-ease-out;
-
-        &.collapsed {
-            transform: translate3d(0, -$unit * 8, 0);
-        }
-    }
 }
 
 
@@ -62,6 +53,15 @@
 /* Style variants
    =========================================================================== */
 .l-page--full-screen { height: 100%; }
+
+.l-page--has-app-bar {
+    padding-top: $unit * 8;
+    transition: transform 0.3s $td-ease-out;
+
+    &.collapsed {
+        transform: translate3d(0, -$unit * 8, 0);
+    }
+}
 
 
 /* Color variants
