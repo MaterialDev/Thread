@@ -792,6 +792,8 @@ code {
     transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
     margin-right: -6px;
     font-size: 16px; }
+  .c-input.has-required .c-input__label:after {
+    content: '*'; }
   .c-input.has-focus .c-input__label, .c-input.has-value .c-input__label {
     pointer-events: auto;
     transform: scale(0.75) translate3d(0, 0, 0); }

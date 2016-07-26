@@ -9,6 +9,7 @@ module thread {
         'thread.menu',
         'thread.tab',
         'thread.floatingLabel',
+        'thread.inputRequire',
         'thread.prodis',
         'thread.selectResize',
         'thread.dynamicBackground'
