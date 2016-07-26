@@ -12,6 +12,8 @@ let reporter = require('postcss-reporter');
 let stylelint = require('stylelint');
 let typescript = require('gulp-typescript');
 let concat = require('gulp-concat');
+let uglify = require('gulp-uglify');
+let minCss = require('gulp-clean-css');
 
 gulp.task('build:css', () => {
     gulp.src([
@@ -23,7 +25,6 @@ gulp.task('build:css', () => {
         './styles/main.scss',
         './components/**/*.scss'
     ])
-    //.pipe(sourcemaps.init())
     .pipe(postcss([
         stylelint(),
         immutable,
@@ -32,7 +33,6 @@ gulp.task('build:css', () => {
     ], { syntax: sassSyntax }))
     .pipe(concat('thread.css'))
     .pipe(sass().on('error', sass.logError))
-    //.pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist'));
 });
 
@@ -47,10 +47,30 @@ gulp.task('build:js', () => {
     .pipe(typescript({
         out: 'thread.js'
     }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('publish:js', () => {
+    gulp.src('./dist/thread.js')
+    .pipe(uglify())
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(gulp.dest('./dist'))
+});
+
+gulp.task('publish:css', () => {
+    gulp.src('./dist/thread.css')
+    .pipe(minCss())
+    .pipe(rename({
+        suffix: '.min'
+    }))
+    .pipe(gulp.dest('./dist'))
+});
+
 gulp.task('build', ['build:css', 'build:js']);
+gulp.task('publish', ['publish:css', 'publish:js']);
 
 gulp.task('default', ['build:css', 'build:js'], () => {
     gulp.watch(['./styles/**/*.scss', './components/**/*.scss'], ['build:css']);
