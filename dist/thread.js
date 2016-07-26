@@ -92,10 +92,10 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
 angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
     return {
         restrict: 'C',
-        link: function (scope, element) {
+        link: function (scope, element, attrs) {
             $timeout(function () {
                 var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                if (!inputField.attr('required')) {
+                if (!inputField.attr('required') || attrs.hideRequire != null) {
                     return;
                 }
                 element.addClass('has-required');
