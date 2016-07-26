@@ -3,6 +3,50 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
+    return {
+        link: function (scope, element, attrs) {
+            var backgroundEl = angular.element('<div class="js-page__background l-page__background"></div>');
+            backgroundEl[0].style.height = calculateHeight(element, parseInt(attrs.dynamicBackground)) + "px";
+            element.prepend(backgroundEl);
+            /*
+                Resize the background once shift from fonts loaded has occured
+                Use interval as a fix for IE and Safari
+             */
+            if ('fonts' in document) {
+                document.fonts.ready.then(function () {
+                    backgroundEl[0].style.height = calculateHeight(element, parseInt(attrs.dynamicBackground)) + "px";
+                });
+            }
+            else {
+                var readyCheckInterval_1 = $interval(function () {
+                    if (document.readyState === "complete") {
+                        backgroundEl[0].style.height = calculateHeight(element, parseInt(attrs.dynamicBackground)) + "px";
+                        $interval.cancel(readyCheckInterval_1);
+                    }
+                }, 10);
+            }
+            angular.element($window).on('resize', function () {
+                backgroundEl[0].style.height = calculateHeight(element, parseInt(attrs.dynamicBackground)) + "px";
+            });
+            function calculateHeight(element, optionalHeight) {
+                var cutoff = element[0].querySelector('[dynamic-background-end]');
+                if (!cutoff) {
+                    throw new Error('No dynamic background end! Please add the attribute "dynamic-background-end" to a child element');
+                }
+                var cutoffRect = cutoff.getBoundingClientRect();
+                if (optionalHeight) {
+                    return cutoffRect.top + optionalHeight;
+                }
+                else {
+                    return cutoffRect.top + 64;
+                }
+            }
+        },
+        bindToController: true,
+        controllerAs: '$pageBackground'
+    };
+});
 /**
  * Floating label
  * A component that controls label interactions on input fields
@@ -744,6 +788,7 @@ var thread;
         'thread.tab',
         'thread.floatingLabel',
         'thread.prodis',
-        'thread.selectResize'
+        'thread.selectResize',
+        'thread.dynamicBackground'
     ]);
 })(thread || (thread = {}));

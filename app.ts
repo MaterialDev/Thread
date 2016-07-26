@@ -10,6 +10,7 @@ module thread {
         'thread.tab',
         'thread.floatingLabel',
         'thread.prodis',
-        'thread.selectResize'
+        'thread.selectResize',
+        'thread.dynamicBackground'
     ]);
 }

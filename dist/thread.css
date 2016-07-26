@@ -26,6 +26,14 @@ select {
 p {
   margin: 0; }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0; }
+
 /* ===========================================================================
     Variables
    =========================================================================== */
@@ -642,7 +650,8 @@ code {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
-    letter-spacing: 0.1em; }
+    letter-spacing: 0.1em;
+    line-height: 64px; }
   .c-card__body {
     padding-left: 16px;
     padding-right: 16px;
@@ -1220,11 +1229,10 @@ code {
     top: 0;
     left: 0;
     right: 0;
-    height: 176px;
     pointer-events: none;
     transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
     .l-page__background.collapsed {
-      transform: translate3d(0, -176px, 0); }
+      transform: translate3d(0, -100%, 0); }
   .l-page__primary, .l-page__secondary {
     position: relative;
     width: 800px;

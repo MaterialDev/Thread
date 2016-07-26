@@ -17,12 +17,11 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 176px;  //TODO: remove when variable page background directive is finished
         pointer-events: none;
         transition: transform 0.3s $td-ease-out;
 
         &.collapsed {
-            transform: translate3d(0, -176px, 0);   //TODO: remove when variable page background directive is finished
+            transform: translate3d(0, -100%, 0);
         }
     }
 
