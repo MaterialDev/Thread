@@ -492,32 +492,17 @@ var Thread;
 (function (Thread) {
     var Components;
     (function (Components) {
-        var Tabs = (function () {
-            function Tabs() {
-                this.scope = {
-                    currentTab: '='
-                };
-                this.restrict = 'E';
-                this.template = "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header js-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content js-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>";
-                this.replace = true;
-                this.transclude = true;
-                this.bindToController = true;
-                this.controllerAs = '$tabs';
-                this.link = function (scope, element, attrs) {
-                };
+        var TabsController = (function () {
+            function TabsController($scope, $element) {
+                this.$scope = $scope;
+                this.$element = $element;
+                this.activeTab = 1;
+                this.tabs = [];
+                this.lastTab = -1;
             }
-            Tabs.prototype.controller = function ($scope, $timeout, $element) {
+            TabsController.prototype.$onInit = function () {
                 var _this = this;
-                angular.extend(this, {
-                    activeTab: 1,
-                    tabs: [],
-                    addTab: addTab,
-                    changeTab: changeTab,
-                    updateTabs: updateTabs,
-                    resizeTabs: resizeTabs,
-                    clearTab: clearTab
-                });
-                $scope.$watch(function () { return _this.currentTab; }, function (newValue, oldValue) {
+                this.$scope.$watch(function () { return _this.currentTab; }, function (newValue, oldValue) {
                     if (newValue && newValue === oldValue) {
                         _this.activeTab = newValue;
                         _this.updateTabs();
@@ -526,133 +511,118 @@ var Thread;
                         _this.changeTab(null, newValue);
                     }
                 });
-                function resizeTabs() {
-                    var width = 0;
-                    for (var i = 0; i < this.tabs.length; i++) {
-                        width += this.tabs[i].header[0].offsetWidth;
-                    }
-                    var tabHeader = $element[0].querySelector('.js-tab__header');
-                    tabHeader.style.width = width + "px";
+            };
+            TabsController.prototype.resizeTabs = function () {
+                var width = 0;
+                for (var i = 0; i < this.tabs.length; i++) {
+                    width += this.tabs[i].header[0].offsetWidth;
                 }
-                function addTab(header, body) {
-                    var idx = this.tabs.push({
-                        header: header,
-                        body: body
-                    });
-                    angular.element($element[0].querySelector('.js-tab__header')).append(header);
-                    header.attr('td-tab-index', idx);
-                    body.attr('td-tab-index', idx);
-                    body[0].style.transition = 'none';
+                var tabHeader = this.$element[0].querySelector('.js-tab__header');
+                tabHeader.style.width = width + "px";
+            };
+            TabsController.prototype.addTab = function (header, body) {
+                var idx = this.tabs.push({
+                    header: header,
+                    body: body
+                });
+                angular.element(this.$element[0].querySelector('.js-tab__header')).append(header);
+                header.attr('td-tab-index', idx);
+                body.attr('td-tab-index', idx);
+                body[0].style.transition = 'none';
+                this.updateTabs();
+                this.resizeTabs();
+                body[0].style.transition = '';
+            };
+            TabsController.prototype.changeTab = function (event, index) {
+                if (index == null) {
+                    index = parseInt(event.target.getAttribute('td-tab-index'));
+                }
+                if (index && index !== this.activeTab) {
+                    this.lastTab = this.activeTab;
+                    this.activeTab = index;
                     this.updateTabs();
-                    this.resizeTabs();
-                    body[0].style.transition = '';
-                }
-                function changeTab(event, index) {
-                    if (index == null) {
-                        index = parseInt(event.target.getAttribute('td-tab-index'));
-                    }
-                    if (index && index !== this.activeTab) {
-                        this.lastTab = this.activeTab;
-                        this.activeTab = index;
-                        this.updateTabs();
-                    }
-                }
-                function updateTabs() {
-                    if (this.lastTab) {
-                        var height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
-                        var content = $element[0].querySelector('.js-tab__content');
-                        content.style.height = height + "px";
-                        content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    }
-                    for (var i = 0; i < this.tabs.length; i++) {
-                        var idx = i + 1;
-                        this.clearTab(i);
-                        if (idx === this.activeTab) {
-                            this.tabs[i].header.addClass('is-active');
-                            this.tabs[i].body.addClass('is-active');
-                        }
-                        else if (idx < this.activeTab) {
-                            this.tabs[i].header.addClass('is-left');
-                            this.tabs[i].body.addClass('is-left');
-                        }
-                        else {
-                            this.tabs[i].header.addClass('is-right');
-                            this.tabs[i].body.addClass('is-right');
-                        }
-                    }
-                }
-                function clearTab(idx) {
-                    this.tabs[idx].header.removeClass('is-active is-right is-left');
-                    this.tabs[idx].body.removeClass('is-active is-right is-left');
                 }
             };
-            Tabs.factory = function () {
-                return function () { return new Tabs(); };
+            TabsController.prototype.updateTabs = function () {
+                if (this.lastTab) {
+                    var height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
+                    var content = this.$element[0].querySelector('.js-tab__content');
+                    content.style.height = height + "px";
+                    content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                }
+                for (var i = 0; i < this.tabs.length; i++) {
+                    var idx = i + 1;
+                    this.clearTab(i);
+                    if (idx === this.activeTab) {
+                        this.tabs[i].header.addClass('is-active');
+                        this.tabs[i].body.addClass('is-active');
+                    }
+                    else if (idx < this.activeTab) {
+                        this.tabs[i].header.addClass('is-left');
+                        this.tabs[i].body.addClass('is-left');
+                    }
+                    else {
+                        this.tabs[i].header.addClass('is-right');
+                        this.tabs[i].body.addClass('is-right');
+                    }
+                }
             };
-            return Tabs;
+            TabsController.prototype.clearTab = function (idx) {
+                this.tabs[idx].header.removeClass('is-active is-right is-left');
+                this.tabs[idx].body.removeClass('is-active is-right is-left');
+            };
+            return TabsController;
         }());
-        Components.Tabs = Tabs;
-        var Tab = (function () {
-            function Tab($timeout) {
-                var _this = this;
-                this.$timeout = $timeout;
-                this.restrict = 'E';
-                this.require = '^tdTabs';
-                this.scope = true;
-                this.link = function (scope, element, attrs, ctrl) {
-                    var header = angular.element(element[0].querySelector('.js-tab__title'));
-                    var body = angular.element(element[0].querySelector('.js-tab__body'));
-                    _this.$timeout(function () {
-                        ctrl.addTab(header, body);
-                    });
-                };
-            }
-            Tab.prototype.controller = function () {
-            };
-            Tab.factory = function () {
-                var directive = function ($timeout) { return new Tab($timeout); };
-                directive.$inject = ['$timeout'];
-                return directive;
-            };
-            return Tab;
-        }());
-        Components.Tab = Tab;
-        var TabTitle = (function () {
-            function TabTitle() {
-                this.replace = true;
-                this.require = '^tdTabs';
-                this.transclude = true;
-                this.template = "<button class=\"c-tab__header-item c-button c-button--tab js-tab__title\"\n                            ng-click=\"$tabs.changeTab($event)\"\n                            ng-transclude></button>";
-                this.link = function (scope, element, attrs, ctrl) {
-                    scope.$tabs = ctrl;
-                };
-            }
-            TabTitle.factory = function () {
-                return function () { return new TabTitle(); };
-            };
-            return TabTitle;
-        }());
-        Components.TabTitle = TabTitle;
-        var TabBody = (function () {
-            function TabBody() {
-                this.replace = true;
-                this.require = '^tdTab';
-                this.transclude = true;
-                this.template = '<div class="c-tab__body js-tab__body" ng-transclude></div>';
-            }
-            TabBody.factory = function () {
-                return function () { return new TabBody(); };
-            };
-            return TabBody;
-        }());
-        Components.TabBody = TabBody;
+        Components.TabsController = TabsController;
     })(Components = Thread.Components || (Thread.Components = {}));
 })(Thread || (Thread = {}));
-var tab = angular.module('thread.tab', []);
-tab.directive('tdTabs', Thread.Components.Tabs.factory());
-tab.directive('tdTab', Thread.Components.Tab.factory());
-tab.directive('tdTabTitle', Thread.Components.TabTitle.factory());
-tab.directive('tdTabBody', Thread.Components.TabBody.factory());
+angular.module('thread.tab', []).directive('tdTabs', function () {
+    return {
+        scope: {
+            currentTab: '='
+        },
+        restrict: 'E',
+        template: "<div class=\"c-tab\">\n                        <div class=\"c-tab__header-wrapper\">\n                            <div class=\"c-tab__header js-tab__header\"></div>\n                        </div>\n                        <div class=\"c-tab__content-wrapper\">\n                            <div class=\"c-tab__content js-tab__content\" ng-transclude></div>\n                        </div>\n                    </div>",
+        replace: true,
+        transclude: true,
+        bindToController: true,
+        controllerAs: '$tabs',
+        controller: Thread.Components.TabsController
+    };
+});
+angular.module('thread.tab').directive('tdTab', function ($timeout) {
+    return {
+        restrict: 'E',
+        require: '^tdTabs',
+        scope: true,
+        link: function (scope, element, attrs, ctrl) {
+            var header = angular.element(element[0].querySelector('.js-tab__title'));
+            var body = angular.element(element[0].querySelector('.js-tab__body'));
+            $timeout(function () {
+                ctrl.addTab(header, body);
+            });
+        }
+    };
+});
+angular.module('thread.tab').directive('tdTabTitle', function () {
+    return {
+        replace: true,
+        require: '^tdTabs',
+        transclude: true,
+        template: "<button class=\"c-tab__header-item c-button c-button--tab js-tab__title\"\n                           ng-click=\"$tabs.changeTab($event)\"\n                           ng-transclude></button>",
+        link: function (scope, element, attrs, ctrl) {
+            scope.$tabs = ctrl;
+        }
+    };
+});
+angular.module('thread.tab').directive('tdTabBody', function () {
+    return {
+        replace: true,
+        require: '^tdTab',
+        transclude: true,
+        template: '<div class="c-tab__body js-tab__body" ng-transclude></div>'
+    };
+});
 /**
  * Wave effect
  * A directive that shows a growing circle in the background
