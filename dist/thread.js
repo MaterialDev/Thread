@@ -3,6 +3,48 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+/**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
+function floatingLabelLink($timeout) {
+    return function _floatingLabelLink(scope, element, attrs, ctrl) {
+        if (attrs.noFloat !== undefined) {
+            return;
+        }
+        $timeout(function () {
+            var inputField = angular.element(element[0].querySelector('.c-input__field'));
+            element.toggleClass('has-value', !!inputField.val());
+            inputField.on('input', function () {
+                element.toggleClass('has-value', !!this.value);
+            });
+            inputField.on('focus', function () {
+                element.addClass('has-focus');
+            });
+            inputField.on('blur', function () {
+                element.removeClass('has-focus');
+            });
+            scope.$on('$destroy', function () {
+                inputField.off('focus');
+                inputField.off('blur');
+            });
+        });
+    };
+}
+angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: floatingLabelLink($timeout)
+    };
+});
+angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: floatingLabelLink($timeout)
+    };
+});
 angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
     return {
         link: function (scope, element, attrs) {
@@ -47,65 +89,20 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
         controllerAs: '$pageBackground'
     };
 });
-/**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-function floatingLabelLink($timeout) {
-    return function _floatingLabelLink(scope, element, attrs, ctrl) {
-        if (attrs.noFloat !== undefined) {
-            return;
-        }
-        $timeout(function () {
-            var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            if (ctrl) {
-                element.toggleClass('has-value', ctrl.$viewValue);
-                ctrl.$formatters.push(function (value) {
-                    element.toggleClass('has-value', value);
-                });
-            }
-            else {
-                element.toggleClass('has-value', !!inputField.val());
-                inputField.on('input', function () {
-                    element.toggleClass('has-value', !!this.value);
-                });
-            }
-            inputField.on('focus', function () {
-                element.addClass('has-focus');
-            });
-            inputField.on('blur', function () {
-                element.removeClass('has-focus');
-            });
-            scope.$on('$destroy', function () {
-                inputField.off('focus');
-                inputField.off('blur');
-            });
-        });
-    };
-}
-angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: floatingLabelLink($timeout)
-    };
-});
-angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: floatingLabelLink($timeout)
-    };
-});
 angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
     return {
         restrict: 'C',
         link: function (scope, element) {
             $timeout(function () {
                 var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                if (inputField.attr('required')) {
-                    element.addClass('has-required');
+                if (!inputField.attr('required')) {
+                    return;
                 }
+                element.addClass('has-required');
+                element.toggleClass('has-required-invalid', !inputField.val());
+                inputField.on('input', function () {
+                    element.toggleClass('has-required-invalid', !this.value);
+                });
             });
         }
     };

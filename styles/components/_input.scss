@@ -75,6 +75,12 @@
         }
     }
 
+    &.has-required-invalid {
+        .c-input__label:after {
+            color: $thread-error;
+        }
+    }
+
     &.has-focus,
     &.has-value {
         .c-input__label {

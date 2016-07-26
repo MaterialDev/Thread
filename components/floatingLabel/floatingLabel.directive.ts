@@ -13,17 +13,10 @@ function floatingLabelLink($timeout) {
         $timeout(() => {
             let inputField:ng.IAugmentedJQuery = angular.element(element[0].querySelector('.c-input__field'));
 
-            if (ctrl) {
-                element.toggleClass('has-value', ctrl.$viewValue);
-                ctrl.$formatters.push((value) => {
-                    element.toggleClass('has-value', value);
-                });
-            } else {
-                element.toggleClass('has-value', !!inputField.val());
-                inputField.on('input', function () {
-                    element.toggleClass('has-value', !!this.value);
-                });
-            }
+            element.toggleClass('has-value', !!inputField.val());
+            inputField.on('input', function () {
+                element.toggleClass('has-value', !!this.value);
+            });
 
             inputField.on('focus', () => {
                 element.addClass('has-focus');

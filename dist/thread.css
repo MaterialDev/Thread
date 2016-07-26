@@ -794,6 +794,8 @@ code {
     font-size: 16px; }
   .c-input.has-required .c-input__label:after {
     content: '*'; }
+  .c-input.has-required-invalid .c-input__label:after {
+    color: #DD3226; }
   .c-input.has-focus .c-input__label, .c-input.has-value .c-input__label {
     pointer-events: auto;
     transform: scale(0.75) translate3d(0, 0, 0); }
