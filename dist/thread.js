@@ -60,18 +60,10 @@ function floatingLabelLink($timeout) {
         }
         $timeout(function () {
             var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            if (ctrl) {
-                element.toggleClass('has-value', ctrl.$viewValue);
-                ctrl.$formatters.push(function (value) {
-                    element.toggleClass('has-value', value);
-                });
-            }
-            else {
-                element.toggleClass('has-value', !!inputField.val());
-                inputField.on('input', function () {
-                    element.toggleClass('has-value', !!this.value);
-                });
-            }
+            element.toggleClass('has-value', !!inputField.val());
+            inputField.on('input', function () {
+                element.toggleClass('has-value', !!this.value);
+            });
             inputField.on('focus', function () {
                 element.addClass('has-focus');
             });
@@ -103,9 +95,14 @@ angular.module('thread.inputRequire', []).directive('cInput', function ($timeout
         link: function (scope, element) {
             $timeout(function () {
                 var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                if (inputField.attr('required')) {
-                    element.addClass('has-required');
+                if (!inputField.attr('required')) {
+                    return;
                 }
+                element.addClass('has-required');
+                element.toggleClass('has-required-invalid', !inputField.val());
+                inputField.on('input', function () {
+                    element.toggleClass('has-required-invalid', !this.value);
+                });
             });
         }
     };
