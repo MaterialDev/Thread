@@ -89,24 +89,6 @@ angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
         link: floatingLabelLink($timeout)
     };
 });
-angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: function (scope, element, attrs) {
-            $timeout(function () {
-                var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                if (!inputField.attr('required') || attrs.hideRequire != null) {
-                    return;
-                }
-                element.addClass('has-required');
-                element.toggleClass('has-required-invalid', !inputField.val());
-                inputField.on('input', function () {
-                    element.toggleClass('has-required-invalid', !this.value);
-                });
-            });
-        }
-    };
-});
 /**
  * Menu
  * A component that shows/hides a list of items based on target click
@@ -288,6 +270,24 @@ menu.directive('tdMenu', Thread.Components.Menu.factory());
 menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
+angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: function (scope, element, attrs) {
+            $timeout(function () {
+                var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                if (!inputField.attr('required') || attrs.hideRequire != null) {
+                    return;
+                }
+                element.addClass('has-required');
+                element.toggleClass('has-required-invalid', !inputField.val());
+                inputField.on('input', function () {
+                    element.toggleClass('has-required-invalid', !this.value);
+                });
+            });
+        }
+    };
+});
 /**
  * Progressive Disclosure
  * A natural language component that shows one
