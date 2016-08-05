@@ -5,7 +5,7 @@
     padding-top: $unit;
     padding-bottom: $unit;
 
-    &:before {
+    &:after {
         display: table;
         content: " ";
     }

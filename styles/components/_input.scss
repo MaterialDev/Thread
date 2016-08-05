@@ -110,7 +110,8 @@ $label-color: $dark-secondary-text
         color: $text-color;
     }
 
-    .c-input__label {
+    .c-input__label,
+    .c-input__addon {
         color: $label-color;
     }
 
@@ -181,6 +182,12 @@ $label-color: $dark-secondary-text
     width: auto;
     display: inline-block;
     margin-bottom: 0;
+}
+
+.c-input__addon--right {
+    position:absolute;
+    bottom: 8px;
+    right: 8px;
 }
 
 .c-input--number {
