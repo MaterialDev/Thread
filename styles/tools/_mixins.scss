@@ -2,7 +2,11 @@
     Mixins
    =========================================================================== */
 
-
+/**
+ *
+ * Description goes here
+ *
+ */
 
 @mixin mobile() {
     @media screen and (max-width: #{$bp-mobile - 1}) {

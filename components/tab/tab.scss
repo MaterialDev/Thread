@@ -92,7 +92,6 @@
 }
 
 
-
 /* Configuration Mixins
    =========================================================================== */
 @mixin c-tab-color($background, $text, $text-active: inherit) {
@@ -119,6 +118,7 @@
     }
 }
 
+
 /* Color variants
    =========================================================================== */
 .c-tab--white { @include c-tab-color($thread-white, $light-secondary-text, $light-primary-text); }
@@ -132,7 +132,6 @@
 .c-tab--red-orange { @include c-tab-color($thread-red-orange, $light-secondary-text, $light-primary-text); }
 .c-tab--light-gray { @include c-tab-color($thread-light-gray, $light-secondary-text, $light-primary-text); }
 .c-tab--dark-gray { @include c-tab-color($thread-dark-gray, $light-secondary-text, $light-primary-text); }
-
 
 
 /* Javascript specific styles

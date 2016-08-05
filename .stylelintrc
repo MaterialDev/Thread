@@ -31,6 +31,6 @@
         "color-hex-case": "upper",
         "selector-pseudo-element-colon-notation": "single",
         "media-feature-no-missing-punctuation": null,
-        "max-empty-lines": 3
+        "max-empty-lines": 2
     }
 }

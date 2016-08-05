@@ -19,14 +19,12 @@
 }
 
 
-
 /* Configuration mixins
    =========================================================================== */
 @mixin badge-color($background, $text) {
     background: $background;
     color: $text;
 }
-
 
 
 /* Color Variants

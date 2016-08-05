@@ -20,13 +20,11 @@ $shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
 $shadow-raised: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12);
 
 
-
 /* Timing functions
    =========================================================================== */
 $td-ease: cubic-bezier(0.4, 0, 0.2, 1);
 $td-ease-in: cubic-bezier(0.4, 0, 1, 1);
 $td-ease-out: cubic-bezier(0, 0, 0.2, 1);
-
 
 
 /* Text colors
@@ -65,7 +63,6 @@ $thread-pink: #C45898;
 $thread-light-gray: #EEE;
 $thread-dark-gray: #79919D;
 $thread-red-orange: #EC6060;
-
 
 
 /* Breakpoints
