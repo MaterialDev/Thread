@@ -78,6 +78,19 @@
 .u-no-margin-bottom { margin-bottom: 0 !important; }
 
 .u-no-padding { padding: 0 !important; }
+.u-padding { padding: $unit !important; }
+.u-padding-top { padding-top: $unit !important; }
+.u-padding-bottom { padding-bottom: $unit !important; }
+.u-padding-left { padding-left: $unit !important; }
+.u-padding-right { padding-right: $unit !important; }
+
+@for $i from 1 through 3 {
+    .u-padding-#{$i} { padding: $unit * $i !important; }
+    .u-padding-top-#{$i} { padding-top: $unit * $i !important; }
+    .u-padding-bottom-#{$i} { padding-bottom: $unit * $i !important; }
+    .u-padding-left-#{$i} { padding-left: $unit * $i !important; }
+    .u-padding-right-#{$i} { padding-right: $unit * $i !important; }
+}
 
 
 /* Width & Height
