@@ -29,6 +29,7 @@
     letter-spacing: 0.05em;
     background: none;
     transition: background 200ms $td-ease, box-shadow 200ms $td-ease;
+    white-space: nowrap;
 
     //masks elements inside border radius
     z-index: 1;

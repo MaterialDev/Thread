@@ -40,7 +40,7 @@
         font-size: 16px;
         transform: translate3d(0, 20px, 0);
         transform-origin: top left;
-        transition: transform 200ms $td-ease;
+        transition: transform 200ms $td-ease, color 200ms $td-ease;
         pointer-events: none;
     }
 
@@ -164,6 +164,10 @@ $label-color: $dark-secondary-text
     .c-input__field,
     .c-input__addon {
         font-size: 36px;
+    }
+
+    .c-input__label {
+        transform: translate3d(0, 32px, 0) scale(2);
     }
 }
 

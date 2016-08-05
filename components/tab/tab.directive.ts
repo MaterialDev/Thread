@@ -38,7 +38,8 @@ module Thread.Components {
         }
 
         resizeTabs() {
-            let width: Number = 0;
+            let width: Number = 16;
+
             for(let i = 0; i < this.tabs.length; i++) {
                 width += this.tabs[i].header[0].offsetWidth;
             }
@@ -112,7 +113,7 @@ module Thread.Components {
     }
 }
 
-angular.module('thread.tab', []).directive('tdTabs', () => {
+angular.module('thread.tab', []).directive('tdTabs', ($interval: ng.IIntervalService) => {
     return {
         scope: {
             currentTab: '='
@@ -130,7 +131,25 @@ angular.module('thread.tab', []).directive('tdTabs', () => {
         transclude: true,
         bindToController: true,
         controllerAs: '$tabs',
-        controller: Thread.Components.TabsController
+        controller: Thread.Components.TabsController,
+        link: (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
+            /*
+             Resize the background once shift from fonts loaded has occured
+             Use interval as a fix for IE and Safari
+             */
+            if('fonts' in document) {
+                (<any>document).fonts.ready.then(function() {
+                    ctrl.resizeTabs();
+                });
+            } else {
+                let readyCheckInterval = $interval(() => {
+                    if(document.readyState === "complete") {
+                        ctrl.resizeTabs();
+                        $interval.cancel(readyCheckInterval);
+                    }
+                }, 10);
+            }
+        }
     };
 });
 

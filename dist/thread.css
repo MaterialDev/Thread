@@ -401,6 +401,7 @@ code {
   letter-spacing: 0.05em;
   background: none;
   transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
   z-index: 1; }
   .c-button:focus {
     outline: none; }
@@ -509,10 +510,6 @@ code {
   background: white;
   border-radius: 2px;
   margin: 8px; }
-  @media screen and (min-width: 600px) {
-    .c-card {
-      -ms-flex-direction: row;
-      flex-direction: row; } }
   .c-card__media {
     position: relative;
     overflow: hidden;
@@ -695,6 +692,10 @@ code {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column; }
+  @media screen and (min-width: 600px) {
+    .c-card--with-media {
+      -ms-flex-direction: row;
+      flex-direction: row; } }
 
 /* ===========================================================================
     Icons
@@ -772,7 +773,7 @@ code {
     font-size: 16px;
     transform: translate3d(0, 20px, 0);
     transform-origin: top left;
-    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), color 200ms cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none; }
   .c-input__field {
     font-size: 16px;
@@ -883,6 +884,9 @@ code {
 .c-input--large .c-input__field,
 .c-input--large .c-input__addon {
   font-size: 36px; }
+
+.c-input--large .c-input__label {
+  transform: translate3d(0, 32px, 0) scale(2); }
 
 .c-input--with-icon {
   width: calc(100% - 52px);
