@@ -450,7 +450,7 @@ angular.module('thread.selectResize').directive('selectResize', function ($timeo
             });
             function resizeInput() {
                 var el = element[0];
-                var arrowWidth = 28;
+                var arrowWidth = 32;
                 var text = el.options[el.selectedIndex].text;
                 var width;
                 if (text) {
@@ -504,7 +504,7 @@ var Thread;
                 });
             };
             TabsController.prototype.resizeTabs = function () {
-                var width = 0;
+                var width = 16;
                 for (var i = 0; i < this.tabs.length; i++) {
                     width += this.tabs[i].header[0].offsetWidth;
                 }
@@ -567,7 +567,7 @@ var Thread;
         Components.TabsController = TabsController;
     })(Components = Thread.Components || (Thread.Components = {}));
 })(Thread || (Thread = {}));
-angular.module('thread.tab', []).directive('tdTabs', function () {
+angular.module('thread.tab', []).directive('tdTabs', function ($interval) {
     return {
         scope: {
             currentTab: '='
@@ -578,7 +578,26 @@ angular.module('thread.tab', []).directive('tdTabs', function () {
         transclude: true,
         bindToController: true,
         controllerAs: '$tabs',
-        controller: Thread.Components.TabsController
+        controller: Thread.Components.TabsController,
+        link: function (scope, element, attrs, ctrl) {
+            /*
+             Resize the background once shift from fonts loaded has occured
+             Use interval as a fix for IE and Safari
+             */
+            if ('fonts' in document) {
+                document.fonts.ready.then(function () {
+                    ctrl.resizeTabs();
+                });
+            }
+            else {
+                var readyCheckInterval_2 = $interval(function () {
+                    if (document.readyState === "complete") {
+                        ctrl.resizeTabs();
+                        $interval.cancel(readyCheckInterval_2);
+                    }
+                }, 10);
+            }
+        }
     };
 });
 angular.module('thread.tab').directive('tdTab', function ($timeout) {
