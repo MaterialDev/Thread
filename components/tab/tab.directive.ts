@@ -80,7 +80,7 @@ module Thread.Components {
         }
 
         updateTabs() {
-            if(this.lastTab) {
+            if(this.lastTab > -1) {
                 let height : Number = this.tabs[this.activeTab - 1].body[0].offsetHeight;
                 let content : HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-tab__content');
                 content.style.height = `${height}px`;
