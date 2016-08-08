@@ -1,0 +1,89 @@
+/* ===========================================================================
+    Switch
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+.c-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    thead {
+        tr {
+            height: 40px;
+        }
+
+        th {
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 1;
+            width: auto;
+        }
+    }
+
+    tbody {
+        tr {
+            height: 56px;
+        }
+
+        td {
+            width: auto;
+        }
+    }
+}
+
+
+/* Configuration Mixins
+   =========================================================================== */
+@mixin table-color($header-background, $header-text, $row-background-1, $row-background-2) {
+    thead {
+        background: $header-background;
+    }
+
+    th {
+        color: $header-text;
+    }
+
+    tbody {
+        tr:nth-child(odd) {
+            background: $row-background-1;
+        }
+        tr:nth-child(even) {
+            background: $row-background-2;
+        }
+    }
+}
+
+
+/* Color variations
+   =========================================================================== */
+.c-table {
+    @include table-color($thread-light-gray, $dark-secondary-text, white, #F7F7F7);
+}
+
+/* Style variations
+   =========================================================================== */
+.c-table--drag-handle {
+    th:first-child,
+    td:first-child {
+        width: 64px;
+        text-align: center;
+    }
+}
+
+.c-table--overflow {
+    th:last-child,
+    td:last-child {
+        width: 48px;
+        text-align: center;
+    }
+}

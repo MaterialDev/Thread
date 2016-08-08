@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="./dist/thread.css">
     <script src="./dist/thread.js"></script>
 </head>
-<body ng-app="thread" class="l-page l-page--orange l-page--has-app-bar" scroll-collapse dynamic-background>
-<div class="c-app-bar c-app-bar--orange" scroll-collapse>
+<body ng-app="thread" class="l-page l-page--orange l-page--has-app-bar" dynamic-background>
+<div class="c-app-bar c-app-bar--orange">
     <div class="c-app-bar__left">
         <span class="c-app-bar__logo">
             <button class="c-button c-button--icon"><i class="mi">menu</i></button>
@@ -46,12 +46,44 @@
                 <h1 class="c-card__title">Hello World</h1>
             </div>
             <div class="c-card__body">
-                <label class="c-switch c-switch--primary">
-                    <input type="checkbox">
-                    <span class="c-switch__toggle"></span>
-                    <span class="c-switch__label">Test me</span>
-                </label>
+
             </div>
+            <table class="c-table c-table--drag-handle c-table--overflow">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Method name</th>
+                    <th>duration</th>
+                    <th>modifier</th>
+                    <th>free shipping</th>
+                    <th>price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <span class="c-drag-handle">
+                            <i class="mi">more_vert</i>
+                        <i class="mi">more_vert</i>
+                        </span>
+                    </td>
+                    <td class="u-dark-primary">Expedited</td>
+                    <td>2-3 Days</td>
+                    <td>Price</td>
+                    <td>No</td>
+                    <td>$17+</td>
+                    <td><i class="mi">more_vert</i></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td>
+                        <button class="c-button c-button--primary"><i class="mi">add</i> New Shipping Method</button>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 </div>

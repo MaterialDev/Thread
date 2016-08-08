@@ -14,7 +14,11 @@ code {
     border-radius: 2px;
 }
 
-a {
+a:link,
+a:visited,
+a:hover,
+a:active {
+    cursor: pointer;
     text-decoration: underline;
     color: $thread-primary;
 }

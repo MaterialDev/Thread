@@ -130,7 +130,7 @@
 .c-tab--salmon { @include c-tab-color($thread-salmon, $light-secondary-text, $light-primary-text); }
 .c-tab--pink { @include c-tab-color($thread-pink, $light-secondary-text, $light-primary-text); }
 .c-tab--red-orange { @include c-tab-color($thread-red-orange, $light-secondary-text, $light-primary-text); }
-.c-tab--light-gray { @include c-tab-color($thread-light-gray, $light-secondary-text, $light-primary-text); }
+.c-tab--light-gray { @include c-tab-color($thread-gray, $light-secondary-text, $light-primary-text); }
 .c-tab--dark-gray { @include c-tab-color($thread-dark-gray, $light-secondary-text, $light-primary-text); }
 
 

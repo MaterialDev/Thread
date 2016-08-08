@@ -72,5 +72,5 @@
 .c-app-bar--salmon { @include app-bar-color($thread-salmon, $light-primary-text); }
 .c-app-bar--pink { @include app-bar-color($thread-pink, $light-primary-text); }
 .c-app-bar--red-orange { @include app-bar-color($thread-red-orange, $light-primary-text); }
-.c-app-bar--light-gray { @include app-bar-color($thread-light-gray, $light-primary-text); }
+.c-app-bar--light-gray { @include app-bar-color($thread-gray, $light-primary-text); }
 .c-app-bar--dark-gray { @include app-bar-color($thread-dark-gray, $light-primary-text); }

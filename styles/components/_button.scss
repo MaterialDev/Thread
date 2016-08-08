@@ -21,8 +21,8 @@
     border: none;
     text-transform: uppercase;
     font-weight: bold;
-    padding-left: $unit;
-    padding-right: $unit;
+    padding-left: $unit * 2;
+    padding-right: $unit * 2;
     margin: $unit;
     font-size: 12px;
     font-family: 'Lato', sans-serif;
@@ -78,6 +78,17 @@
     min-width: auto;
     border-radius: 50%;
     overflow: visible;
+}
+
+@mixin button-disabled($text-color, $background-color) {
+    color: $text-color;
+    background: $background-color;
+    box-shadow: none;
+    cursor: default;
+
+    &:hover {
+        background: $background-color;
+    }
 }
 
 
@@ -152,8 +163,18 @@
     &.c-button--huge {
         @include button-color($light-primary-text, $thread-primary);
     }
+
+    &.c-button[disabled],
+    &.c-button--disabled {
+        @include button-disabled($dark-disabled-text, $thread-secondary-dark);
+    }
 }
 
 .c-button--secondary {
     @include button-color($dark-disabled-text, $thread-secondary-light);
+
+    &.c-button[disabled],
+    &.c-button--disabled {
+        @include button-disabled($dark-disabled-text, $thread-secondary-dark);
+    }
 }

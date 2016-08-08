@@ -133,7 +133,11 @@ code {
   padding: 0 4px;
   border-radius: 2px; }
 
-a {
+a:link,
+a:visited,
+a:hover,
+a:active {
+  cursor: pointer;
   text-decoration: underline;
   color: #FFAB00; }
 
@@ -424,6 +428,19 @@ a {
   color: white; }
 
 /* ===========================================================================
+    Aside
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-aside {
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 16px; }
+
+/* ===========================================================================
     Badge
    =========================================================================== */
 /**
@@ -477,8 +494,8 @@ a {
   border: none;
   text-transform: uppercase;
   font-weight: bold;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   margin: 8px;
   font-size: 12px;
   font-family: 'Lato', sans-serif;
@@ -573,6 +590,13 @@ a {
     .c-button--primary.c-button--raised:focus, .c-button--primary.c-button--raised:hover, .c-button--primary.c-button--fab:focus, .c-button--primary.c-button--fab:hover, .c-button--primary.c-button--fab-mini:focus, .c-button--primary.c-button--fab-mini:hover, .c-button--primary.c-button--huge:focus, .c-button--primary.c-button--huge:hover {
       color: white;
       background: #e69a00; }
+  .c-button--primary.c-button[disabled], .c-button--primary.c-button--disabled {
+    color: rgba(0, 0, 0, 0.38);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    cursor: default; }
+    .c-button--primary.c-button[disabled]:hover, .c-button--primary.c-button--disabled:hover {
+      background: rgba(0, 0, 0, 0.2); }
 
 .c-button--secondary {
   color: rgba(0, 0, 0, 0.38);
@@ -580,6 +604,13 @@ a {
   .c-button--secondary:focus, .c-button--secondary:hover {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(79, 79, 79, 0.28); }
+  .c-button--secondary.c-button[disabled], .c-button--secondary.c-button--disabled {
+    color: rgba(0, 0, 0, 0.38);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    cursor: default; }
+    .c-button--secondary.c-button[disabled]:hover, .c-button--secondary.c-button--disabled:hover {
+      background: rgba(0, 0, 0, 0.2); }
 
 /* ===========================================================================
     Card
@@ -780,6 +811,21 @@ a {
     .c-card--with-media {
       -ms-flex-direction: row;
       flex-direction: row; } }
+
+/* ===========================================================================
+    Switch
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-drag-handle > .mi {
+  color: rgba(0, 0, 0, 0.38); }
+  .c-drag-handle > .mi:first-child {
+    margin-right: -18px; }
+  .c-drag-handle > .mi:nth-child(2) {
+    margin-left: -18px; }
 
 /* ===========================================================================
     Icons
@@ -1013,14 +1059,6 @@ a {
   width: 3.5154em; }
 
 /* ===========================================================================
-    Links
-   =========================================================================== */
-/**
- *
- * Description goes here
- *
- */
-/* ===========================================================================
     Natural Language
    =========================================================================== */
 /**
@@ -1129,6 +1167,62 @@ a {
 
 .c-switch--primary > input[type="checkbox"]:checked + .c-switch__toggle:after {
   background: #FFAB00; }
+
+/* ===========================================================================
+    Switch
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed; }
+  .c-table thead tr {
+    height: 40px; }
+  .c-table thead th {
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1;
+    width: auto; }
+  .c-table tbody tr {
+    height: 56px; }
+  .c-table tbody td {
+    width: auto; }
+
+/* Configuration Mixins
+   =========================================================================== */
+/* Color variations
+   =========================================================================== */
+.c-table thead {
+  background: #F2F2F2; }
+
+.c-table th {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-table tbody tr:nth-child(odd) {
+  background: white; }
+
+.c-table tbody tr:nth-child(even) {
+  background: #F7F7F7; }
+
+/* Style variations
+   =========================================================================== */
+.c-table--drag-handle th:first-child,
+.c-table--drag-handle td:first-child {
+  width: 64px;
+  text-align: center; }
+
+.c-table--overflow th:last-child,
+.c-table--overflow td:last-child {
+  width: 48px;
+  text-align: center; }
 
 .l-row {
   overflow: auto;
