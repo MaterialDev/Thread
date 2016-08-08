@@ -1194,7 +1194,11 @@ a:active {
   .c-table tbody tr {
     height: 56px; }
   .c-table tbody td {
+    font-size: 14px;
     width: auto; }
+    .c-table tbody td.c-table__primary-col {
+      font-size: 16px;
+      font-weight: bold; }
 
 /* Configuration Mixins
    =========================================================================== */
