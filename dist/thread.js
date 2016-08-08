@@ -535,7 +535,7 @@ var Thread;
                 }
             };
             TabsController.prototype.updateTabs = function () {
-                if (this.lastTab) {
+                if (this.lastTab > -1) {
                     var height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
                     var content = this.$element[0].querySelector('.js-tab__content');
                     content.style.height = height + "px";
