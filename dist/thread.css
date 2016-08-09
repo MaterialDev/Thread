@@ -540,6 +540,7 @@ a:active {
   min-width: auto;
   border-radius: 50%;
   overflow: visible;
+  padding: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .c-button--fab:active, .c-button--fab:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
@@ -550,6 +551,7 @@ a:active {
   min-width: auto;
   border-radius: 50%;
   overflow: visible;
+  padding: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .c-button--fab-mini:active, .c-button--fab-mini:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
@@ -559,7 +561,8 @@ a:active {
   height: 40px;
   min-width: auto;
   border-radius: 50%;
-  overflow: visible; }
+  overflow: visible;
+  padding: 0; }
   .c-button--icon:hover, .c-button--icon:focus {
     background: none !important; }
 
