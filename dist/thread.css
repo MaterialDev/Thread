@@ -540,6 +540,7 @@ a:active {
   min-width: auto;
   border-radius: 50%;
   overflow: visible;
+  padding: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .c-button--fab:active, .c-button--fab:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
@@ -550,6 +551,7 @@ a:active {
   min-width: auto;
   border-radius: 50%;
   overflow: visible;
+  padding: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .c-button--fab-mini:active, .c-button--fab-mini:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24), 0 4px 8px 0 rgba(0, 0, 0, 0.12); }
@@ -559,7 +561,8 @@ a:active {
   height: 40px;
   min-width: auto;
   border-radius: 50%;
-  overflow: visible; }
+  overflow: visible;
+  padding: 0; }
   .c-button--icon:hover, .c-button--icon:focus {
     background: none !important; }
 
@@ -1589,6 +1592,22 @@ select,
 textarea {
   font-family: 'Lato', sans-serif; }
 
+.c-prodis {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
+  .c-prodis__section {
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
+    .c-prodis__section--complete {
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 0; }
+    .c-prodis__section--visible {
+      opacity: 1; }
+
 /* ===========================================================================
     Menu
    =========================================================================== */
@@ -1672,22 +1691,6 @@ textarea {
 
 .c-menu__content--on-body {
   position: fixed; }
-
-.c-prodis {
-  top: 50%;
-  transform: translate3d(0, -50%, 0);
-  position: relative;
-  overflow: hidden;
-  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
-  .c-prodis__section {
-    opacity: 0;
-    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
-    .c-prodis__section--complete {
-      display: block;
-      margin-top: 48px;
-      margin-bottom: 0; }
-    .c-prodis__section--visible {
-      opacity: 1; }
 
 /* ===========================================================================
     Tabs

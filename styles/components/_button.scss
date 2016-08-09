@@ -78,6 +78,7 @@
     min-width: auto;
     border-radius: 50%;
     overflow: visible;
+    padding: 0;
 }
 
 @mixin button-disabled($text-color, $background-color) {
