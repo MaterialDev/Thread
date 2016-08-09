@@ -33,6 +33,11 @@
     tbody {
         tr {
             height: 56px;
+
+            &:hover {
+                cursor: pointer;
+                transition: background 200ms $td-ease-out;
+            }
         }
 
         td {
@@ -50,7 +55,7 @@
 
 /* Configuration Mixins
    =========================================================================== */
-@mixin table-color($header-background, $header-text, $row-background-1, $row-background-2) {
+@mixin table-color($header-background, $header-text, $row-background-1, $row-background-2, $row-hover) {
     thead {
         background: $header-background;
     }
@@ -66,6 +71,10 @@
         tr:nth-child(even) {
             background: $row-background-2;
         }
+
+        tr:hover {
+            background: $row-hover;
+        }
     }
 }
 
@@ -73,7 +82,7 @@
 /* Color variations
    =========================================================================== */
 .c-table {
-    @include table-color($thread-light-gray, $dark-secondary-text, white, #F7F7F7);
+    @include table-color($thread-light-gray, $dark-secondary-text, white, #F7F7F7, $thread-gray);
 }
 
 /* Style variations

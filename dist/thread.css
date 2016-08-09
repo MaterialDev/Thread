@@ -1196,6 +1196,9 @@ a:active {
     width: auto; }
   .c-table tbody tr {
     height: 56px; }
+    .c-table tbody tr:hover {
+      cursor: pointer;
+      transition: background 200ms cubic-bezier(0, 0, 0.2, 1); }
   .c-table tbody td {
     font-size: 14px;
     width: auto; }
@@ -1218,6 +1221,9 @@ a:active {
 
 .c-table tbody tr:nth-child(even) {
   background: #F7F7F7; }
+
+.c-table tbody tr:hover {
+  background: #EEE; }
 
 /* Style variations
    =========================================================================== */
@@ -1592,22 +1598,6 @@ select,
 textarea {
   font-family: 'Lato', sans-serif; }
 
-.c-prodis {
-  top: 50%;
-  transform: translate3d(0, -50%, 0);
-  position: relative;
-  overflow: hidden;
-  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
-  .c-prodis__section {
-    opacity: 0;
-    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
-    .c-prodis__section--complete {
-      display: block;
-      margin-top: 48px;
-      margin-bottom: 0; }
-    .c-prodis__section--visible {
-      opacity: 1; }
-
 /* ===========================================================================
     Menu
    =========================================================================== */
@@ -1691,6 +1681,22 @@ textarea {
 
 .c-menu__content--on-body {
   position: fixed; }
+
+.c-prodis {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
+  .c-prodis__section {
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
+    .c-prodis__section--complete {
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 0; }
+    .c-prodis__section--visible {
+      opacity: 1; }
 
 /* ===========================================================================
     Tabs
