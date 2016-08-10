@@ -1,5 +1,55 @@
+
+module Thread.Components {
+    export interface DialogScope extends ng.IScope {
+        open: Function;
+        close: Function;
+    }
+
+    export class DialogController {
+        body : HTMLElement;
+        deferCallback : ng.IDeferred;
+        cancelled: boolean;
+
+        constructor(private $element : ng.IAugmentedJQuery) {}
+
+        $onInit() {
+            this.body = <HTMLElement>document.querySelector('body');
+        }
+
+        close(response? : any) {
+            this.$element.removeClass('.is-active');
+            if(this.cancelled) {
+                this.deferCallback.reject(response);
+            } else {
+                this.deferCallback.resolve(response);
+            }
+        }
+
+        cancel() {
+            this.cancelled = true;
+            this.close();
+        }
+
+        open(deferred) {
+            this.$element.addClass('.is-active');
+            this.body.style.overflow = 'hidden';
+
+            if(deferred) {
+                this.deferCallback = deferred;
+            }
+        }
+
+        $onDestroy() {
+            this.$element.remove();
+            this.body.style.overflow = '';
+        }
+    }
+}
+
 angular.module('thread.dialog').directive('tdDialog', () => {
    return {
-
+       scope: true,
+       controller: Thread.Components.DialogController,
+       controllerAs: '$dialog'
    };
 });
