@@ -1,0 +1,91 @@
+/* ===========================================================================
+    Dialog
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+.c-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 150;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    //Hidden attributes
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 200ms;
+
+    &__backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 150;
+        background: $dark-secondary-text;
+        transition: opacity 200ms $td-ease-out;
+
+        //Hidden attributes
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 200;
+        max-width: 100%;
+        box-shadow: $shadow-dialog;
+        transition: transform 200ms $td-ease-out, opacity 150ms $td-ease-out;
+        margin-left: auto;
+        margin-right: auto;
+
+        //Hidden attributes
+        opacity: 0;
+        transform: scale(0.1);
+    }
+
+    &.is-active {
+        transition: none;
+        visibility: visible;
+        pointer-events: auto;
+
+        .c-dialog__content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .c-dialog__backdrop {
+            pointer-events: auto;
+            opacity: 1;
+        }
+    }
+}
+
+/* Style variants
+   =========================================================================== */
+.c-dialog--sm {
+    .c-dialog__content {
+        width: 480px;
+    }
+}
+
+.c-dialog--md {
+    .c-dialog__content {
+        width: 640px;
+    }
+}
+
+.c-dialog--lg {
+    .c-dialog__content {
+        width: 720px;
+    }
+}

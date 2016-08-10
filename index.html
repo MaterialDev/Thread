@@ -31,61 +31,33 @@
         </td-menu>
     </div>
 </div>
-<div class="l-page__primary">
-    <div class="c-natural-language c-natural-language--light u-center">
-        <div class="c-natural-language__section">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis ipsum ac magna lobortis porta vitae in neque. Sed dapibus sem felis, sit amet lacinia quam placerat non. Pellentesque in risus quis ipsum pulvinar scelerisque eget ac ligula. Fusce in ex urna. Vestibulum eu ex vehicula, vestibulum dolor ac, consectetur ipsum. Sed dignissim gravida rhoncus. Etiam magna massa, dictum eu risus non, luctus malesuada mi. Phasellus quis leo in nunc fermentum facilisis in vel nulla. Aliquam non aliquam lectus. Phasellus nisl dolor, ornare eget lacus at, condimentum tempor nulla. In tincidunt placerat ligula ac lacinia. Cras consectetur a massa in pellentesque.
-        </div>
-    </div>
-</div>
+<div class="l-page__primary"></div>
 <div class="l-page__secondary" dynamic-background-end>
-
     <div class="c-card">
         <div class="c-card__content">
             <div class="c-card__header">
-                <h1 class="c-card__title">Hello World</h1>
+                <h1 class="c-card__title">test</h1>
             </div>
             <div class="c-card__body">
-
+                <button class="c-button c-button--raised c-button--primary" ng-click="test = true">Test</button>
             </div>
-            <table class="c-table c-table--drag-handle c-table--overflow">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Method name</th>
-                    <th>duration</th>
-                    <th>modifier</th>
-                    <th>free shipping</th>
-                    <th>price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <span class="c-drag-handle">
-                            <i class="mi">more_vert</i>
-                        <i class="mi">more_vert</i>
-                        </span>
-                    </td>
-                    <td class="u-dark-primary">Expedited</td>
-                    <td>2-3 Days</td>
-                    <td>Price</td>
-                    <td>No</td>
-                    <td>$17+</td>
-                    <td><i class="mi">more_vert</i></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td>
-                        <button class="c-button c-button--primary"><i class="mi">add</i> New Shipping Method</button>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>
         </div>
     </div>
 </div>
+
+<div class="c-dialog c-dialog--sm" ng-class="{'is-active': test}">
+    <div class="c-dialog__backdrop" ng-click="test = false"></div>
+    <div class="c-dialog__content c-card">
+        <div class="c-card__content">
+            <div class="c-card__header">
+                <h1 class="c-card__title">Test</h1>
+            </div>
+            <div class="c-card__body">
+                <p>Body content</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

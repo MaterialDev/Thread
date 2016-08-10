@@ -12,6 +12,7 @@ module thread {
         'thread.inputRequire',
         'thread.prodis',
         'thread.selectResize',
-        'thread.dynamicBackground'
+        'thread.dynamicBackground',
+        'thread.dialog'
     ]);
 }

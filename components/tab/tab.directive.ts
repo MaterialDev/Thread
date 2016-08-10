@@ -6,7 +6,6 @@
  * @created 07/08/2016
  */
 module Thread.Components {
-
     interface Tabs {
         lastTab: number;
         activeTab: number;

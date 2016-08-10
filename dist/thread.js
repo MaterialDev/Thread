@@ -3,6 +3,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+angular.module('thread.dialog', []);
+angular.module('thread.dialog').directive('tdDialog', function () {
+    return {};
+});
+angular.module('thread.dialog').service('$dialog', function () {
+});
 angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
     return {
         link: function (scope, element, attrs) {
@@ -770,7 +776,8 @@ var thread;
         'thread.inputRequire',
         'thread.prodis',
         'thread.selectResize',
-        'thread.dynamicBackground'
+        'thread.dynamicBackground',
+        'thread.dialog'
     ]);
 })(thread || (thread = {}));
 
