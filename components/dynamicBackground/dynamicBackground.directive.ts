@@ -36,9 +36,9 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', ($
                 let cutoffRect = cutoff.getBoundingClientRect();
 
                 if(optionalHeight) {
-                    return cutoffRect.top + optionalHeight;
+                    return cutoffRect.top + document.body.scrollTop + optionalHeight;
                 } else {
-                    return cutoffRect.top + 64;
+                    return cutoffRect.top + document.body.scrollTop + 64;
                 }
             }
         },
