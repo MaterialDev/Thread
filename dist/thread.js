@@ -4,11 +4,83 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 angular.module('thread.dialog', []);
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var DialogController = (function () {
+            function DialogController($element) {
+                this.$element = $element;
+            }
+            DialogController.prototype.$onInit = function () {
+                this.body = document.querySelector('body');
+            };
+            DialogController.prototype.close = function (response) {
+                this.$element.removeClass('.is-active');
+                if (this.cancelled) {
+                    this.deferCallback.reject(response);
+                }
+                else {
+                    this.deferCallback.resolve(response);
+                }
+            };
+            DialogController.prototype.cancel = function () {
+                this.cancelled = true;
+                this.close();
+            };
+            DialogController.prototype.open = function (deferred) {
+                this.$element.addClass('.is-active');
+                this.body.style.overflow = 'hidden';
+                if (deferred) {
+                    this.deferCallback = deferred;
+                }
+            };
+            DialogController.prototype.$onDestroy = function () {
+                this.$element.remove();
+                this.body.style.overflow = '';
+            };
+            return DialogController;
+        }());
+        Components.DialogController = DialogController;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
 angular.module('thread.dialog').directive('tdDialog', function () {
-    return {};
+    return {
+        scope: true,
+        controller: Thread.Components.DialogController,
+        controllerAs: '$dialog'
+    };
 });
-angular.module('thread.dialog').service('$dialog', function () {
-});
+var Thread;
+(function (Thread) {
+    var Services;
+    (function (Services) {
+        var DialogService = (function () {
+            function DialogService($q, $rootScope, $compile) {
+                this.$q = $q;
+                this.$rootScope = $rootScope;
+                this.$compile = $compile;
+            }
+            DialogService.prototype.open = function (options) {
+                var deferred;
+                var dialogElement;
+                var dialogScope;
+                var body;
+                deferred = this.$q.defer();
+                body = document.querySelector('body');
+                dialogElement = angular.element("\n                <td-dialog\n                    target=\"" + options.target + "\"\n                    template=\"" + options.template + "\"\n                ></td-dialog>\n            ");
+                angular.element(body).append(dialogElement);
+                this.$compile(dialogElement)(options.scope || this.$rootScope);
+                dialogScope = dialogElement.isolateScope();
+                dialogScope.open(deferred);
+                return deferred.promise;
+            };
+            return DialogService;
+        }());
+        Services.DialogService = DialogService;
+    })(Services = Thread.Services || (Thread.Services = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.dialog').service('$dialog', Thread.Services.DialogService);
 angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
     return {
         link: function (scope, element, attrs) {
@@ -53,6 +125,24 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
         controllerAs: '$pageBackground'
     };
 });
+angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: function (scope, element, attrs) {
+            $timeout(function () {
+                var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                if (!inputField.attr('required') || attrs.hideRequire != null) {
+                    return;
+                }
+                element.addClass('has-required');
+                element.toggleClass('has-required-invalid', !inputField.val());
+                inputField.on('input', function () {
+                    element.toggleClass('has-required-invalid', !this.value);
+                });
+            });
+        }
+    };
+});
 /**
  * Floating label
  * A component that controls label interactions on input fields
@@ -93,24 +183,6 @@ angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
     return {
         restrict: 'C',
         link: floatingLabelLink($timeout)
-    };
-});
-angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: function (scope, element, attrs) {
-            $timeout(function () {
-                var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                if (!inputField.attr('required') || attrs.hideRequire != null) {
-                    return;
-                }
-                element.addClass('has-required');
-                element.toggleClass('has-required-invalid', !inputField.val());
-                inputField.on('input', function () {
-                    element.toggleClass('has-required-invalid', !this.value);
-                });
-            });
-        }
     };
 });
 /**
