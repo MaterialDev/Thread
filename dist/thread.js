@@ -114,33 +114,15 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
                 }
                 var cutoffRect = cutoff.getBoundingClientRect();
                 if (optionalHeight) {
-                    return cutoffRect.top + optionalHeight;
+                    return cutoffRect.top + document.body.scrollTop + optionalHeight;
                 }
                 else {
-                    return cutoffRect.top + 64;
+                    return cutoffRect.top + document.body.scrollTop + 64;
                 }
             }
         },
         bindToController: true,
         controllerAs: '$pageBackground'
-    };
-});
-angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: function (scope, element, attrs) {
-            $timeout(function () {
-                var inputField = angular.element(element[0].querySelector('.c-input__field'));
-                if (!inputField.attr('required') || attrs.hideRequire != null) {
-                    return;
-                }
-                element.addClass('has-required');
-                element.toggleClass('has-required-invalid', !inputField.val());
-                inputField.on('input', function () {
-                    element.toggleClass('has-required-invalid', !this.value);
-                });
-            });
-        }
     };
 });
 /**
@@ -183,6 +165,24 @@ angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
     return {
         restrict: 'C',
         link: floatingLabelLink($timeout)
+    };
+});
+angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: function (scope, element, attrs) {
+            $timeout(function () {
+                var inputField = angular.element(element[0].querySelector('.c-input__field'));
+                if (!inputField.attr('required') || attrs.hideRequire != null) {
+                    return;
+                }
+                element.addClass('has-required');
+                element.toggleClass('has-required-invalid', !inputField.val());
+                inputField.on('input', function () {
+                    element.toggleClass('has-required-invalid', !this.value);
+                });
+            });
+        }
     };
 });
 /**
