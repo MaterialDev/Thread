@@ -133,14 +133,6 @@ code {
   padding: 0 4px;
   border-radius: 2px; }
 
-a:link,
-a:visited,
-a:hover,
-a:active {
-  cursor: pointer;
-  text-decoration: underline;
-  color: #FFAB00; }
-
 /* ===========================================================================
     Utilities
    =========================================================================== */
@@ -1060,6 +1052,23 @@ a:active {
 
 .c-input--number-6 .c-input__field {
   width: 3.5154em; }
+
+/* ===========================================================================
+    Link
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-link {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #FFAB00; }
+  .c-link:link, .c-link:visited, .c-link:hover, .c-link:active {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #FFAB00; }
 
 /* ===========================================================================
     Natural Language

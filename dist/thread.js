@@ -12,9 +12,7 @@ var Thread;
             function DialogController($element) {
                 this.$element = $element;
             }
-            DialogController.prototype.$onInit = function () {
-                this.body = document.querySelector('body');
-            };
+            DialogController.prototype.$onInit = function () { };
             DialogController.prototype.close = function (response) {
                 this.$element.removeClass('.is-active');
                 if (this.cancelled) {
@@ -30,14 +28,14 @@ var Thread;
             };
             DialogController.prototype.open = function (deferred) {
                 this.$element.addClass('.is-active');
-                this.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
                 if (deferred) {
                     this.deferCallback = deferred;
                 }
             };
             DialogController.prototype.$onDestroy = function () {
                 this.$element.remove();
-                this.body.style.overflow = '';
+                document.body.style.overflow = '';
             };
             return DialogController;
         }());
@@ -65,11 +63,9 @@ var Thread;
                 var deferred;
                 var dialogElement;
                 var dialogScope;
-                var body;
                 deferred = this.$q.defer();
-                body = document.querySelector('body');
                 dialogElement = angular.element("\n                <td-dialog\n                    target=\"" + options.target + "\"\n                    template=\"" + options.template + "\"\n                ></td-dialog>\n            ");
-                angular.element(body).append(dialogElement);
+                angular.element(document.body).append(dialogElement);
                 this.$compile(dialogElement)(options.scope || this.$rootScope);
                 dialogScope = dialogElement.isolateScope();
                 dialogScope.open(deferred);
