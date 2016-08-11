@@ -134,9 +134,9 @@ function floatingLabelLink($timeout) {
         }
         $timeout(function () {
             var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            element.toggleClass('has-value', !!inputField.val());
+            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
             inputField.on('input', function () {
-                element.toggleClass('has-value', !!this.value);
+                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
             });
             inputField.on('focus', function () {
                 element.addClass('has-focus');
@@ -455,6 +455,42 @@ angular.module('thread.prodis').directive('prodisSection', function () {
         }
     };
 });
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var ScrollCollapse = (function () {
+            function ScrollCollapse($window) {
+                var _this = this;
+                this.$window = $window;
+                this.restrict = 'A';
+                this.link = function (scope, element, attrs) {
+                    var lastScroll = 0;
+                    angular.element(_this.$window).on('scroll', function () {
+                        var scroll = document.querySelector('body').scrollTop;
+                        //Scrolling down
+                        if (scroll > lastScroll + 10) {
+                            element.addClass('is-collapsed');
+                            lastScroll = scroll;
+                        }
+                        else if (scroll < lastScroll - 10) {
+                            element.removeClass('is-collapsed');
+                            lastScroll = scroll;
+                        }
+                    });
+                };
+            }
+            ScrollCollapse.factory = function () {
+                var directive = function ($window) { return new ScrollCollapse($window); };
+                directive.$inject = ['$window'];
+                return directive;
+            };
+            return ScrollCollapse;
+        }());
+        Components.ScrollCollapse = ScrollCollapse;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
  * Select Resize
  * Automatically resizes select elements to fit the text exactly
@@ -510,42 +546,6 @@ angular.module('thread.selectResize').directive('selectResize', function ($timeo
         }
     };
 });
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var ScrollCollapse = (function () {
-            function ScrollCollapse($window) {
-                var _this = this;
-                this.$window = $window;
-                this.restrict = 'A';
-                this.link = function (scope, element, attrs) {
-                    var lastScroll = 0;
-                    angular.element(_this.$window).on('scroll', function () {
-                        var scroll = document.querySelector('body').scrollTop;
-                        //Scrolling down
-                        if (scroll > lastScroll + 10) {
-                            element.addClass('is-collapsed');
-                            lastScroll = scroll;
-                        }
-                        else if (scroll < lastScroll - 10) {
-                            element.removeClass('is-collapsed');
-                            lastScroll = scroll;
-                        }
-                    });
-                };
-            }
-            ScrollCollapse.factory = function () {
-                var directive = function ($window) { return new ScrollCollapse($window); };
-                directive.$inject = ['$window'];
-                return directive;
-            };
-            return ScrollCollapse;
-        }());
-        Components.ScrollCollapse = ScrollCollapse;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
  * Tab component
  * A component that allows switching between
