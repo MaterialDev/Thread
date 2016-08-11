@@ -134,9 +134,9 @@ function floatingLabelLink($timeout) {
         }
         $timeout(function () {
             var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            element.toggleClass('has-value', !!inputField.val());
+            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
             inputField.on('input', function () {
-                element.toggleClass('has-value', !!this.value);
+                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
             });
             inputField.on('focus', function () {
                 element.addClass('has-focus');
