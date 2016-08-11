@@ -470,11 +470,11 @@ var Thread;
                         var scroll = document.querySelector('body').scrollTop;
                         //Scrolling down
                         if (scroll > lastScroll + 10) {
-                            element.addClass('collapsed');
+                            element.addClass('is-collapsed');
                             lastScroll = scroll;
                         }
                         else if (scroll < lastScroll - 10) {
-                            element.removeClass('collapsed');
+                            element.removeClass('is-collapsed');
                             lastScroll = scroll;
                         }
                     });
