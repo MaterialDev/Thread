@@ -20,7 +20,7 @@
         pointer-events: none;
         transition: transform 0.3s $td-ease-out;
 
-        &.collapsed {
+        &.is-collapsed {
             transform: translate3d(0, -100%, 0);
         }
     }
@@ -56,10 +56,6 @@
 .l-page--has-app-bar {
     padding-top: $unit * 8;
     transition: transform 0.3s $td-ease-out;
-
-    &.collapsed {
-        transform: translate3d(0, -$unit * 8, 0);
-    }
 }
 
 

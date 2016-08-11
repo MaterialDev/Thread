@@ -13,11 +13,11 @@ module Thread.Components {
 
                 //Scrolling down
                 if (scroll > lastScroll + 10) {
-                    element.addClass('collapsed');
+                    element.addClass('is-collapsed');
                     lastScroll = scroll;
                     //Scrolling up
                 } else if (scroll < lastScroll - 10) {
-                    element.removeClass('collapsed');
+                    element.removeClass('is-collapsed');
                     lastScroll = scroll;
                 }
             });

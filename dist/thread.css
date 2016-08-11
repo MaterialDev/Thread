@@ -351,7 +351,7 @@ code {
   align-items: center;
   transform-origin: top;
   position: fixed;
-  transition: transform 0.2s; }
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1); }
   .c-app-bar__back {
     margin-left: 12px; }
   .c-app-bar__logo {
@@ -364,9 +364,9 @@ code {
     letter-spacing: 0.1em;
     margin-left: 8px;
     vertical-align: middle; }
-  .c-app-bar.collapsed {
+  .c-app-bar.is-collapsed {
     transform: scale(1, 0); }
-    .c-app-bar.collapsed > * {
+    .c-app-bar.is-collapsed > * {
       opacity: 0; }
   .c-app-bar > * {
     transition: opacity 0.2s; }
@@ -1053,6 +1053,14 @@ code {
 .c-input--number-6 .c-input__field {
   width: 3.5154em; }
 
+/* ===========================================================================
+    Link
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 .c-link {
   cursor: pointer;
   text-decoration: underline;
@@ -1499,7 +1507,7 @@ code {
     right: 0;
     pointer-events: none;
     transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
-    .l-page__background.collapsed {
+    .l-page__background.is-collapsed {
       transform: translate3d(0, -100%, 0); }
   .l-page__primary, .l-page__secondary {
     position: relative;
@@ -1518,8 +1526,6 @@ code {
 .l-page--has-app-bar {
   padding-top: 64px;
   transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1); }
-  .l-page--has-app-bar.collapsed {
-    transform: translate3d(0, -64px, 0); }
 
 /* Color variants
    =========================================================================== */

@@ -19,7 +19,7 @@
     align-items: center;
     transform-origin: top;
     position: fixed;
-    transition: transform 0.2s;
+    transition: transform 200ms $td-ease;
 
     &__back {
         margin-left: round($unit * 1.5);
@@ -39,7 +39,7 @@
         vertical-align: middle;
     }
 
-    &.collapsed {
+    &.is-collapsed {
         transform: scale(1, 0);
 
         & > * {
