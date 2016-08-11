@@ -12,9 +12,7 @@ var Thread;
             function DialogController($element) {
                 this.$element = $element;
             }
-            DialogController.prototype.$onInit = function () {
-                this.body = document.querySelector('body');
-            };
+            DialogController.prototype.$onInit = function () { };
             DialogController.prototype.close = function (response) {
                 this.$element.removeClass('.is-active');
                 if (this.cancelled) {
@@ -30,14 +28,14 @@ var Thread;
             };
             DialogController.prototype.open = function (deferred) {
                 this.$element.addClass('.is-active');
-                this.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
                 if (deferred) {
                     this.deferCallback = deferred;
                 }
             };
             DialogController.prototype.$onDestroy = function () {
                 this.$element.remove();
-                this.body.style.overflow = '';
+                document.body.style.overflow = '';
             };
             return DialogController;
         }());
@@ -65,11 +63,9 @@ var Thread;
                 var deferred;
                 var dialogElement;
                 var dialogScope;
-                var body;
                 deferred = this.$q.defer();
-                body = document.querySelector('body');
                 dialogElement = angular.element("\n                <td-dialog\n                    target=\"" + options.target + "\"\n                    template=\"" + options.template + "\"\n                ></td-dialog>\n            ");
-                angular.element(body).append(dialogElement);
+                angular.element(document.body).append(dialogElement);
                 this.$compile(dialogElement)(options.scope || this.$rootScope);
                 dialogScope = dialogElement.isolateScope();
                 dialogScope.open(deferred);
@@ -81,48 +77,6 @@ var Thread;
     })(Services = Thread.Services || (Thread.Services = {}));
 })(Thread || (Thread = {}));
 angular.module('thread.dialog').service('$dialog', Thread.Services.DialogService);
-/**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-function floatingLabelLink($timeout) {
-    return function _floatingLabelLink(scope, element, attrs, ctrl) {
-        if (attrs.noFloat !== undefined) {
-            return;
-        }
-        $timeout(function () {
-            var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            element.toggleClass('has-value', !!inputField.val());
-            inputField.on('input', function () {
-                element.toggleClass('has-value', !!this.value);
-            });
-            inputField.on('focus', function () {
-                element.addClass('has-focus');
-            });
-            inputField.on('blur', function () {
-                element.removeClass('has-focus');
-            });
-            scope.$on('$destroy', function () {
-                inputField.off('focus');
-                inputField.off('blur');
-            });
-        });
-    };
-}
-angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: floatingLabelLink($timeout)
-    };
-});
-angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: floatingLabelLink($timeout)
-    };
-});
 angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
     return {
         link: function (scope, element, attrs) {
@@ -165,6 +119,48 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
         },
         bindToController: true,
         controllerAs: '$pageBackground'
+    };
+});
+/**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
+function floatingLabelLink($timeout) {
+    return function _floatingLabelLink(scope, element, attrs, ctrl) {
+        if (attrs.noFloat !== undefined) {
+            return;
+        }
+        $timeout(function () {
+            var inputField = angular.element(element[0].querySelector('.c-input__field'));
+            element.toggleClass('has-value', !!inputField.val());
+            inputField.on('input', function () {
+                element.toggleClass('has-value', !!this.value);
+            });
+            inputField.on('focus', function () {
+                element.addClass('has-focus');
+            });
+            inputField.on('blur', function () {
+                element.removeClass('has-focus');
+            });
+            scope.$on('$destroy', function () {
+                inputField.off('focus');
+                inputField.off('blur');
+            });
+        });
+    };
+}
+angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: floatingLabelLink($timeout)
+    };
+});
+angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: floatingLabelLink($timeout)
     };
 });
 angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {

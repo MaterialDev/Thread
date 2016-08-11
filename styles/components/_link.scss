@@ -1,0 +1,24 @@
+/* ===========================================================================
+    Link
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+.c-link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: $thread-primary;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+        cursor: pointer;
+        text-decoration: underline;
+        color: $thread-primary;
+    }
+}

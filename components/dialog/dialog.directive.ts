@@ -6,15 +6,12 @@ module Thread.Components {
     }
 
     export class DialogController {
-        body : HTMLElement;
         deferCallback : ng.IDeferred;
         cancelled: boolean;
 
         constructor(private $element : ng.IAugmentedJQuery) {}
 
-        $onInit() {
-            this.body = <HTMLElement>document.querySelector('body');
-        }
+        $onInit() {}
 
         close(response? : any) {
             this.$element.removeClass('.is-active');
@@ -32,7 +29,7 @@ module Thread.Components {
 
         open(deferred) {
             this.$element.addClass('.is-active');
-            this.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
 
             if(deferred) {
                 this.deferCallback = deferred;
@@ -41,7 +38,7 @@ module Thread.Components {
 
         $onDestroy() {
             this.$element.remove();
-            this.body.style.overflow = '';
+            document.body.style.overflow = '';
         }
     }
 }

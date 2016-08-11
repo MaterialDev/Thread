@@ -13,12 +13,3 @@ code {
     padding: 0 round($unit / 2);
     border-radius: 2px;
 }
-
-a:link,
-a:visited,
-a:hover,
-a:active {
-    cursor: pointer;
-    text-decoration: underline;
-    color: $thread-primary;
-}
