@@ -5,6 +5,7 @@ pre.prettyprint {
     background: #F7F7F7;
     padding: 16px;
     border-radius: 2px;
+    overflow: auto;
 }
 pre.prettyprint code { background-color: transparent; }
 

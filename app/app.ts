@@ -14,7 +14,8 @@ angular.module('app', [
     'app.templates',
     'app.component',
     'page.button',
-    'page.badge'
+    'page.badge',
+    'page.card'
 ]).config(($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
     $stateProvider
         .state('app', {
@@ -22,7 +23,7 @@ angular.module('app', [
             template: '<app></app>'
         });
 
-    $urlRouterProvider.otherwise('/badge');
+    $urlRouterProvider.otherwise('/card');
 })
 .run(($rootScope: ng.IRootScopeService, $timeout: ng.ITimeoutService) => {
 

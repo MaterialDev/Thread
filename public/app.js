@@ -14,6 +14,14 @@ angular.module('page.button', []).config(function ($stateProvider) {
         template: '<page-button></page-button>'
     });
 });
+angular.module('page.card', []).config(function ($stateProvider) {
+    $stateProvider
+        .state('card', {
+        url: '/card',
+        parent: 'app',
+        template: '<page-card></page-card>'
+    });
+});
 ///<reference path="../typings/angularjs/angular.d.ts"/>
 ///<reference path="../typings/angular-ui-router/angular-ui-router.d.ts"/>
 angular.module('app', [
@@ -24,14 +32,15 @@ angular.module('app', [
     'app.templates',
     'app.component',
     'page.button',
-    'page.badge'
+    'page.badge',
+    'page.card'
 ]).config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('app', {
         abstract: true,
         template: '<app></app>'
     });
-    $urlRouterProvider.otherwise('/badge');
+    $urlRouterProvider.otherwise('/card');
 })
     .run(function ($rootScope, $timeout) {
     $rootScope.$on('$viewContentLoaded', function () {
@@ -52,4 +61,7 @@ angular.module('page.badge').component('pageBadge', {
 });
 angular.module('page.button').component('pageButton', {
     templateUrl: 'pages/components/button/button.html'
+});
+angular.module('page.card').component('pageCard', {
+    templateUrl: 'pages/components/card/card.html'
 });

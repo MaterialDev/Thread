@@ -27,7 +27,7 @@ gulp.task('build:js', () => {
 });
 
 gulp.task('build:css', () => {
-    return gulp.src('app/prettyprint.css')
+    return gulp.src('app/*.css')
     .pipe(gulp.dest('./public'));
 });
 
