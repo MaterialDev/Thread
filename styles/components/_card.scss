@@ -12,7 +12,9 @@
     box-shadow: $shadow;
     background: white;
     border-radius: 2px;
-    margin: $unit;
+    margin-left: $unit;
+    margin-right: $unit;
+    margin-bottom: $unit * 2;
 
     &__media {
         position: relative;
@@ -72,7 +74,8 @@
         line-height: 64px;
     }
 
-    &__subtitle {
+    &__sub-title {
+        margin-left: 8px;
         display: inline;
         font-size: 14px;
         color: $dark-secondary-text;
