@@ -47,7 +47,7 @@ gulp.task('build:js', () => {
     .pipe(typescript({
         out: 'thread.js'
     }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist'));
 });
 
