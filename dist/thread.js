@@ -77,48 +77,6 @@ var Thread;
     })(Services = Thread.Services || (Thread.Services = {}));
 })(Thread || (Thread = {}));
 angular.module('thread.dialog').service('$dialog', Thread.Services.DialogService);
-/**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-function floatingLabelLink($timeout) {
-    return function _floatingLabelLink(scope, element, attrs, ctrl) {
-        if (attrs.noFloat !== undefined) {
-            return;
-        }
-        $timeout(function () {
-            var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
-            inputField.on('input', function () {
-                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
-            });
-            inputField.on('focus', function () {
-                element.addClass('has-focus');
-            });
-            inputField.on('blur', function () {
-                element.removeClass('has-focus');
-            });
-            scope.$on('$destroy', function () {
-                inputField.off('focus');
-                inputField.off('blur');
-            });
-        });
-    };
-}
-angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: floatingLabelLink($timeout)
-    };
-});
-angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: floatingLabelLink($timeout)
-    };
-});
 angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
     return {
         link: function (scope, element, attrs) {
@@ -161,6 +119,48 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
         },
         bindToController: true,
         controllerAs: '$pageBackground'
+    };
+});
+/**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
+function floatingLabelLink($timeout) {
+    return function _floatingLabelLink(scope, element, attrs, ctrl) {
+        if (attrs.noFloat !== undefined) {
+            return;
+        }
+        $timeout(function () {
+            var inputField = angular.element(element[0].querySelector('.c-input__field'));
+            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
+            inputField.on('input', function () {
+                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
+            });
+            inputField.on('focus', function () {
+                element.addClass('has-focus');
+            });
+            inputField.on('blur', function () {
+                element.removeClass('has-focus');
+            });
+            scope.$on('$destroy', function () {
+                inputField.off('focus');
+                inputField.off('blur');
+            });
+        });
+    };
+}
+angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: floatingLabelLink($timeout)
+    };
+});
+angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: floatingLabelLink($timeout)
     };
 });
 angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
@@ -362,6 +362,42 @@ menu.directive('tdMenu', Thread.Components.Menu.factory());
 menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());
+var Thread;
+(function (Thread) {
+    var Components;
+    (function (Components) {
+        var ScrollCollapse = (function () {
+            function ScrollCollapse($window) {
+                var _this = this;
+                this.$window = $window;
+                this.restrict = 'A';
+                this.link = function (scope, element, attrs) {
+                    var lastScroll = 0;
+                    angular.element(_this.$window).on('scroll', function () {
+                        var scroll = document.querySelector('body').scrollTop;
+                        //Scrolling down
+                        if (scroll > lastScroll + 10) {
+                            element.addClass('is-collapsed');
+                            lastScroll = scroll;
+                        }
+                        else if (scroll < lastScroll - 10) {
+                            element.removeClass('is-collapsed');
+                            lastScroll = scroll;
+                        }
+                    });
+                };
+            }
+            ScrollCollapse.factory = function () {
+                var directive = function ($window) { return new ScrollCollapse($window); };
+                directive.$inject = ['$window'];
+                return directive;
+            };
+            return ScrollCollapse;
+        }());
+        Components.ScrollCollapse = ScrollCollapse;
+    })(Components = Thread.Components || (Thread.Components = {}));
+})(Thread || (Thread = {}));
+angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
  * Progressive Disclosure
  * A natural language component that shows one
@@ -455,42 +491,6 @@ angular.module('thread.prodis').directive('prodisSection', function () {
         }
     };
 });
-var Thread;
-(function (Thread) {
-    var Components;
-    (function (Components) {
-        var ScrollCollapse = (function () {
-            function ScrollCollapse($window) {
-                var _this = this;
-                this.$window = $window;
-                this.restrict = 'A';
-                this.link = function (scope, element, attrs) {
-                    var lastScroll = 0;
-                    angular.element(_this.$window).on('scroll', function () {
-                        var scroll = document.querySelector('body').scrollTop;
-                        //Scrolling down
-                        if (scroll > lastScroll + 10) {
-                            element.addClass('is-collapsed');
-                            lastScroll = scroll;
-                        }
-                        else if (scroll < lastScroll - 10) {
-                            element.removeClass('is-collapsed');
-                            lastScroll = scroll;
-                        }
-                    });
-                };
-            }
-            ScrollCollapse.factory = function () {
-                var directive = function ($window) { return new ScrollCollapse($window); };
-                directive.$inject = ['$window'];
-                return directive;
-            };
-            return ScrollCollapse;
-        }());
-        Components.ScrollCollapse = ScrollCollapse;
-    })(Components = Thread.Components || (Thread.Components = {}));
-})(Thread || (Thread = {}));
-angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
 /**
  * Select Resize
  * Automatically resizes select elements to fit the text exactly

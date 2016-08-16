@@ -776,7 +776,12 @@ code {
   .c-card__body {
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 24px; }
+    padding-bottom: 16px; }
+  .c-card__description {
+    padding-bottom: 8px;
+    padding-top: 0;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px; }
   .c-card__footer {
     padding-left: 16px;
     padding-right: 16px;
