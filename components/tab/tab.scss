@@ -124,6 +124,7 @@
 .c-tab--white { @include c-tab-color($thread-white, $light-secondary-text, $light-primary-text); }
 .c-tab--purple { @include c-tab-color($thread-purple, $light-secondary-text, $light-primary-text); }
 .c-tab--green { @include c-tab-color($thread-green, $light-secondary-text, $light-primary-text); }
+.c-tab--cyan { @include c-tab-color($thread-cyan, $light-secondary-text, $light-primary-text); }
 .c-tab--teal { @include c-tab-color($thread-teal, $light-secondary-text, $light-primary-text); }
 .c-tab--orange { @include c-tab-color($thread-orange, $light-secondary-text, $light-primary-text); }
 .c-tab--blue { @include c-tab-color($thread-blue, $light-secondary-text, $light-primary-text); }

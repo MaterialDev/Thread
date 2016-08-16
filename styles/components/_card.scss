@@ -43,6 +43,8 @@
 
     &__content {
         flex-shrink: 1;
+        flex-grow: 1;
+        overflow: hidden;
     }
 
     &__header {
@@ -62,11 +64,18 @@
     }
 
     &__title {
+        display: inline-block;
         font-weight: bold;
         text-transform: uppercase;
         font-size: 16px;
         letter-spacing: 0.1em;
         line-height: 64px;
+    }
+
+    &__subtitle {
+        display: inline;
+        font-size: 14px;
+        color: $dark-secondary-text;
     }
 
     &__body {
