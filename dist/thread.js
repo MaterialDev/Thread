@@ -77,6 +77,48 @@ var Thread;
     })(Services = Thread.Services || (Thread.Services = {}));
 })(Thread || (Thread = {}));
 angular.module('thread.dialog').service('$dialog', Thread.Services.DialogService);
+/**
+ * Floating label
+ * A component that controls label interactions on input fields
+ * @author Zach Barnes
+ * @created 07/13/2016
+ */
+function floatingLabelLink($timeout) {
+    return function _floatingLabelLink(scope, element, attrs, ctrl) {
+        if (attrs.noFloat !== undefined) {
+            return;
+        }
+        $timeout(function () {
+            var inputField = angular.element(element[0].querySelector('.c-input__field'));
+            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
+            inputField.on('input', function () {
+                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
+            });
+            inputField.on('focus', function () {
+                element.addClass('has-focus');
+            });
+            inputField.on('blur', function () {
+                element.removeClass('has-focus');
+            });
+            scope.$on('$destroy', function () {
+                inputField.off('focus');
+                inputField.off('blur');
+            });
+        });
+    };
+}
+angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: floatingLabelLink($timeout)
+    };
+});
+angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
+    return {
+        restrict: 'C',
+        link: floatingLabelLink($timeout)
+    };
+});
 angular.module('thread.dynamicBackground', []).directive('dynamicBackground', function ($window, $interval) {
     return {
         link: function (scope, element, attrs) {
@@ -119,48 +161,6 @@ angular.module('thread.dynamicBackground', []).directive('dynamicBackground', fu
         },
         bindToController: true,
         controllerAs: '$pageBackground'
-    };
-});
-/**
- * Floating label
- * A component that controls label interactions on input fields
- * @author Zach Barnes
- * @created 07/13/2016
- */
-function floatingLabelLink($timeout) {
-    return function _floatingLabelLink(scope, element, attrs, ctrl) {
-        if (attrs.noFloat !== undefined) {
-            return;
-        }
-        $timeout(function () {
-            var inputField = angular.element(element[0].querySelector('.c-input__field'));
-            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
-            inputField.on('input', function () {
-                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
-            });
-            inputField.on('focus', function () {
-                element.addClass('has-focus');
-            });
-            inputField.on('blur', function () {
-                element.removeClass('has-focus');
-            });
-            scope.$on('$destroy', function () {
-                inputField.off('focus');
-                inputField.off('blur');
-            });
-        });
-    };
-}
-angular.module('thread.floatingLabel', []).directive('floatingLabel', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: floatingLabelLink($timeout)
-    };
-});
-angular.module('thread.floatingLabel').directive('cInput', function ($timeout) {
-    return {
-        restrict: 'C',
-        link: floatingLabelLink($timeout)
     };
 });
 angular.module('thread.inputRequire', []).directive('cInput', function ($timeout) {
