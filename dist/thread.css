@@ -637,7 +637,9 @@ code {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
   background: white;
   border-radius: 2px;
-  margin: 8px; }
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 16px; }
   .c-card__media {
     position: relative;
     overflow: hidden;
@@ -781,7 +783,8 @@ code {
     font-size: 16px;
     letter-spacing: 0.1em;
     line-height: 64px; }
-  .c-card__subtitle {
+  .c-card__sub-title {
+    margin-left: 8px;
     display: inline;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.54); }
