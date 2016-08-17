@@ -4,3 +4,17 @@
     align-items: center;
     background: #ccc;
 }
+
+.dark {
+    background: #4A4A4A;
+}
+
+.dark.c-card__content,
+.dark .c-card__sub-title,
+.dark .c-card__description {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .c-card__title {
+    color: white;
+}

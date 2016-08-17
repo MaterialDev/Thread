@@ -1,0 +1,185 @@
+<div class="button__scope l-page l-page--has-app-bar l-page--teal" dynamic-background>
+    <nav class="c-app-bar c-app-bar--teal">
+        <div class="c-app-bar__left">
+            <button class="c-button c-button--icon"><i class="mi">menu</i></button>
+            <span class="c-app-bar__title">Inputs</span>
+        </div>
+        <div class="c-app-bar__right">
+            <button class="c-button c-button--icon"><i class="mi">more_vert</i></button>
+        </div>
+    </nav>
+    <div class="l-page__primary">
+        <div class="c-natural-language c-natural-language--light c-natural-language--sm u-center">
+            <div class="c-natural-language__section">
+                <span class="c-natural-language__bold">Inputs</span> are HTML form elements used to submit information within a form.
+            </div>
+        </div>
+    </div>
+    <div class="l-page__secondary" dynamic-background-end>
+        <!-- Text Input States -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <span>
+                        <h1 class="c-card__title">Text Inputs</h1>
+                        <span class="c-badge c-badge--success">Stable</span>
+                    </span>
+                </div>
+                <div class="c-card__body">
+                    <div class="c-input c-input--primary">
+                        <label class="c-input__label">Required</label>
+                        <input type="text" required class="c-input__field">
+                    </div>
+
+                    <div class="c-input c-input--primary c-input--has-messages has-error">
+                        <label class="c-input__label">Error</label>
+                        <div class="c-input__content">
+                            <input type="text" value="This field has an error" class="c-input__field">
+                        </div>
+                        <div class="c-input__messages">
+                            <p>This field has an error</p>
+                        </div>
+                    </div>
+
+                    <div class="c-input c-input--primary">
+                        <label class="c-input__label">Read Only</label>
+                        <input type="text" disabled class="c-input__field" value="This is not editable">
+                    </div>
+
+                    <div class="c-input c-input--primary">
+                        <label class="c-input__label">With fixed text</label>
+                        <input type="text" class="c-input__field" value="store-url">
+                        <span class="c-input__addon c-input__addon--right">.mymaterial.com</span>
+                    </div>
+                    
+                    <pre class="prettyprint">&lt;div class="c-input c-input--primary">
+    &lt;label class="c-input__label">Required&lt;/label>
+    &lt;input type="text" required class="c-input__field">
+&lt;/div>
+
+&lt;div class="c-input c-input--primary c-input--has-messages has-error">
+    &lt;label class="c-input__label">Error&lt;/label>
+    &lt;div class="c-input__content">
+        &lt;input type="text" value="This field has an error" class="c-input__field">
+    &lt;/div>
+    &lt;div class="c-input__messages">
+        &lt;p>This field has an error&lt;/p>
+    &lt;/div>
+&lt;/div>
+
+&lt;div class="c-input c-input--primary">
+    &lt;label class="c-input__label">Read Only&lt;/label>
+    &lt;input type="text" disabled class="c-input__field"  value="This is not editable">
+&lt;/div>
+
+&lt;div class="c-input c-input--primary">
+    &lt;label class="c-input__label">With fixed text&lt;/label>
+    &lt;input type="text" class="c-input__field" value="store-url">
+    &lt;span class="c-input__addon c-input__addon--right">.mymaterial.com&lt;/span>
+&lt;/div></pre>
+                </div>
+            </div>
+            
+        </div>
+        <!-- End Text Input States -->
+
+        <!-- Text Input Sizes -->
+        <div class="c-card">
+            <div class="c-card__content">
+                <div class="c-card__header">
+                    <h1 class="c-card__title">Text Input Sizes</h1>
+                    <span class="c-badge c-badge--success">Stable</span></div>
+                <div class="c-card__body">
+                    <p class="c-card__description">Text inputs come in 2 sizes: Normal and Large.</p>
+                    <div class="c-input c-input--primary">
+                        <label class="c-input__label">Normal</label>
+                        <input type="text" class="c-input__field">
+                    </div>
+                    <div class="c-input c-input--primary c-input--large">
+                        <label class="c-input__label">Large</label>
+                        <input type="text" class="c-input__field">
+                    </div>
+                    
+                    <pre class="prettyprint">&lt;div class="c-input c-input--primary">
+    &lt;label class="c-input__label">Normal&lt;/label>
+    &lt;input type="text" class="c-input__field">
+&lt;/div>
+&lt;div class="c-input c-input--large">
+    &lt;label class="c-input__label">Large&lt;/label>
+    &lt;input type="text" class="c-input__field">
+&lt;/div></pre>
+                </div>
+            </div>
+        </div>
+        <!-- End Text Input Sizes -->
+
+        <!-- Text Input Colors -->
+        <div class="c-card l-flex">
+            <div class="c-card__content l-flex-50">
+                <div class="c-card__header">
+                    <span>
+                        <h1 class="c-card__title">Text Input colors</h1>
+                        <p class="c-card__sub-title">(Light BG)</p>
+                    </span>
+                    <span class="c-badge c-badge--success">Stable</span>
+                </div>
+                <div class="c-card__body">
+                    <p class="c-card__description">Text inputs come in separate colors for light and dark backgrounds.</p>
+
+                    <div class="c-input c-input--primary">
+                        <label class="c-input__label">Normal/Light background</label>
+                        <input type="text" class="c-input__field">
+                    </div>
+
+                    <div class="c-input c-input--primary c-input--large">
+                        <label class="c-input__label">Large/Light background</label>
+                        <input type="text" class="c-input__field">
+                    </div>
+                    
+                    <pre class="prettyprint">&lt;div class="c-input c-input--primary">
+    &lt;label class="c-input__label">Normal/Light background&lt;/label>
+    &lt;input type="text" class="c-input__field">
+&lt;/div>
+
+&lt;div class="c-input c-input--primary c-input--large">
+    &lt;label class="c-input__label">Normal/Light background&lt;/label>
+    &lt;input type="text" class="c-input__field">
+&lt;/div></pre>
+                </div>
+            </div>
+            <div class="c-card__content dark l-flex-50">
+                <div class="c-card__header">
+                    <span>
+                        <h1 class="c-card__title">Text Input colors</h1>
+                        <p class="c-card__sub-title">(Dark BG)</p>
+                    </span>
+                    <span class="c-badge c-badge--success">Stable</span>
+                </div>
+                <div class="c-card__body">
+                    <p class="c-card__description">All input elements have a dark background-compatible variant.</p>
+
+                    <div class="c-input c-input--secondary">
+                        <label class="c-input__label">Normal/Light background</label>
+                        <input type="text" class="c-input__field">
+                    </div>
+
+                    <div class="c-input c-input--secondary c-input--large">
+                        <label class="c-input__label">Large/Light background</label>
+                        <input type="text" class="c-input__field">
+                    </div>
+                    
+                    <pre class="prettyprint">&lt;div class="c-input c-input--secondary">
+    &lt;label class="c-input__label">Normal/Light background&lt;/label>
+    &lt;input type="text" class="c-input__field">
+&lt;/div>
+
+&lt;div class="c-input c-input--secondary c-input--large">
+    &lt;label class="c-input__label">Normal/Light background&lt;/label>
+    &lt;input type="text" class="c-input__field">
+&lt;/div></pre>
+                </div>
+            </div>
+        </div>
+        <!-- End Text Input Colors -->
+    </div>
+</div>

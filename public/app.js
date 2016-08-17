@@ -22,6 +22,14 @@ angular.module('page.card', []).config(function ($stateProvider) {
         template: '<page-card></page-card>'
     });
 });
+angular.module('page.input', []).config(function ($stateProvider) {
+    $stateProvider
+        .state('input', {
+        url: '/input',
+        parent: 'app',
+        template: '<page-input></page-input>'
+    });
+});
 ///<reference path="../typings/angularjs/angular.d.ts"/>
 ///<reference path="../typings/angular-ui-router/angular-ui-router.d.ts"/>
 angular.module('app', [
@@ -33,7 +41,8 @@ angular.module('app', [
     'app.component',
     'page.button',
     'page.badge',
-    'page.card'
+    'page.card',
+    'page.input'
 ]).config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('app', {
@@ -64,4 +73,7 @@ angular.module('page.button').component('pageButton', {
 });
 angular.module('page.card').component('pageCard', {
     templateUrl: 'pages/components/card/card.html'
+});
+angular.module('page.input').component('pageInput', {
+    templateUrl: 'pages/components/input/input.html'
 });
