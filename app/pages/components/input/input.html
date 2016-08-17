@@ -46,10 +46,12 @@
                         <input type="text" disabled class="c-input__field" value="This is not editable">
                     </div>
 
-                    <div class="c-input c-input--primary">
+                    <div class="c-input c-input--primary c-input--has-addon">
                         <label class="c-input__label">With fixed text</label>
-                        <input type="text" class="c-input__field" value="store-url">
-                        <span class="c-input__addon c-input__addon--right">.mymaterial.com</span>
+                        <div class="c-input__content">
+                            <input type="text" class="c-input__field" value="store-url">
+                            <span class="c-input__addon">.mymaterial.com</span>
+                        </div>
                     </div>
                     
                     <pre class="prettyprint">&lt;div class="c-input c-input--primary">
@@ -72,10 +74,12 @@
     &lt;input type="text" disabled class="c-input__field"  value="This is not editable">
 &lt;/div>
 
-&lt;div class="c-input c-input--primary">
+&lt;div class="c-input c-input--primary c-input--has-addon">
     &lt;label class="c-input__label">With fixed text&lt;/label>
-    &lt;input type="text" class="c-input__field" value="store-url">
-    &lt;span class="c-input__addon c-input__addon--right">.mymaterial.com&lt;/span>
+    &lt;div class="c-input__content">
+        &lt;input type="text" class="c-input__field" value="store-url">
+        &lt;span class="c-input__addon">.mymaterial.com&lt;/span>
+    &lt;/div>
 &lt;/div></pre>
                 </div>
             </div>
