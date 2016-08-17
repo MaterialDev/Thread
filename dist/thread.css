@@ -1119,8 +1119,7 @@ code {
     transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
     margin-right: -6px;
     font-size: 16px;
-    white-space: nowrap;
-    pointer-events: none; }
+    white-space: nowrap; }
   .c-input__content {
     position: relative;
     display: table;
@@ -1945,22 +1944,6 @@ textarea {
 .c-dialog--lg .c-dialog__content {
   width: 720px; }
 
-.c-prodis {
-  top: 50%;
-  transform: translate3d(0, -50%, 0);
-  position: relative;
-  overflow: hidden;
-  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
-  .c-prodis__section {
-    opacity: 0;
-    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
-    .c-prodis__section--complete {
-      display: block;
-      margin-top: 48px;
-      margin-bottom: 0; }
-    .c-prodis__section--visible {
-      opacity: 1; }
-
 /* ===========================================================================
     Menu
    =========================================================================== */
@@ -2044,6 +2027,22 @@ textarea {
 
 .c-menu__content--on-body {
   position: fixed; }
+
+.c-prodis {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0, 0, 0.2, 1); }
+  .c-prodis__section {
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 100ms; }
+    .c-prodis__section--complete {
+      display: block;
+      margin-top: 48px;
+      margin-bottom: 0; }
+    .c-prodis__section--visible {
+      opacity: 1; }
 
 /* ===========================================================================
     Tabs
