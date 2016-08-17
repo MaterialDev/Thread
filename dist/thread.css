@@ -1252,10 +1252,11 @@ code {
    =========================================================================== */
 .c-input--large .c-input__field,
 .c-input--large .c-input__addon {
-  font-size: 36px; }
+  font-size: 32px;
+  margin-top: -4px; }
 
 .c-input--large .c-input__label {
-  transform: translate3d(0, 30px, 0) scale(2); }
+  transform: translate3d(0, 16px, 0) scale(2); }
 
 .c-input--with-icon {
   width: calc(100% - 52px);
