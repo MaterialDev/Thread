@@ -115,7 +115,10 @@
 
 /* Layout
    =========================================================================== */
+
 .u-flex { display: flex !important; }
+.u-flex-align-center { align-items: center !important; }
+.u-flex-justify-center { align-items: center !important; }
 
 @for $i from 1 through 20 {
     .u-flex-#{$i * 5} { flex-basis: $i * 5 !important; }
