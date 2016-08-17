@@ -11,7 +11,7 @@ function floatingLabelLink($timeout) {
         }
 
         $timeout(() => {
-            let inputField:ng.IAugmentedJQuery = angular.element(element[0].querySelector('.c-input__field'));
+            let inputField : ng.IAugmentedJQuery = angular.element(element[0].querySelector('.c-input__field'));
 
             element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
             inputField.on('input', function () {

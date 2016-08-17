@@ -2,17 +2,11 @@
     overflow: auto;
     margin-left: -$unit;
     margin-right: -$unit;
-    padding-top: $unit;
-    padding-bottom: $unit;
 
     &:after {
         display: table;
         content: " ";
     }
-}
-
-.l-container {
-    margin-top: -$unit;
 }
 
 [class^="l-col"] {
