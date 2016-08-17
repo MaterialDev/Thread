@@ -24,7 +24,7 @@ angular.module('app', [
             template: '<app></app>'
         });
 
-    $urlRouterProvider.otherwise('/card');
+    $urlRouterProvider.otherwise('/input');
 })
 .run(($rootScope: ng.IRootScopeService, $timeout: ng.ITimeoutService) => {
 
