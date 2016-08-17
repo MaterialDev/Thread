@@ -49,7 +49,7 @@ angular.module('app', [
         abstract: true,
         template: '<app></app>'
     });
-    $urlRouterProvider.otherwise('/card');
+    $urlRouterProvider.otherwise('/input');
 })
     .run(function ($rootScope, $timeout) {
     $rootScope.$on('$viewContentLoaded', function () {
