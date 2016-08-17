@@ -7,6 +7,7 @@ pre.prettyprint {
     border-radius: 2px;
     overflow: auto;
     float: left;
+    width: 100%;
 }
 pre.prettyprint code { background-color: transparent; }
 
