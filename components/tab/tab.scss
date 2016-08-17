@@ -74,13 +74,15 @@
         }
 
         &.is-left {
-            transition: transform 500ms $td-ease, opacity 0ms 500ms;
+            transition: transform 500ms $td-ease, opacity 0ms 500ms, visibility 0ms 500ms;
+            visibility: hidden;
             opacity: 0;
             transform: translate3d(-100%, 0, 0);
         }
 
         &.is-right {
-            transition: transform 500ms $td-ease, opacity 0ms 500ms;
+            transition: transform 500ms $td-ease, opacity 0ms 500ms, visibility 0ms 500ms;
+            visibility: hidden;
             opacity: 0;
             transform: translate3d(100%, 0, 0);
         }
