@@ -1050,7 +1050,7 @@ code {
  *
  */
 .c-input {
-  margin-top: 16px;
+  padding-top: 16px;
   margin-bottom: 8px;
   position: relative; }
   .c-input:not(.c-input--has-messages):before,
