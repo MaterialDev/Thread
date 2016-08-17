@@ -42,13 +42,15 @@
     &__label {
         display: inline-block;
         font-size: 16px;
-        transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 24px, 0);
         transform-origin: top left;
         transition: transform 200ms $td-ease, color 200ms $td-ease;
         pointer-events: none;
+        line-height: 24px;
     }
 
     &__field {
+        line-height: 24px;
         font-size: 16px;
         padding-bottom: $unit;
         width: 100%;

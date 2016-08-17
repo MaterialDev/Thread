@@ -34,6 +34,9 @@ h5,
 h6 {
   margin: 0; }
 
+input {
+  padding: 0; }
+
 /* ===========================================================================
     Variables
    =========================================================================== */
@@ -1077,11 +1080,13 @@ code {
   .c-input__label {
     display: inline-block;
     font-size: 16px;
-    transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 24px, 0);
     transform-origin: top left;
     transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), color 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none; }
+    pointer-events: none;
+    line-height: 24px; }
   .c-input__field {
+    line-height: 24px;
     font-size: 16px;
     padding-bottom: 8px;
     width: 100%; }
