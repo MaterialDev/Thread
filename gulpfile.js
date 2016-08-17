@@ -14,6 +14,15 @@ let typescript = require('gulp-typescript');
 let concat = require('gulp-concat');
 let uglify = require('gulp-uglify');
 let minCss = require('gulp-clean-css');
+let browserSync = require('browser-sync').create();
+
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: './'
+        }
+    })
+});
 
 gulp.task('build:css', () => {
     gulp.src([
@@ -33,7 +42,8 @@ gulp.task('build:css', () => {
     ], { syntax: sassSyntax }))
     .pipe(concat('thread.css'))
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('build:js', () => {
@@ -72,7 +82,7 @@ gulp.task('publish:css', () => {
 gulp.task('build', ['build:css', 'build:js']);
 gulp.task('publish', ['publish:css', 'publish:js']);
 
-gulp.task('default', ['build:css', 'build:js'], () => {
+gulp.task('default', ['build', 'browser-sync'], () => {
     gulp.watch(['./styles/**/*.scss', './components/**/*.scss'], ['build:css']);
     gulp.watch(['app.ts', './components/**/*.ts'], ['build:js']);
 });

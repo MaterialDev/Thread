@@ -13,26 +13,30 @@
     margin-bottom: $unit;
     position: relative;
 
-    &:before {
-        content: '';
-        height: 2px;
-        transition: transform 200ms $td-ease-out;
-        transform: scale(0);
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 10;
-    }
+    &:not(.c-input--has-messages),
+    .c-input__content {
+        &:before {
+            content: '';
+            height: 2px;
+            transition: transform 200ms $td-ease-out, background 200ms $td-ease;
+            transform: scale(0);
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+        }
 
-    &:after {
-        content: '';
-        height: 1px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 5;
+        &:after {
+            content: '';
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            transition: background 200ms $td-ease;
+        }
     }
 
     &__label {
@@ -59,14 +63,22 @@
         justify-content: center;
     }
 
-    /* stylelint-disable block-no-empty */
-    &__container { }
-    /* stylelint-enable */
-
     &__addon {
         transition: color 200ms $td-ease;
         margin-right: -6px;
         font-size: 16px;
+    }
+
+    &__content {
+        position: relative;
+    }
+
+    &__messages {
+        & > * {
+            font-size: 14px;
+            padding: 0;
+            transition: color 200ms $td-ease;
+        }
     }
 
     &.has-required {
@@ -90,7 +102,8 @@
     }
 
     &.has-focus {
-        &.c-input:before {
+        &.c-input:before,
+        .c-input__content:before {
             transform: scale(1);
         }
     }
@@ -103,7 +116,8 @@
 $active-color,
 $text-color: $dark-primary-text,
 $border-color: $dark-divider,
-$label-color: $dark-secondary-text
+$label-color: $dark-secondary-text,
+$error-color: $thread-error
 ) {
     .c-input__field {
         color: $text-color;
@@ -124,14 +138,40 @@ $label-color: $dark-secondary-text
         }
     }
 
-    &:before {
+    &:before,
+    .c-input__content:before {
         background: $active-color;
     }
 
-    &:after {
+    &:after,
+    .c-input__content:after {
         background: $border-color;
     }
 
+    .c-input__content {
+        &:before {
+            background: $active-color;
+        }
+
+        &:after {
+            background: $border-color;
+        }
+    }
+}
+
+@mixin input-error($error-color: $thread-error) {
+    .c-input {
+        &__label { color: $error-color; }
+        &__addon { color: $error-color; }
+        &__messages > * { color: $error-color; }
+
+        &:before,
+        &:after,
+        &__content:before,
+        &__content:after {
+            background: $error-color;
+        }
+    }
 }
 
 
@@ -155,6 +195,9 @@ $label-color: $dark-secondary-text
     }
 }
 
+.c-input.has-error {
+    @include input-error();
+}
 
 /* Style variants
    =========================================================================== */
