@@ -243,6 +243,66 @@ code {
 .u-no-margin-bottom {
   margin-bottom: 0 !important; }
 
+.u-margin {
+  margin: 8px !important; }
+
+.u-margin-top {
+  margin-top: 8px !important; }
+
+.u-margin-bottom {
+  margin-bottom: 8px !important; }
+
+.u-margin-left {
+  margin-left: 8px !important; }
+
+.u-margin-right {
+  margin-right: 8px !important; }
+
+.u-margin-1 {
+  margin: 8px !important; }
+
+.u-margin-top-1 {
+  margin-top: 8px !important; }
+
+.u-margin-bottom-1 {
+  margin-bottom: 8px !important; }
+
+.u-margin-left-1 {
+  margin-left: 8px !important; }
+
+.u-margin-right-1 {
+  margin-right: 8px !important; }
+
+.u-margin-2 {
+  margin: 16px !important; }
+
+.u-margin-top-2 {
+  margin-top: 16px !important; }
+
+.u-margin-bottom-2 {
+  margin-bottom: 16px !important; }
+
+.u-margin-left-2 {
+  margin-left: 16px !important; }
+
+.u-margin-right-2 {
+  margin-right: 16px !important; }
+
+.u-margin-3 {
+  margin: 24px !important; }
+
+.u-margin-top-3 {
+  margin-top: 24px !important; }
+
+.u-margin-bottom-3 {
+  margin-bottom: 24px !important; }
+
+.u-margin-left-3 {
+  margin-left: 24px !important; }
+
+.u-margin-right-3 {
+  margin-right: 24px !important; }
+
 .u-no-padding {
   padding: 0 !important; }
 
@@ -328,6 +388,92 @@ code {
 
 .u-full-width {
   width: 100% !important; }
+
+/* Layout
+   =========================================================================== */
+.u-flex {
+  display: -ms-flexbox !important;
+  display: flex !important; }
+
+.u-flex-5 {
+  -ms-flex-preferred-size: 5 !important;
+  flex-basis: 5 !important; }
+
+.u-flex-10 {
+  -ms-flex-preferred-size: 10 !important;
+  flex-basis: 10 !important; }
+
+.u-flex-15 {
+  -ms-flex-preferred-size: 15 !important;
+  flex-basis: 15 !important; }
+
+.u-flex-20 {
+  -ms-flex-preferred-size: 20 !important;
+  flex-basis: 20 !important; }
+
+.u-flex-25 {
+  -ms-flex-preferred-size: 25 !important;
+  flex-basis: 25 !important; }
+
+.u-flex-30 {
+  -ms-flex-preferred-size: 30 !important;
+  flex-basis: 30 !important; }
+
+.u-flex-35 {
+  -ms-flex-preferred-size: 35 !important;
+  flex-basis: 35 !important; }
+
+.u-flex-40 {
+  -ms-flex-preferred-size: 40 !important;
+  flex-basis: 40 !important; }
+
+.u-flex-45 {
+  -ms-flex-preferred-size: 45 !important;
+  flex-basis: 45 !important; }
+
+.u-flex-50 {
+  -ms-flex-preferred-size: 50 !important;
+  flex-basis: 50 !important; }
+
+.u-flex-55 {
+  -ms-flex-preferred-size: 55 !important;
+  flex-basis: 55 !important; }
+
+.u-flex-60 {
+  -ms-flex-preferred-size: 60 !important;
+  flex-basis: 60 !important; }
+
+.u-flex-65 {
+  -ms-flex-preferred-size: 65 !important;
+  flex-basis: 65 !important; }
+
+.u-flex-70 {
+  -ms-flex-preferred-size: 70 !important;
+  flex-basis: 70 !important; }
+
+.u-flex-75 {
+  -ms-flex-preferred-size: 75 !important;
+  flex-basis: 75 !important; }
+
+.u-flex-80 {
+  -ms-flex-preferred-size: 80 !important;
+  flex-basis: 80 !important; }
+
+.u-flex-85 {
+  -ms-flex-preferred-size: 85 !important;
+  flex-basis: 85 !important; }
+
+.u-flex-90 {
+  -ms-flex-preferred-size: 90 !important;
+  flex-basis: 90 !important; }
+
+.u-flex-95 {
+  -ms-flex-preferred-size: 95 !important;
+  flex-basis: 95 !important; }
+
+.u-flex-100 {
+  -ms-flex-preferred-size: 100 !important;
+  flex-basis: 100 !important; }
 
 /* ===========================================================================
     App Bar
@@ -904,7 +1050,7 @@ code {
  *
  */
 .c-input {
-  margin-top: 16px;
+  padding-top: 16px;
   margin-bottom: 8px;
   position: relative; }
   .c-input:not(.c-input--has-messages):before,
