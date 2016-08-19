@@ -753,7 +753,8 @@ code {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
     .c-button--primary.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
@@ -767,7 +768,8 @@ code {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
     .c-button--secondary.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
@@ -781,7 +783,8 @@ code {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
     .c-button--secondary-filled.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
