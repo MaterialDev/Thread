@@ -86,6 +86,7 @@
     background: $background-color;
     box-shadow: none;
     cursor: default;
+    pointer-events: none;
 
     &:hover {
         background: $background-color;
