@@ -610,7 +610,8 @@ code {
   font-size: 11px;
   line-height: 1.2;
   padding: 3px 12px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  display: inline-block; }
 
 /* Configuration mixins
    =========================================================================== */
@@ -748,12 +749,12 @@ code {
     .c-button--primary.c-button--raised:focus, .c-button--primary.c-button--raised:hover, .c-button--primary.c-button--fab:focus, .c-button--primary.c-button--fab:hover, .c-button--primary.c-button--fab-mini:focus, .c-button--primary.c-button--fab-mini:hover, .c-button--primary.c-button--huge:focus, .c-button--primary.c-button--huge:hover {
       color: white;
       background: #e69a00; }
-  .c-button--primary.c-button[disabled], .c-button--primary.c-button--disabled {
+  .c-button--primary.is-disabled {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
     cursor: default; }
-    .c-button--primary.c-button[disabled]:hover, .c-button--primary.c-button--disabled:hover {
+    .c-button--primary.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
 .c-button--secondary {
@@ -762,12 +763,12 @@ code {
   .c-button--secondary:focus, .c-button--secondary:hover {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.12); }
-  .c-button--secondary.c-button[disabled], .c-button--secondary.c-button--disabled {
+  .c-button--secondary.is-disabled {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
     cursor: default; }
-    .c-button--secondary.c-button[disabled]:hover, .c-button--secondary.c-button--disabled:hover {
+    .c-button--secondary.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
 .c-button--secondary-filled {
@@ -776,12 +777,12 @@ code {
   .c-button--secondary-filled:focus, .c-button--secondary-filled:hover {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(79, 79, 79, 0.28); }
-  .c-button--secondary-filled.c-button[disabled], .c-button--secondary-filled.c-button--disabled {
+  .c-button--secondary-filled.is-disabled {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
     cursor: default; }
-    .c-button--secondary-filled.c-button[disabled]:hover, .c-button--secondary-filled.c-button--disabled:hover {
+    .c-button--secondary-filled.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
 /* ===========================================================================
@@ -1042,6 +1043,9 @@ code {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga'; }
+  .mi svg {
+    width: 1em;
+    height: 1em; }
 
 /* Style variants
    =========================================================================== */
@@ -1266,6 +1270,44 @@ code {
 .c-input.has-error .c-input:before, .c-input.has-error .c-input:after, .c-input.has-error .c-input__content:before, .c-input.has-error .c-input__content:after {
   background: #DD3226; }
 
+.c-input.is-disabled .c-input__field,
+.c-input[disabled] .c-input__field {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-input.is-disabled .c-input__label,
+.c-input.is-disabled .c-input__addon,
+.c-input[disabled] .c-input__label,
+.c-input[disabled] .c-input__addon {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-input.is-disabled.has-focus .c-input__label,
+.c-input[disabled].has-focus .c-input__label {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-input.is-disabled.has-focus .c-input__addon,
+.c-input[disabled].has-focus .c-input__addon {
+  color: rgba(0, 0, 0, 0.54); }
+
+.c-input.is-disabled:before,
+.c-input.is-disabled .c-input__content:before,
+.c-input[disabled]:before,
+.c-input[disabled] .c-input__content:before {
+  background: rgba(0, 0, 0, 0.54); }
+
+.c-input.is-disabled:after,
+.c-input.is-disabled .c-input__content:after,
+.c-input[disabled]:after,
+.c-input[disabled] .c-input__content:after {
+  background: rgba(0, 0, 0, 0.12); }
+
+.c-input.is-disabled .c-input__content:before,
+.c-input[disabled] .c-input__content:before {
+  background: rgba(0, 0, 0, 0.54); }
+
+.c-input.is-disabled .c-input__content:after,
+.c-input[disabled] .c-input__content:after {
+  background: rgba(0, 0, 0, 0.12); }
+
 /* Style variants
    =========================================================================== */
 .c-input--large .c-input__field,
@@ -1285,6 +1327,8 @@ code {
   width: auto;
   display: inline-block;
   margin-bottom: 0; }
+  .c-input--inline .c-input__content {
+    display: inline-table; }
 
 .c-input--number .c-input__field {
   width: 1.7577em; }
@@ -1752,6 +1796,24 @@ code {
 @media screen and (min-width: 600px) {
   .l-col-gt-mobile-100 {
     width: 100%; } }
+
+.l-col--align-input {
+  position: relative;
+  bottom: 12px; }
+
+.l-row--align-bottom [class^="l-col"] {
+  float: none;
+  display: table-cell;
+  vertical-align: bottom; }
+
+@media screen and (min-width: 600px) {
+  .l-row--align-bottom-gt-mobile [class^="l-col"] {
+    float: none;
+    display: table-cell;
+    vertical-align: bottom; }
+  .l-col--align-input-gt-mobile {
+    position: relative;
+    bottom: 12px; } }
 
 /* ===========================================================================
     Page Layout

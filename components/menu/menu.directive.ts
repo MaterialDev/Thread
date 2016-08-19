@@ -21,16 +21,20 @@ module Thread.Components {
 
         constructor(private $timeout: ng.ITimeoutService) {}
 
-        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
+        link = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: any, ctrl: any) => {
             ctrl.menuContent = angular.element(element[0].querySelector('.js-menu__content'));
             ctrl.backdrop = angular.element(element[0].querySelector('.js-menu__backdrop'));
+
+            if (attrs.hasOwnProperty('width')) {
+               ctrl.menuContent.addClass(`c-menu__content--width-${attrs.width}`)
+            }
 
             if (attrs.hasOwnProperty('moveToBody')) {
                 ctrl.moveToBody();
             }
 
             if (attrs.hasOwnProperty('position')) {
-                let splitPos = (<any>attrs).position.split(' ');
+                let splitPos = attrs.position.split(' ');
                 ctrl.setPosition(splitPos[0], splitPos[1]);
             } else {
                 ctrl.setPosition('top', 'left');

@@ -21,7 +21,7 @@ module Thread.Components {
         tabs = [];
         lastTab = -1;
 
-        constructor(private $scope: ng.IScope, private $element: ng.IAugmentedJQuery) {
+        constructor(private $scope: ng.IScope, private $element: ng.IAugmentedJQuery, private $timeout: ng.ITimeoutService) {
 
         }
 
@@ -79,11 +79,13 @@ module Thread.Components {
         }
 
         updateTabs() {
+            let height : Number;
+            let content : HTMLElement;
             if(this.lastTab > -1) {
-                let height : Number = this.tabs[this.activeTab - 1].body[0].offsetHeight;
-                let content : HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-tab__content');
+                height = this.tabs[this.activeTab - 1].body[0].offsetHeight;
+                content = <HTMLElement>this.$element[0].querySelector('.js-tab__content');
                 content.style.height = `${height}px`;
-                content.style.transition = 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                content.style.transition = 'height 500ms cubic-bezier(0.4, 0, 0.2, 1)';
             }
 
             for(let i = 0; i < this.tabs.length; i++) {
@@ -101,7 +103,12 @@ module Thread.Components {
                     this.tabs[i].header.addClass('is-right');
                     this.tabs[i].body.addClass('is-right');
                 }
+            }
 
+            if(this.lastTab > -1) {
+                this.$timeout(() => {
+                    content.style.height = '';
+                }, 500);
             }
         }
 

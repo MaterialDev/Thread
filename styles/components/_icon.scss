@@ -29,6 +29,11 @@
     -moz-osx-font-smoothing: grayscale;
 
     font-feature-settings: 'liga';
+
+    svg {
+        width: 1em;
+        height: 1em;
+    }
 }
 
 

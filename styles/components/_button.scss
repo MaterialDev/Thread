@@ -165,8 +165,7 @@
         @include button-color($light-primary-text, $thread-primary);
     }
 
-    &.c-button[disabled],
-    &.c-button--disabled {
+    &.is-disabled {
         @include button-disabled($dark-disabled-text, $thread-secondary-dark);
     }
 }
@@ -174,8 +173,7 @@
 .c-button--secondary {
     @include button-color($dark-disabled-text);
 
-    &.c-button[disabled],
-    &.c-button--disabled {
+    &.is-disabled {
         @include button-disabled($dark-disabled-text, $thread-secondary-dark);
     }
 }
@@ -183,8 +181,7 @@
 .c-button--secondary-filled {
     @include button-color($dark-disabled-text, $thread-secondary-light);
 
-    &.c-button[disabled],
-    &.c-button--disabled {
+    &.is-disabled {
         @include button-disabled($dark-disabled-text, $thread-secondary-dark);
     }
 }

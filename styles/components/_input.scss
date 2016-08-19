@@ -213,6 +213,11 @@ $error-color: $thread-error
     @include input-error();
 }
 
+.c-input.is-disabled,
+.c-input[disabled]{
+    @include input-color($dark-secondary-text, $dark-secondary-text, $dark-divider, $dark-secondary-text);
+}
+
 /* Style variants
    =========================================================================== */
 .c-input--large {
@@ -237,6 +242,10 @@ $error-color: $thread-error
     width: auto;
     display: inline-block;
     margin-bottom: 0;
+
+    .c-input__content {
+        display: inline-table;
+    }
 }
 
 .c-input--number {
