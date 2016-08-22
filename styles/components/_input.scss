@@ -213,9 +213,12 @@ $error-color: $thread-error
     @include input-error();
 }
 
-.c-input.is-disabled,
-.c-input[disabled]{
+.c-input.is-disabled {
     @include input-color($dark-secondary-text, $dark-secondary-text, $dark-divider, $dark-secondary-text);
+}
+
+.c-input__field[disabled] {
+    color: $dark-secondary-text;
 }
 
 /* Style variants

@@ -31,6 +31,10 @@
     transition: background 200ms $td-ease, box-shadow 200ms $td-ease;
     white-space: nowrap;
 
+    &[disabled] {
+        pointer-events: none;
+    }
+
     //masks elements inside border radius
     z-index: 1;
 
@@ -41,6 +45,9 @@
     &__icon {
         color: inherit;
         fill: currentColor;
+        margin-top: -1px;
+        display: inline-block;
+        vertical-align: middle;
     }
 }
 
@@ -181,6 +188,14 @@
 
 .c-button--secondary-filled {
     @include button-color($dark-disabled-text, $thread-secondary-light);
+
+    &.is-disabled {
+        @include button-disabled($dark-disabled-text, $thread-secondary-dark);
+    }
+}
+
+.c-button--success {
+    @include button-color($light-primary-text, $thread-success);
 
     &.is-disabled {
         @include button-disabled($dark-disabled-text, $thread-secondary-dark);

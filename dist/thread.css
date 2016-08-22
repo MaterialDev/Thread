@@ -660,11 +660,16 @@ code {
   transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   z-index: 1; }
+  .c-button[disabled] {
+    pointer-events: none; }
   .c-button:focus {
     outline: none; }
   .c-button__icon {
     color: inherit;
-    fill: currentColor; }
+    fill: currentColor;
+    margin-top: -1px;
+    display: inline-block;
+    vertical-align: middle; }
 
 /* Configuration mixins
    =========================================================================== */
@@ -753,7 +758,8 @@ code {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
     .c-button--primary.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
@@ -767,7 +773,8 @@ code {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
     .c-button--secondary.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
@@ -781,8 +788,24 @@ code {
     color: rgba(0, 0, 0, 0.38);
     background: rgba(0, 0, 0, 0.2);
     box-shadow: none;
-    cursor: default; }
+    cursor: default;
+    pointer-events: none; }
     .c-button--secondary-filled.is-disabled:hover {
+      background: rgba(0, 0, 0, 0.2); }
+
+.c-button--success {
+  color: white;
+  background: #7ED321; }
+  .c-button--success:focus, .c-button--success:hover {
+    color: white;
+    background: #71be1e; }
+  .c-button--success.is-disabled {
+    color: rgba(0, 0, 0, 0.38);
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none; }
+    .c-button--success.is-disabled:hover {
       background: rgba(0, 0, 0, 0.2); }
 
 /* ===========================================================================
@@ -1270,43 +1293,35 @@ code {
 .c-input.has-error .c-input:before, .c-input.has-error .c-input:after, .c-input.has-error .c-input__content:before, .c-input.has-error .c-input__content:after {
   background: #DD3226; }
 
-.c-input.is-disabled .c-input__field,
-.c-input[disabled] .c-input__field {
+.c-input.is-disabled .c-input__field {
   color: rgba(0, 0, 0, 0.54); }
 
 .c-input.is-disabled .c-input__label,
-.c-input.is-disabled .c-input__addon,
-.c-input[disabled] .c-input__label,
-.c-input[disabled] .c-input__addon {
+.c-input.is-disabled .c-input__addon {
   color: rgba(0, 0, 0, 0.54); }
 
-.c-input.is-disabled.has-focus .c-input__label,
-.c-input[disabled].has-focus .c-input__label {
+.c-input.is-disabled.has-focus .c-input__label {
   color: rgba(0, 0, 0, 0.54); }
 
-.c-input.is-disabled.has-focus .c-input__addon,
-.c-input[disabled].has-focus .c-input__addon {
+.c-input.is-disabled.has-focus .c-input__addon {
   color: rgba(0, 0, 0, 0.54); }
 
 .c-input.is-disabled:before,
-.c-input.is-disabled .c-input__content:before,
-.c-input[disabled]:before,
-.c-input[disabled] .c-input__content:before {
+.c-input.is-disabled .c-input__content:before {
   background: rgba(0, 0, 0, 0.54); }
 
 .c-input.is-disabled:after,
-.c-input.is-disabled .c-input__content:after,
-.c-input[disabled]:after,
-.c-input[disabled] .c-input__content:after {
+.c-input.is-disabled .c-input__content:after {
   background: rgba(0, 0, 0, 0.12); }
 
-.c-input.is-disabled .c-input__content:before,
-.c-input[disabled] .c-input__content:before {
+.c-input.is-disabled .c-input__content:before {
   background: rgba(0, 0, 0, 0.54); }
 
-.c-input.is-disabled .c-input__content:after,
-.c-input[disabled] .c-input__content:after {
+.c-input.is-disabled .c-input__content:after {
   background: rgba(0, 0, 0, 0.12); }
+
+.c-input__field[disabled] {
+  color: rgba(0, 0, 0, 0.54); }
 
 /* Style variants
    =========================================================================== */
