@@ -12,10 +12,11 @@ function floatingLabelLink($timeout) {
 
         $timeout(() => {
             let inputField : ng.IAugmentedJQuery = angular.element(element[0].querySelector('.c-input__field'));
+            let ngModelCtrl : ng.INgModelController = inputField.controller('ngModel');
 
             element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
-            inputField.on('input', function () {
-                element.toggleClass('has-value', !!this.value || !!this.getAttribute('placeholder'));
+            inputField.on('input', () => {
+                element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
             });
 
             inputField.on('focus', () => {
@@ -25,6 +26,13 @@ function floatingLabelLink($timeout) {
             inputField.on('blur', () => {
                 element.removeClass('has-focus');
             });
+
+            if(ngModelCtrl) {
+                ngModelCtrl.$formatters.push(function(value) {
+                    element.toggleClass('has-value', !!value || !!inputField.attr('placeholder'));
+                    return value;
+                });
+            }
 
             scope.$on('$destroy', () => {
                 inputField.off('focus');

@@ -113,6 +113,7 @@ module Thread.Components {
         }
 
         clearTab(idx: number) {
+            (<HTMLElement>document.activeElement).blur();
             this.tabs[idx].header.removeClass('is-active is-right is-left');
             this.tabs[idx].body.removeClass('is-active is-right is-left');
         }
