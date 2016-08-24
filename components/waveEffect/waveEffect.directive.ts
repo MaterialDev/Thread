@@ -105,7 +105,9 @@ module Thread.Components {
             }
 
             scope.$on('$destroy', () => {
-                waveEl.remove();
+                if(waveEl) {
+                    waveEl.remove();
+                }
                 angular.element(document.querySelector('body')).off('mouseup', onMouseUp);
             });
         };

@@ -41,7 +41,7 @@ angular.module('thread.selectResize').directive('selectResize', ($timeout) => {
 
             function resizeInput() {
                 let el : HTMLSelectElement = <HTMLSelectElement>element[0];
-                let arrowWidth = 32;
+                let arrowWidth = 24;
                 let text = (<HTMLOptionElement>el.options[el.selectedIndex]).text;
                 let width;
 

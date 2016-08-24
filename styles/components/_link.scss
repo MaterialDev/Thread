@@ -22,3 +22,22 @@
         color: $thread-primary;
     }
 }
+
+
+/* Configuration mixins
+   =========================================================================== */
+@mixin link-color($color) {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+        color: $color;
+    }
+}
+
+/* Color variants
+   =========================================================================== */
+
+.c-link--light {
+    @include link-color($light-primary-text);
+}

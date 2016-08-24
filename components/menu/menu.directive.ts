@@ -99,8 +99,8 @@ module Thread.Components {
                         //no default
                     }
 
-                    this.menuContent[0].style.left = `${left}px`;
-                    this.menuContent[0].style.top = `${top}px`;
+                    this.menuContent[0].style.left = `${left + document.body.scrollLeft}px`;
+                    this.menuContent[0].style.top = `${top + document.body.scrollTop}px`;
                     this.menuContent[0].style.right = 'initial';
                     this.menuContent[0].style.bottom = 'initial';
                 }
