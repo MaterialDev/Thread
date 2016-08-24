@@ -828,17 +828,6 @@ code {
     overflow: hidden;
     -ms-flex-preferred-size: 40%;
     flex-basis: 40%; }
-    .c-card__media-img {
-      height: auto;
-      width: 100%; }
-      @media screen and (min-width: 600px) {
-        .c-card__media-img {
-          position: absolute;
-          height: 100%;
-          width: auto;
-          bottom: 50%;
-          right: 50%;
-          transform: translate3d(50%, 50%, 0); } }
     .c-card__media--5 {
       -ms-flex-preferred-size: 5%;
       flex-basis: 5%;
@@ -939,6 +928,17 @@ code {
       flex-basis: 100%;
       -ms-flex-negative: 0;
       flex-shrink: 0; }
+  .c-card__media-img {
+    height: auto;
+    width: 100%; }
+    @media screen and (min-width: 600px) {
+      .c-card__media-img {
+        position: absolute;
+        height: 100%;
+        width: auto;
+        bottom: 50%;
+        right: 50%;
+        transform: translate3d(50%, 50%, 0); } }
   .c-card__content {
     -ms-flex-negative: 1;
     flex-shrink: 1;
@@ -1144,7 +1144,6 @@ code {
     display: table-cell;
     width: 1px;
     transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    margin-right: -6px;
     font-size: 16px;
     white-space: nowrap; }
   .c-input__content {
@@ -1398,6 +1397,13 @@ code {
     cursor: pointer;
     text-decoration: underline;
     color: #FFAB00; }
+
+/* Configuration mixins
+   =========================================================================== */
+/* Color variants
+   =========================================================================== */
+.c-link--light:link, .c-link--light:visited, .c-link--light:hover, .c-link--light:active {
+  color: white; }
 
 /* ===========================================================================
     Natural Language
