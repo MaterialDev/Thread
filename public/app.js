@@ -31,7 +31,7 @@ angular.module('page.input', []).config(function ($stateProvider) {
     });
 });
 ///<reference path="../typings/angularjs/angular.d.ts"/>
-///<reference path="../typings/angular-ui-router/angular-ui-router.d.ts"/>
+///<reference path="../typings/globals/angular-ui-router/index.d.ts"/>
 angular.module('app', [
     //Libraries
     'thread',
