@@ -12,6 +12,7 @@
     "autoprefixer": "^6.3.7",
     "browser-sync": "^2.14.0",
     "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",

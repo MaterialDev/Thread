@@ -11,6 +11,7 @@ let autoprefixer = require('autoprefixer');
 let reporter = require('postcss-reporter');
 let stylelint = require('stylelint');
 let typescript = require('gulp-typescript');
+let templateCache = require('gulp-angular-templatecache');
 let concat = require('gulp-concat');
 let uglify = require('gulp-uglify');
 let minCss = require('gulp-clean-css');
@@ -79,6 +80,34 @@ gulp.task('publish:css', () => {
     .pipe(gulp.dest('./dist'))
 });
 
+gulp.task('build-site:html', () => {
+    return gulp.src([
+        'documentation/**/*.html'
+    ])
+    .pipe(templateCache('app.template.js', { module: 'app.templates', standalone: true }))
+    .pipe(gulp.dest('./public'));
+
+});
+
+gulp.task('build-site:js', () => {
+    return gulp.src([
+        'documentation/**/*Module.ts',
+        'documentation/**/*.ts',
+        'documentation/app.ts'
+    ])
+    .pipe(typescript({
+        out: 'documentation.js',
+        noImplicitAny: true
+    }))
+    .pipe(gulp.dest('./public'));
+});
+
+gulp.task('build-site:css', () => {
+    return gulp.src('documentation/*.css')
+    .pipe(gulp.dest('./public'));
+});
+
+gulp.task('build-site', ['build-site:css', 'build-site:js', 'build-site:html']);
 gulp.task('build', ['build:css', 'build:js']);
 gulp.task('publish', ['publish:css', 'publish:js']);
 
