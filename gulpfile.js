@@ -6,6 +6,7 @@ let sass = require('gulp-sass');
 let postcss = require('gulp-postcss');
 let sassSyntax = require('postcss-scss');
 let sourcemaps = require('gulp-sourcemaps');
+const ngAnnotate = require('gulp-ng-annotate');
 let immutable = require('immutable-css');
 let autoprefixer = require('autoprefixer');
 let reporter = require('postcss-reporter');
@@ -64,6 +65,7 @@ gulp.task('build:js', () => {
 
 gulp.task('publish:js', () => {
     gulp.src('./dist/thread.js')
+    .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({
         suffix: '.min'
