@@ -1,22 +1,22 @@
 {
-  "name": "thread",
+  "name": "material-thread",
   "description": "Material CSS Framework",
   "main": [
     "./dist/thread.css",
     "./dist/thread.js"
   ],
   "authors": [
-    "Zach Barnes <Zach.Barnes@Material.com>"
+    "Zach Barnes <Zach.Barnes@Material.com>",
+    "Prabin Varma<prabinv@gmail.com>"
   ],
   "license": "ISC",
   "keywords": [
     "Material",
     "CSS",
-    "Thread"
+    "framework"
   ],
   "homepage": "https://materialdev.github.io/Thread",
   "moduleType": [],
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
