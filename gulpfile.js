@@ -59,13 +59,13 @@ gulp.task('build:js', () => {
     .pipe(typescript({
         out: 'thread.js'
     }))
+    .pipe(ngAnnotate())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('publish:js', () => {
     gulp.src('./dist/thread.js')
-    .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({
         suffix: '.min'
