@@ -8,6 +8,7 @@
 module Thread.Components {
     export class waveEffect implements ng.IDirective {
         restrict = 'A';
+        static $inject = ['$timeout'];
 
         constructor(private $timeout: ng.ITimeoutService) {
 
@@ -114,7 +115,6 @@ module Thread.Components {
 
         static factory() : ng.IDirectiveFactory {
             var directive = ($timeout: ng.ITimeoutService) => new Thread.Components.waveEffect($timeout);
-            directive.$inject = ['$timeout'];
             return directive;
         }
 
@@ -122,15 +122,15 @@ module Thread.Components {
 
     export class waveEffectButton extends waveEffect {
         restrict = 'C';
+        static $inject = ['$timeout'];
 
         static factory() : ng.IDirectiveFactory {
             var directive = ($timeout: ng.ITimeoutService) => new Thread.Components.waveEffectButton($timeout);
-            directive.$inject = ['$timeout'];
             return directive;
         }
     }
 }
 
 angular.module('thread.waveEffect', []).directive('waveEffect', Thread.Components.waveEffect.factory());
-angular.module('thread.waveEffect').directive('cButton', Thread.Components.waveEffectButton.factory());
+angular.module('thread.waveEffect').directive('cButton', ['$timeout', Thread.Components.waveEffectButton.factory()]);
 

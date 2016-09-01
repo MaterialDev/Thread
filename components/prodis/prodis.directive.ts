@@ -80,7 +80,7 @@ angular.module('thread.prodis', []).directive('prodis', () => {
         transclude: true,
         replace: true,
         controllerAs: '$prodis',
-        controller: Thread.Components.ProdisController
+        controller: ['$element', '$timeout', Thread.Components.ProdisController]
     };
 });
 

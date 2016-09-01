@@ -18,6 +18,7 @@ module Thread.Components {
 
         menuContent : ng.IAugmentedJQuery;
         backdrop : ng.IAugmentedJQuery;
+        static $inject = ['$timeout'];
 
         constructor(private $timeout: ng.ITimeoutService) {}
 
@@ -49,7 +50,7 @@ module Thread.Components {
             });
         };
 
-        controller($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
+        controller = ['$scope', '$element', function($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
             angular.extend(this, {
                 onBody: false,
                 xPos: null,
@@ -143,11 +144,10 @@ module Thread.Components {
                 angular.element(document.querySelector('body')).append(this.menuContent);
                 angular.element(document.querySelector('body')).append(this.backdrop);
             }
-        }
+        }];
 
         static factory() : ng.IDirectiveFactory {
             let directive = ($timeout: ng.ITimeoutService) => new Menu($timeout);
-            directive.$inject = ['$timeout'];
             return directive;
         }
     }
@@ -197,7 +197,7 @@ module Thread.Components {
 }
 
 let menu = angular.module('thread.menu', []);
-menu.directive('tdMenu', Thread.Components.Menu.factory());
+menu.directive('tdMenu', ['$timeout', Thread.Components.Menu.factory()]);
 menu.directive('tdMenuTarget', Thread.Components.MenuTarget.factory());
 menu.directive('tdMenuContent', Thread.Components.MenuContent.factory());
 menu.directive('tdMenuItem', Thread.Components.MenuItem.factory());

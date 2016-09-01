@@ -1,6 +1,7 @@
 module Thread.Components {
     export class ScrollCollapse implements ng.IDirective {
         restrict = 'A';
+        static $inject = ['$window'];
 
         constructor(private $window: ng.IWindowService) {
         }
@@ -25,10 +26,9 @@ module Thread.Components {
 
         static factory(): ng.IDirectiveFactory {
             const directive = ($window: ng.IWindowService) => new ScrollCollapse($window);
-            directive.$inject = ['$window'];
             return directive;
         }
     }
 }
 
-angular.module('thread.scrollCollapse', []).directive('scrollCollapse', Thread.Components.ScrollCollapse.factory());
+angular.module('thread.scrollCollapse', []).directive('scrollCollapse', ['$window', Thread.Components.ScrollCollapse.factory()]);
