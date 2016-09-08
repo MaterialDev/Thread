@@ -19,7 +19,29 @@
     <script src="public/app.template.js"></script>
     <script src="public/app.js"></script>
 </head>
-<body ng-app="app">
+<body ng-app="app" class="has-sidenav">
+<nav class="c-sidenav">
+    <div class="c-sidenav__header">
+        <h1 class="c-sidenav__title"><i class="mi">menu</i> thread</h1>
+        <div class="c-search">
+            <input type="text">
+        </div>
+    </div>
+    <div class="c-sidenav__body">
+        <ul class="c-sidenav__list">
+            <li class="c-sidenav__item">Getting Started</li>
+            <li class="c-sidenav__item">Utilities</li>
+            <li class="c-sidenav__item">
+                <span>Components</span>
+                <ul class="c-sidenav__sub-list">
+                    <li class="c-sidenav__item">Buttons</li>
+                    <li class="c-sidenav__item">Cards</li>
+                    <li class="c-sidenav__item">Inputs</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
 <ui-view></ui-view>
 </body>
 </html>

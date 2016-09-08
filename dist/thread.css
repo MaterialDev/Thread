@@ -2129,6 +2129,38 @@ textarea {
       opacity: 1; }
 
 /* ===========================================================================
+    Sidenav
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-sidenav {
+  width: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: white; }
+
+@media screen and (min-width: 600px) {
+  .has-sidenav {
+    padding-left: 200px; }
+    .has-sidenav .c-app-bar {
+      left: 200px; } }
+
+/* Style Variants
+   =========================================================================== */
+.c-sidenav--left {
+  left: 0;
+  right: auto; }
+
+.c-sidenav--right {
+  left: auto;
+  right: 0; }
+
+/* ===========================================================================
     Tabs
    =========================================================================== */
 /**
