@@ -107,7 +107,12 @@ gulp.task('build-site:css', () => {
     .pipe(gulp.dest('./public'));
 });
 
-gulp.task('build-site', ['build-site:css', 'build-site:js', 'build-site:html']);
+gulp.task('build-site:res', () => {
+    return gulp.src('res/**/*', { base: '.'})
+    .pipe(gulp.dest('./public'))
+})
+
+gulp.task('build-site', ['build-site:css', 'build-site:js', 'build-site:html', 'build-site:res']);
 gulp.task('build', ['build:css', 'build:js']);
 gulp.task('publish', ['publish:css', 'publish:js']);
 
