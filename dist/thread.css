@@ -2144,7 +2144,8 @@ textarea {
   top: 0;
   bottom: 0;
   left: 0;
-  background: white; }
+  background: white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
   .c-sidenav__title {
     padding-left: 16px;
     display: -ms-flexbox;
