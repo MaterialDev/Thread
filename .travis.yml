@@ -13,6 +13,3 @@ script:
 - gulp build
 after_success:
 - bash deploy.sh
-branches:
-  only:
-    - master
