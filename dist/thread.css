@@ -516,12 +516,14 @@ code {
   .c-app-bar__logo {
     display: inline-block;
     margin-left: 12px; }
+  .c-app-bar__nav-button ~ .c-app-bar__title {
+    margin-left: 8px; }
   .c-app-bar__title {
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-left: 8px;
+    margin-left: 24px;
     vertical-align: middle; }
   .c-app-bar.is-collapsed {
     transform: scale(1, 0); }
@@ -2143,6 +2145,30 @@ textarea {
   bottom: 0;
   left: 0;
   background: white; }
+  .c-sidenav__title {
+    padding-left: 16px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 64px; }
+  .c-sidenav__item {
+    display: list-item; }
+  .c-sidenav__list {
+    padding-left: 24px; }
+    .c-sidenav__list > .c-sidenav__item {
+      line-height: 2;
+      font-size: 16px;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.87); }
+  .c-sidenav__sub-list {
+    padding-left: 16px; }
+    .c-sidenav__sub-list .c-sidenav__item {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.54);
+      line-height: 1.71; }
 
 @media screen and (min-width: 600px) {
   .has-sidenav {
