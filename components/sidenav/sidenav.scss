@@ -1,0 +1,42 @@
+/* ===========================================================================
+    Sidenav
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+$sidenav-width: 200px;
+
+.c-sidenav {
+    width: $sidenav-width;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: white;
+}
+
+@media screen and (min-width: $bp-mobile) {
+    .has-sidenav {
+        padding-left: $sidenav-width;
+
+        .c-app-bar {
+            left: $sidenav-width;
+        }
+    }
+}
+
+/* Style Variants
+   =========================================================================== */
+.c-sidenav--left {
+    left: 0;
+    right: auto;
+}
+
+.c-sidenav--right {
+    left: auto;
+    right: 0;
+}
