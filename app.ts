@@ -13,6 +13,7 @@ module thread {
         'thread.prodis',
         'thread.selectResize',
         'thread.dynamicBackground',
-        'thread.dialog'
+        'thread.dialog',
+        'thread.select'
     ]);
 }

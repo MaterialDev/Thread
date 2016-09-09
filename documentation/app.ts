@@ -16,7 +16,8 @@ angular.module('app', [
     'page.button',
     'page.badge',
     'page.card',
-    'page.input'
+    'page.input',
+    'page.select'
 ]).config(($stateProvider: angular.ui.IStateProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
     $stateProvider
         .state('app', {

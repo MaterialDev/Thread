@@ -1,0 +1,32 @@
+.c-select {
+    padding-right: 24px;
+
+    &__menu {
+        //display: none;
+        width: auto;
+        box-shadow: $shadow;
+        position: fixed;
+        background: white;
+        z-index: 100;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    &__menu-item {
+        padding: 8px 16px;
+        cursor: pointer;
+
+        &:hover {
+            background: #EEEEEE;
+        }
+    }
+
+    &__menu--open {
+        display: initial;
+    }
+
+    &__arrow {
+        position: absolute;
+        right: 0;
+    }
+}

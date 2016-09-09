@@ -119,4 +119,7 @@ gulp.task('publish', ['publish:css', 'publish:js']);
 gulp.task('default', ['build', 'build-site', 'browser-sync'], () => {
     gulp.watch(['./styles/**/*.scss', './components/**/*.scss'], ['build:css']);
     gulp.watch(['app.ts', './components/**/*.ts'], ['build:js']);
+    gulp.watch(['documentation/**/*Module.ts', 'documentation/**/*.ts', 'documentation/app.ts'], ['build-site:js']);
+    gulp.watch(['documentation/*.css'], ['build-site:css']);
+    gulp.watch('documentation/**/*.html', ['build-site:html']);
 });
