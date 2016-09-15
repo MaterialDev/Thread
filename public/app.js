@@ -30,6 +30,14 @@ angular.module('page.input', []).config(function ($stateProvider) {
         template: '<page-input></page-input>'
     });
 });
+angular.module('page.select', []).config(function ($stateProvider) {
+    $stateProvider
+        .state('select', {
+        url: '/select',
+        parent: 'app',
+        template: '<page-select></page-select>'
+    });
+});
 ///<reference path="../typings/angularjs/angular.d.ts"/>
 ///<reference path="../typings/globals/angular-ui-router/index.d.ts"/>
 angular.module('app', [
@@ -42,7 +50,8 @@ angular.module('app', [
     'page.button',
     'page.badge',
     'page.card',
-    'page.input'
+    'page.input',
+    'page.select'
 ]).config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('app', {
@@ -76,4 +85,7 @@ angular.module('page.card').component('pageCard', {
 });
 angular.module('page.input').component('pageInput', {
     templateUrl: 'pages/components/input/input.html'
+});
+angular.module('page.select').component('pageSelect', {
+    templateUrl: 'pages/components/select/select.html'
 });
