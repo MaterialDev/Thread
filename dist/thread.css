@@ -59,14 +59,6 @@ input {
    =========================================================================== */
 /* Breakpoints
    =========================================================================== */
-/* ===========================================================================
-    Mixins
-   =========================================================================== */
-/**
- *
- * Description goes here
- *
- */
 .s-healthcheck {
   /**
      * Outline all classes.
@@ -106,6 +98,14 @@ input {
   .s-healthcheck [class^="_"] {
     outline: 5px solid red; }
 
+/* ===========================================================================
+    Mixins
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 @keyframes wave-wobble {
   0% {
     transform: translate3d(-50%, -50%, 0) scale(0.6); }
@@ -2246,43 +2246,6 @@ textarea {
  * Description goes here
  *
  */
-.wave-effect {
-  pointer-events: none;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  background: currentColor;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0) scale(0.67);
-  transition: opacity 200ms, transform 0ms 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0; }
-  .wave-effect.has-focus {
-    opacity: 0.26;
-    animation: wave-wobble 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-  .wave-effect.is-active {
-    opacity: 0.26;
-    transform: translate3d(-50%, -50%, 0) scale(2);
-    transition: transform 300ms 60ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1); }
-
-/* Style variants
-   =========================================================================== */
-.wave-effect--fab {
-  transform: translate3d(-50%, -50%, 0) scale(0); }
-  .wave-effect--fab.is-active {
-    transform: translate3d(-50%, -50%, 0) scale(1); }
-  .wave-effect--fab.has-focus {
-    animation-name: wave-wobble-fab; }
-
-/* ===========================================================================
-    Tabs
-   =========================================================================== */
-/**
- *
- * Description goes here
- *
- */
 .c-tab__header-wrapper {
   width: 100%;
   overflow: auto; }
@@ -2499,3 +2462,40 @@ textarea {
    =========================================================================== */
 .js-tab__title > * {
   pointer-events: none; }
+
+/* ===========================================================================
+    Tabs
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.wave-effect {
+  pointer-events: none;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  background: currentColor;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(0.67);
+  transition: opacity 200ms, transform 0ms 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0; }
+  .wave-effect.has-focus {
+    opacity: 0.26;
+    animation: wave-wobble 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+  .wave-effect.is-active {
+    opacity: 0.26;
+    transform: translate3d(-50%, -50%, 0) scale(2);
+    transition: transform 300ms 60ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1); }
+
+/* Style variants
+   =========================================================================== */
+.wave-effect--fab {
+  transform: translate3d(-50%, -50%, 0) scale(0); }
+  .wave-effect--fab.is-active {
+    transform: translate3d(-50%, -50%, 0) scale(1); }
+  .wave-effect--fab.has-focus {
+    animation-name: wave-wobble-fab; }
