@@ -51,7 +51,17 @@ angular.module('thread.select', []).directive('tdSelect', () => {
         scope: {
             model: '=ngModel'
         },
-        templateUrl: 'components/select/select.html',
+        template: `<div class="c-select c-input__field" tabindex="0" ng-click="$selectCtrl.openOptionList();">
+                        <div class="c-select__backdrop js-select__backdrop"></div>
+                        <span aria-hidden="true" class="c-select__value">{{$selectCtrl.model || ' '}}</span>
+                        <ul aria-hidden="true" class="c-select__menu js-select__menu">
+                            <li class="c-select__menu-item" ng-repeat="option in $selectCtrl.options"
+                                ng-click="$selectCtrl.select(option); $event.stopPropagation()">{{option.name}}
+                            </li>
+                        </ul>
+                        <i class="mi c-select__arrow" aria-hidden="true">arrow_drop_down</i>
+                        <select class="c-select__box" ng-transclude ng-model="$selectCtrl.model"></select>
+                    </div>`,
         controller: Thread.Components.SelectController,
         bindToController: true,
         controllerAs: '$selectCtrl',
