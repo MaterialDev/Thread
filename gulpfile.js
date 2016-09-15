@@ -109,11 +109,19 @@ gulp.task('build-site:css', () => {
     .pipe(gulp.dest('./public'));
 });
 
-gulp.task('build-site', ['build-site:css', 'build-site:js', 'build-site:html']);
+gulp.task('build-site:res', () => {
+    return gulp.src('res/**/*', { base: '.'})
+    .pipe(gulp.dest('./public'))
+})
+
+gulp.task('build-site', ['build-site:css', 'build-site:js', 'build-site:html', 'build-site:res']);
 gulp.task('build', ['build:css', 'build:js']);
 gulp.task('publish', ['publish:css', 'publish:js']);
 
 gulp.task('default', ['build', 'build-site', 'browser-sync'], () => {
     gulp.watch(['./styles/**/*.scss', './components/**/*.scss'], ['build:css']);
     gulp.watch(['app.ts', './components/**/*.ts'], ['build:js']);
+    gulp.watch(['documentation/**/*Module.ts', 'documentation/**/*.ts', 'documentation/app.ts'], ['build-site:js']);
+    gulp.watch(['documentation/*.css'], ['build-site:css']);
+    gulp.watch('documentation/**/*.html', ['build-site:html']);
 });

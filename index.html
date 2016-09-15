@@ -19,7 +19,31 @@
     <script src="public/app.template.js"></script>
     <script src="public/app.js"></script>
 </head>
-<body ng-app="app">
+<body ng-app="app" class="has-sidenav">
+<nav class="c-sidenav">
+    <div class="c-sidenav__header">
+        <h1 class="c-sidenav__title"><img class="thread-logo" src="public/res/images/thread_logo.png" alt="thread logo"></h1>
+        <div class="c-search">
+            <input type="text">
+        </div>
+    </div>
+    <div class="c-sidenav__body">
+        <ul class="c-sidenav__list">
+            <a class="c-sidenav__item">Getting Started</a>
+            <a class="c-sidenav__item">Utilities</a>
+            <a class="c-sidenav__item">
+                <span>Components</span>
+                <ul class="c-sidenav__sub-list">
+                    <a class="c-sidenav__item" ui-sref="button">Buttons</a>
+                    <a class="c-sidenav__item" ui-sref="card">Cards</a>
+                    <a class="c-sidenav__item" ui-sref="input">Inputs</a>
+                    <a class="c-sidenav__item" ui-sref="badge">Badges</a>
+                    <a class="c-sidenav__item" ui-sref="select">Select</a>
+                </ul>
+            </a>
+        </ul>
+    </div>
+</nav>
 <ui-view></ui-view>
 </body>
 </html>

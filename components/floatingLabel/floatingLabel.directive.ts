@@ -7,6 +7,7 @@
 function floatingLabelLink($timeout) {
     return function _floatingLabelLink(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: ng.INgModelController) {
         if ((<any>attrs).noFloat !== undefined) {
+            element.addClass('has-value');
             return;
         }
 
@@ -14,10 +15,18 @@ function floatingLabelLink($timeout) {
             let inputField : ng.IAugmentedJQuery = angular.element(element[0].querySelector('.c-input__field'));
             let ngModelCtrl : ng.INgModelController = inputField.controller('ngModel');
 
-            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
-            inputField.on('input', () => {
+            if (inputField.prop('tagName') !== 'INPUT') {
+                element.addClass('has-value');
+            } else {
                 element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
-            });
+            }
+
+
+            if (!inputField.attr('placeholder')) {
+                inputField.on('input', () => {
+                    element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
+                });
+            }
 
             inputField.on('focus', () => {
                 element.addClass('has-focus');

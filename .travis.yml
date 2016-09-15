@@ -13,3 +13,9 @@ script:
 - gulp build
 after_success:
 - bash deploy.sh
+cache:
+  - node_modules
+  - bower_components
+branches:
+  only:
+    - master

@@ -59,14 +59,6 @@ input {
    =========================================================================== */
 /* Breakpoints
    =========================================================================== */
-/* ===========================================================================
-    Mixins
-   =========================================================================== */
-/**
- *
- * Description goes here
- *
- */
 .s-healthcheck {
   /**
      * Outline all classes.
@@ -106,6 +98,14 @@ input {
   .s-healthcheck [class^="_"] {
     outline: 5px solid red; }
 
+/* ===========================================================================
+    Mixins
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
 @keyframes wave-wobble {
   0% {
     transform: translate3d(-50%, -50%, 0) scale(0.6); }
@@ -516,12 +516,14 @@ code {
   .c-app-bar__logo {
     display: inline-block;
     margin-left: 12px; }
+  .c-app-bar__nav-button ~ .c-app-bar__title {
+    margin-left: 8px; }
   .c-app-bar__title {
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-left: 8px;
+    margin-left: 24px;
     vertical-align: middle; }
   .c-app-bar.is-collapsed {
     transform: scale(1, 0); }
@@ -1124,6 +1126,7 @@ code {
     transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), color 200ms cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none; }
   .c-input__field {
+    outline: 0;
     display: table-cell;
     padding-top: 2px;
     line-height: 16px;
@@ -2127,6 +2130,113 @@ textarea {
       margin-bottom: 0; }
     .c-prodis__section--visible {
       opacity: 1; }
+
+.c-select {
+  padding-right: 24px; }
+  .c-select__menu {
+    pointer-events: none;
+    width: auto;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    position: fixed;
+    background: white;
+    z-index: 100;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    transform-origin: top;
+    transform: scale(1, 0.75);
+    opacity: 0;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .c-select__menu.is-open {
+      pointer-events: auto;
+      transform: scale(1);
+      opacity: 1; }
+  .c-select__menu-item {
+    padding: 8px 16px;
+    cursor: pointer; }
+    .c-select__menu-item:hover {
+      background: #EEE; }
+  .c-select__arrow {
+    position: absolute;
+    right: 0; }
+  .c-select__value {
+    white-space: pre; }
+  .c-select__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 50;
+    pointer-events: none; }
+    .c-select__backdrop.is-open {
+      pointer-events: initial; }
+  .c-select__box {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    /* for Internet Explorer */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden; }
+
+/* ===========================================================================
+    Sidenav
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-sidenav {
+  width: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12); }
+  .c-sidenav__title {
+    padding-left: 16px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 64px; }
+  .c-sidenav__item {
+    display: list-item; }
+  .c-sidenav__list {
+    padding-left: 24px; }
+    .c-sidenav__list > .c-sidenav__item {
+      line-height: 2;
+      font-size: 16px;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.87); }
+  .c-sidenav__sub-list {
+    padding-left: 16px; }
+    .c-sidenav__sub-list .c-sidenav__item {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.54);
+      line-height: 1.71; }
+
+@media screen and (min-width: 600px) {
+  .has-sidenav {
+    padding-left: 200px; }
+    .has-sidenav .c-app-bar {
+      left: 200px; } }
+
+/* Style Variants
+   =========================================================================== */
+.c-sidenav--left {
+  left: 0;
+  right: auto; }
+
+.c-sidenav--right {
+  left: auto;
+  right: 0; }
 
 /* ===========================================================================
     Tabs

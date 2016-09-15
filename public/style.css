@@ -18,3 +18,7 @@
 .dark .c-card__title {
     color: white;
 }
+
+.thread-logo {
+    width: 128px;
+}
