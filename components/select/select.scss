@@ -2,7 +2,7 @@
     padding-right: 24px;
 
     &__menu {
-        display: none;
+        pointer-events: none;
         width: auto;
         box-shadow: $shadow;
         position: fixed;
@@ -10,6 +10,16 @@
         z-index: 100;
         padding-top: 8px;
         padding-bottom: 8px;
+        transform-origin: top;
+        transform: scale(1, 0.75);
+        opacity: 0;
+        transition: transform 200ms $td-ease, opacity 200ms $td-ease;
+
+        &.is-open {
+            pointer-events: auto;
+            transform: scale(1);
+            opacity: 1;
+        }
     }
 
     &__menu-item {
@@ -21,16 +31,30 @@
         }
     }
 
-    &__menu--open {
-        display: initial;
-    }
-
     &__arrow {
         position: absolute;
         right: 0;
     }
 
-    &__real {
+    &__value {
+        white-space: pre;
+    }
+
+    &__backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 50;
+        pointer-events: none;
+
+        &.is-open {
+            pointer-events: initial;
+        }
+    }
+
+    &__box {
         position: absolute;
         clip: rect(1px 1px 1px 1px); /* for Internet Explorer */
         clip: rect(1px, 1px, 1px, 1px);

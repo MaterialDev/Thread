@@ -7,10 +7,10 @@ module Thread.Components {
 
         }
 
-        addOption(name, model) {
+        addOption(name, value) {
             this.options.push({
                 name: name,
-                model: model
+                value: value
             });
         }
 
@@ -19,19 +19,24 @@ module Thread.Components {
             parentPos.left += document.body.scrollLeft;
             parentPos.top += document.body.scrollTop;
 
+            let backdrop: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__backdrop');
             let optionList: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__menu');
             optionList.style.width = `${this.$element[0].offsetWidth}px`;
             optionList.style.left = `${parentPos.left - 16}px`;
             optionList.style.top = `${parentPos.top - 14}px`;
-            angular.element(optionList).addClass('c-select__menu--open');
+            angular.element(optionList).addClass('is-open');
+            angular.element(backdrop).addClass('is-open');
         }
 
         closeOptionList() {
             let optionList: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__menu');
-            angular.element(optionList).removeClass('c-select__menu--open');
+            let backdrop: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__backdrop');
+            angular.element(optionList).removeClass('is-open');
+            angular.element(backdrop).removeClass('is-open');
         }
 
         select(option) {
+            (<any>this).model = option.value;
             this.closeOptionList();
         }
     }
@@ -43,27 +48,39 @@ module Thread.Components {
 
 angular.module('thread.select', []).directive('tdSelect', () => {
     return {
+        scope: {
+            model: '=ngModel'
+        },
         templateUrl: 'components/select/select.html',
         controller: Thread.Components.SelectController,
         bindToController: true,
         controllerAs: '$selectCtrl',
         transclude: true,
         replace: true,
-        link(scope, element, attrs) {
-            // let selectedElement = angular.element(element.querySelector('.js-select__selected'));
+        link(scope, element, attrs, ctrl) {
+            let backdrop = angular.element(element[0].querySelector('.js-select__backdrop'));
+
+            backdrop.on('click', (e) => {
+                e.stopPropagation();
+                ctrl.closeOptionList();
+            });
         }
     };
 });
 
 angular.module('thread.select').directive('tdOption', () => {
     return {
+        scope: true,
         require: '^tdSelect',
-        template: '<option ng-transclude></option>',
+        template: '<option ng-transclude ng-value="$selectOptionCtrl.value"></option>',
         controller: Thread.Components.OptionController,
+        controllerAs: '$selectOptionCtrl',
         replace: true,
         transclude: true,
-        link(scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: any, ctrl: Thread.Components.SelectController) {
-            ctrl.addOption(element.text(), attrs.value || element.text());
+        link(scope: any, element: ng.IAugmentedJQuery, attrs: any, ctrl: Thread.Components.SelectController) {
+            let value = attrs.value || element.text().replace(/\s/, '');
+            scope.$selectOptionCtrl.value = value;
+            ctrl.addOption(element.text(), value);
         }
     };
 });

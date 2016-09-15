@@ -2134,25 +2134,43 @@ textarea {
 .c-select {
   padding-right: 24px; }
   .c-select__menu {
-    display: none;
+    pointer-events: none;
     width: auto;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
     position: fixed;
     background: white;
     z-index: 100;
     padding-top: 8px;
-    padding-bottom: 8px; }
+    padding-bottom: 8px;
+    transform-origin: top;
+    transform: scale(1, 0.75);
+    opacity: 0;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .c-select__menu.is-open {
+      pointer-events: auto;
+      transform: scale(1);
+      opacity: 1; }
   .c-select__menu-item {
     padding: 8px 16px;
     cursor: pointer; }
     .c-select__menu-item:hover {
       background: #EEE; }
-  .c-select__menu--open {
-    display: initial; }
   .c-select__arrow {
     position: absolute;
     right: 0; }
-  .c-select__real {
+  .c-select__value {
+    white-space: pre; }
+  .c-select__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 50;
+    pointer-events: none; }
+    .c-select__backdrop.is-open {
+      pointer-events: initial; }
+  .c-select__box {
     position: absolute;
     clip: rect(1px 1px 1px 1px);
     /* for Internet Explorer */
@@ -2219,6 +2237,43 @@ textarea {
 .c-sidenav--right {
   left: auto;
   right: 0; }
+
+/* ===========================================================================
+    Tabs
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.wave-effect {
+  pointer-events: none;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  background: currentColor;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(0.67);
+  transition: opacity 200ms, transform 0ms 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0; }
+  .wave-effect.has-focus {
+    opacity: 0.26;
+    animation: wave-wobble 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+  .wave-effect.is-active {
+    opacity: 0.26;
+    transform: translate3d(-50%, -50%, 0) scale(2);
+    transition: transform 300ms 60ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1); }
+
+/* Style variants
+   =========================================================================== */
+.wave-effect--fab {
+  transform: translate3d(-50%, -50%, 0) scale(0); }
+  .wave-effect--fab.is-active {
+    transform: translate3d(-50%, -50%, 0) scale(1); }
+  .wave-effect--fab.has-focus {
+    animation-name: wave-wobble-fab; }
 
 /* ===========================================================================
     Tabs
@@ -2444,40 +2499,3 @@ textarea {
    =========================================================================== */
 .js-tab__title > * {
   pointer-events: none; }
-
-/* ===========================================================================
-    Tabs
-   =========================================================================== */
-/**
- *
- * Description goes here
- *
- */
-.wave-effect {
-  pointer-events: none;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  background: currentColor;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0) scale(0.67);
-  transition: opacity 200ms, transform 0ms 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0; }
-  .wave-effect.has-focus {
-    opacity: 0.26;
-    animation: wave-wobble 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-  .wave-effect.is-active {
-    opacity: 0.26;
-    transform: translate3d(-50%, -50%, 0) scale(2);
-    transition: transform 300ms 60ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1); }
-
-/* Style variants
-   =========================================================================== */
-.wave-effect--fab {
-  transform: translate3d(-50%, -50%, 0) scale(0); }
-  .wave-effect--fab.is-active {
-    transform: translate3d(-50%, -50%, 0) scale(1); }
-  .wave-effect--fab.has-focus {
-    animation-name: wave-wobble-fab; }
