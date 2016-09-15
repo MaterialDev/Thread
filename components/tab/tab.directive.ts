@@ -138,7 +138,7 @@ angular.module('thread.tab', []).directive('tdTabs', ($interval: ng.IIntervalSer
         transclude: true,
         bindToController: true,
         controllerAs: '$tabs',
-        controller: Thread.Components.TabsController,
+        controller: ['$scope', '$element', '$timeout', Thread.Components.TabsController],
         link: (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             /*
              Resize the background once shift from fonts loaded has occured

@@ -46,7 +46,7 @@ module Thread.Components {
 angular.module('thread.dialog').directive('tdDialog', () => {
    return {
        scope: true,
-       controller: Thread.Components.DialogController,
+       controller: ['$element', Thread.Components.DialogController],
        controllerAs: '$dialog'
    };
 });
