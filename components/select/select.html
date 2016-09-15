@@ -1,9 +1,10 @@
 <div class="c-select c-input__field" tabindex="0" ng-click="$selectCtrl.openOptionList();">
-    <span>{{$selectCtrl.selected}}</span>
-    <ul class="c-select__menu js-select__menu">
-        <li class="c-select__menu-item">Test 1</li>
-        <li class="c-select__menu-item">Test 2</li>
-        <li class="c-select__menu-item">Test 3</li>
+    <span aria-hidden="true">{{$selectCtrl.selected}}</span>
+    <ul aria-hidden="true" class="c-select__menu js-select__menu">
+        <li class="c-select__menu-item" ng-repeat="option in $selectCtrl.options"
+            ng-click="$selectCtrl.select(option); $event.stopPropagation()">{{option.name}}
+        </li>
     </ul>
-    <i class="mi c-select__arrow">arrow_drop_down</i>
+    <i class="mi c-select__arrow" aria-hidden="true">arrow_drop_down</i>
+    <select class="c-select__real" ng-transclude></select>
 </div>

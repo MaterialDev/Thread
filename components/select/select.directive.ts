@@ -1,7 +1,7 @@
 module Thread.Components {
     export class SelectController {
         options = [];
-        selected = 'test';
+        selected = 'Test 1';
 
         constructor(private $element: ng.IAugmentedJQuery) {
 
@@ -9,15 +9,30 @@ module Thread.Components {
 
         addOption(name, model) {
             this.options.push({
-                view: name,
+                name: name,
                 model: model
             });
         }
 
         openOptionList() {
+            let parentPos = this.$element[0].getBoundingClientRect();
+            parentPos.left += document.body.scrollLeft;
+            parentPos.top += document.body.scrollTop;
+
             let optionList: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__menu');
             optionList.style.width = `${this.$element[0].offsetWidth}px`;
+            optionList.style.left = `${parentPos.left - 16}px`;
+            optionList.style.top = `${parentPos.top - 14}px`;
             angular.element(optionList).addClass('c-select__menu--open');
+        }
+
+        closeOptionList() {
+            let optionList: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__menu');
+            angular.element(optionList).removeClass('c-select__menu--open');
+        }
+
+        select(option) {
+            this.closeOptionList();
         }
     }
 
@@ -43,7 +58,7 @@ angular.module('thread.select', []).directive('tdSelect', () => {
 angular.module('thread.select').directive('tdOption', () => {
     return {
         require: '^tdSelect',
-        templateUrl: 'components/select/option.html',
+        template: '<option ng-transclude></option>',
         controller: Thread.Components.OptionController,
         replace: true,
         transclude: true,

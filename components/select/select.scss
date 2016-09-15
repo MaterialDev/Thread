@@ -2,7 +2,7 @@
     padding-right: 24px;
 
     &__menu {
-        //display: none;
+        display: none;
         width: auto;
         box-shadow: $shadow;
         position: fixed;
@@ -17,7 +17,7 @@
         cursor: pointer;
 
         &:hover {
-            background: #EEEEEE;
+            background: #EEE;
         }
     }
 
@@ -28,5 +28,16 @@
     &__arrow {
         position: absolute;
         right: 0;
+    }
+
+    &__real {
+        position: absolute;
+        clip: rect(1px 1px 1px 1px); /* for Internet Explorer */
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
     }
 }

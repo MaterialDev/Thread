@@ -2134,6 +2134,7 @@ textarea {
 .c-select {
   padding-right: 24px; }
   .c-select__menu {
+    display: none;
     width: auto;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
     position: fixed;
@@ -2145,12 +2146,22 @@ textarea {
     padding: 8px 16px;
     cursor: pointer; }
     .c-select__menu-item:hover {
-      background: #EEEEEE; }
+      background: #EEE; }
   .c-select__menu--open {
     display: initial; }
   .c-select__arrow {
     position: absolute;
     right: 0; }
+  .c-select__real {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    /* for Internet Explorer */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden; }
 
 /* ===========================================================================
     Sidenav
