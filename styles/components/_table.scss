@@ -78,15 +78,13 @@
     }
 }
 
-
-/* Color variations
+/* Color variants
    =========================================================================== */
 .c-table {
     @include table-color($thread-light-gray, $dark-secondary-text, white, #F7F7F7, $thread-gray);
 }
 
-
-/* Style variations
+/* Style variants
    =========================================================================== */
 .c-table--drag-handle {
     th:first-child,
