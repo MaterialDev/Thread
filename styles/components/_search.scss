@@ -1,0 +1,56 @@
+/* ===========================================================================
+    Search
+   =========================================================================== */
+
+/**
+ *
+ * Description goes here
+ *
+ */
+
+.c-search {
+    display: inline-flex;
+    border-radius: 4px;
+    padding: 4px 8px;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+
+    &__icon {
+        flex-shrink: 0;
+        min-width: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    &__field {
+        flex-grow: 1;
+        flex-shrink: 1;
+        min-width: 0;
+        font-weight: normal;
+        line-height: 24px;
+        font-size: 14px;
+    }
+}
+
+/* Configuration Mixins
+   =========================================================================== */
+
+@mixin search-color($background, $text) {
+    background-color: $background;
+    color: $text;
+
+    .c-search__field::placeholder {
+        color: $text;
+    }
+}
+
+/* Style variants
+   =========================================================================== */
+
+/* Color variants
+   =========================================================================== */
+
+.c-search {
+    @include search-color(rgba(0, 0, 0, 0.05), $dark-primary-text);
+}
