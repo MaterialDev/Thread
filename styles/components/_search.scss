@@ -17,12 +17,15 @@
     min-width: 0;
 
     &__icon {
+        flex-shrink: 0;
         min-width: 0;
         font-size: 18px;
         font-weight: bold;
     }
 
     &__field {
+        flex-grow: 1;
+        flex-shrink: 1;
         min-width: 0;
         font-weight: normal;
         line-height: 24px;

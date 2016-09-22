@@ -1487,10 +1487,16 @@ code {
   flex-shrink: 1;
   min-width: 0; }
   .c-search__icon {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     min-width: 0;
     font-size: 18px;
     font-weight: bold; }
   .c-search__field {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
     min-width: 0;
     font-weight: normal;
     line-height: 24px;
