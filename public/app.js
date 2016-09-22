@@ -6,20 +6,20 @@ angular.module('page.badge', []).config(function ($stateProvider) {
         template: '<page-badge></page-badge>'
     });
 });
-angular.module('page.card', []).config(function ($stateProvider) {
-    $stateProvider
-        .state('card', {
-        url: '/card',
-        parent: 'app',
-        template: '<page-card></page-card>'
-    });
-});
 angular.module('page.button', []).config(function ($stateProvider) {
     $stateProvider
         .state('button', {
         url: '/button',
         parent: 'app',
         template: '<page-button></page-button>'
+    });
+});
+angular.module('page.card', []).config(function ($stateProvider) {
+    $stateProvider
+        .state('card', {
+        url: '/card',
+        parent: 'app',
+        template: '<page-card></page-card>'
     });
 });
 angular.module('page.input', []).config(function ($stateProvider) {
@@ -77,11 +77,11 @@ angular.module('app.component', []).component('app', {
 angular.module('page.badge').component('pageBadge', {
     templateUrl: 'pages/components/badge/badge.html'
 });
-angular.module('page.card').component('pageCard', {
-    templateUrl: 'pages/components/card/card.html'
-});
 angular.module('page.button').component('pageButton', {
     templateUrl: 'pages/components/button/button.html'
+});
+angular.module('page.card').component('pageCard', {
+    templateUrl: 'pages/components/card/card.html'
 });
 angular.module('page.input').component('pageInput', {
     templateUrl: 'pages/components/input/input.html'

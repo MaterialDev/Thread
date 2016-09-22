@@ -1131,6 +1131,7 @@ code {
     padding-top: 2px;
     line-height: 16px;
     font-size: 16px;
+    height: 26px;
     padding-bottom: 8px;
     width: 100%; }
   .c-input__icon {
@@ -1331,7 +1332,8 @@ code {
 .c-input--large .c-input__field,
 .c-input--large .c-input__addon {
   font-size: 32px;
-  margin-top: -4px; }
+  line-height: 32px;
+  height: 42px; }
 
 .c-input--large .c-input__label {
   transform: translate3d(0, 16px, 0) scale(2); }
