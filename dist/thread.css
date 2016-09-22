@@ -404,9 +404,8 @@ code {
   align-items: center !important; }
 
 .u-flex-justify-center {
-  -ms-flex-align: center !important;
-  -ms-grid-row-align: center !important;
-  align-items: center !important; }
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
 
 .u-flex-5 {
   -ms-flex-preferred-size: 5 !important;
@@ -1470,6 +1469,52 @@ code {
   font-size: 24px; }
 
 /* ===========================================================================
+    Search
+   =========================================================================== */
+/**
+ *
+ * Description goes here
+ *
+ */
+.c-search {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 4px;
+  padding: 4px 8px;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+  min-width: 0; }
+  .c-search__icon {
+    min-width: 0;
+    font-size: 18px;
+    font-weight: bold; }
+  .c-search__field {
+    min-width: 0;
+    font-weight: normal;
+    line-height: 24px;
+    font-size: 14px; }
+
+/* Configuration Mixins
+   =========================================================================== */
+/* Style variants
+   =========================================================================== */
+/* Color variants
+   =========================================================================== */
+.c-search {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.87); }
+  .c-search .c-search__field::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.87); }
+  .c-search .c-search__field::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.87); }
+  .c-search .c-search__field:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.87); }
+  .c-search .c-search__field::placeholder {
+    color: rgba(0, 0, 0, 0.87); }
+
+/* ===========================================================================
     Switch
    =========================================================================== */
 /**
@@ -1557,7 +1602,7 @@ code {
 
 /* Configuration Mixins
    =========================================================================== */
-/* Color variations
+/* Color variants
    =========================================================================== */
 .c-table thead {
   background: #F2F2F2; }
@@ -1574,7 +1619,7 @@ code {
 .c-table tbody tr:hover {
   background: #EEE; }
 
-/* Style variations
+/* Style variants
    =========================================================================== */
 .c-table--drag-handle th:first-child,
 .c-table--drag-handle td:first-child {
