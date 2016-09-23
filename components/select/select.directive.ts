@@ -4,21 +4,24 @@ module Thread.Components {
         name: String;
         value: any;
         isHighlighted: boolean;
+        isSelected: boolean;
 
         constructor(name: String, value: any) {
             this.name = name;
             this.value = value;
             this.isHighlighted = false;
+            this.isSelected = false;
         }
     }
 
     export class SelectController {
         options = [];
         selected: OptionModel;
+        highlighted: OptionModel;
         model: any;
         isOpen: boolean;
 
-        constructor(private $element: ng.IAugmentedJQuery) {
+        constructor(private $element: ng.IAugmentedJQuery, private $timeout: ng.ITimeoutService) {
 
         }
 
@@ -40,23 +43,59 @@ module Thread.Components {
             angular.element(backdrop).addClass('is-open');
 
             if (this.selected) {
-                this.selected.isHighlighted = true;
+                this.highlighted = this.selected;
+                this.highlighted.isHighlighted = true;
+
+                let selected: HTMLElement = <HTMLElement>this.$element[0].querySelector('.is-selected');
             }
 
             this.isOpen = true;
         }
 
-        closeOptionList() {
-            let optionList: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__menu');
-            let backdrop: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__backdrop');
-            angular.element(optionList).removeClass('is-open');
-            angular.element(backdrop).removeClass('is-open');
+        getElementPositionInView(parent: HTMLElement, element: HTMLElement) {
+            let parentRect = parent.getBoundingClientRect();
+            let elementRect = element.getBoundingClientRect();
 
-            this.isOpen = false;
+            let parentTop = parentRect.top + document.body.scrollTop;
+            let parentBottom = parentRect.bottom + document.body.scrollTop;
+
+            let elementTop = elementRect.top + parent.scrollTop;
+            let elementBottom = elementRect.bottom + parent.scrollTop;
+
+            if (elementRect.top < parentTop) {
+                return elementTop - parentTop;
+            } else if (elementRect.bottom > parentBottom) {
+                return elementBottom - parentBottom;
+            } else {
+                return parent.scrollTop;
+            }
+        }
+
+        closeOptionList() {
+            this.$timeout(() => {
+                let optionList: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__menu');
+                let backdrop: HTMLElement = <HTMLElement>this.$element[0].querySelector('.js-select__backdrop');
+                let selected: HTMLElement = <HTMLElement>this.$element[0].querySelector('.is-selected');
+                angular.element(optionList).removeClass('is-open');
+                angular.element(backdrop).removeClass('is-open');
+
+                this.isOpen = false;
+
+                let newPosition = this.getElementPositionInView(optionList, selected);
+
+                this.$timeout(() => {
+                    optionList.scrollTop = newPosition;
+                }, 200);
+            });
         }
 
         select(option) {
+            if (this.selected) {
+                this.selected.isSelected = false;
+            }
+
             this.selected = option;
+            this.selected.isSelected = true;
             this.model = option.value;
             this.closeOptionList();
         }
@@ -79,7 +118,7 @@ module Thread.Components {
             }
 
             this.unHighlightAll();
-            this.selected = this.options[idx];
+            this.highlighted = this.options[idx];
             this.options[idx].isHighlighted = true;
         }
 
@@ -100,7 +139,7 @@ module Thread.Components {
                 idx -= 1;
             }
 
-            this.selected = this.options[idx];
+            this.highlighted = this.options[idx];
             this.options[idx].isHighlighted = true;
         }
 
@@ -117,7 +156,7 @@ module Thread.Components {
                 option.isHighlighted = false;
             }
 
-            this.selected = null;
+            this.highlighted = null;
         }
     }
 
@@ -135,7 +174,7 @@ angular.module('thread.select', []).directive('tdSelect', ($timeout: ng.ITimeout
                         <div class="c-select__backdrop js-select__backdrop"></div>
                         <span aria-hidden="true" class="c-select__value">{{$selectCtrl.model || ' '}}</span>
                         <ul aria-hidden="true" class="c-select__menu js-select__menu">
-                            <li class="c-select__menu-item js-select__menu-item" ng-repeat="option in $selectCtrl.options" ng-class="{'has-focus': option.isHighlighted}"
+                            <li class="c-select__menu-item js-select__menu-item" ng-repeat="option in $selectCtrl.options" ng-class="{'has-focus': option.isHighlighted, 'is-selected': option.isSelected}"
                                 ng-click="$selectCtrl.select(option); $event.stopPropagation()">{{option.name}}
                             </li>
                         </ul>
@@ -165,11 +204,11 @@ angular.module('thread.select', []).directive('tdSelect', ($timeout: ng.ITimeout
             });
 
             element.on('blur', (e) => {
-                ctrl.closeOptionList();
+                // ctrl.closeOptionList();
                 scope.$apply();
             });
 
-            element.on('keyup', (e) => {
+            element.on('keydown', (e) => {
                 switch (e.which) {
                     case 38:    //arrow up
                     case 37:    //arrow left

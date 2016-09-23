@@ -170,6 +170,10 @@ $error-color: $thread-error
             background: $border-color;
         }
     }
+
+    .c-select__menu-item.is-selected {
+        color: $active-color;
+    }
 }
 
 @mixin input-error($error-color: $thread-error) {

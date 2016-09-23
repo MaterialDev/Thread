@@ -1200,6 +1200,9 @@ code {
 .c-input--primary .c-input__content:after {
   background: rgba(0, 0, 0, 0.12); }
 
+.c-input--primary .c-select__menu-item.is-selected {
+  color: #FFAB00; }
+
 .c-input--secondary .c-input__field {
   color: white; }
 
@@ -1226,6 +1229,9 @@ code {
 
 .c-input--secondary .c-input__content:after {
   background: rgba(255, 255, 255, 0.12); }
+
+.c-input--secondary .c-select__menu-item.is-selected {
+  color: white; }
 
 .c-input--natural-language.c-input--primary .c-input__field {
   color: rgba(0, 0, 0, 0.87); }
@@ -1254,6 +1260,9 @@ code {
 .c-input--natural-language.c-input--primary .c-input__content:after {
   background: #FFAB00; }
 
+.c-input--natural-language.c-input--primary .c-select__menu-item.is-selected {
+  color: #FFAB00; }
+
 .c-input--natural-language.c-input--secondary .c-input__field {
   color: white; }
 
@@ -1280,6 +1289,9 @@ code {
 
 .c-input--natural-language.c-input--secondary .c-input__content:after {
   background: white; }
+
+.c-input--natural-language.c-input--secondary .c-select__menu-item.is-selected {
+  color: white; }
 
 .c-input.has-error .c-input__label {
   color: #DD3226; }
@@ -1319,6 +1331,9 @@ code {
 
 .c-input.is-disabled .c-input__content:after {
   background: rgba(0, 0, 0, 0.12); }
+
+.c-input.is-disabled .c-select__menu-item.is-selected {
+  color: rgba(0, 0, 0, 0.54); }
 
 .c-input__field[disabled] {
   color: rgba(0, 0, 0, 0.54); }

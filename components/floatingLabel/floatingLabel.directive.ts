@@ -15,12 +15,7 @@ function floatingLabelLink($timeout) {
             let inputField : ng.IAugmentedJQuery = angular.element(element[0].querySelector('.c-input__field'));
             let ngModelCtrl : ng.INgModelController = inputField.controller('ngModel');
 
-            if (inputField.prop('tagName') !== 'INPUT') {
-                element.addClass('has-value');
-            } else {
-                element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
-            }
-
+            element.toggleClass('has-value', !!inputField.val() || !!inputField.attr('placeholder'));
 
             if (!inputField.attr('placeholder')) {
                 inputField.on('input', () => {
