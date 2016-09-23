@@ -136,7 +136,7 @@ angular.module('thread.select', []).directive('tdSelect', ($timeout: ng.ITimeout
                         <span aria-hidden="true" class="c-select__value">{{$selectCtrl.model || ' '}}</span>
                         <ul aria-hidden="true" class="c-select__menu js-select__menu">
                             <li class="c-select__menu-item js-select__menu-item" ng-repeat="option in $selectCtrl.options" ng-class="{'has-focus': option.isHighlighted}"
-                                ng-click="$selectCtrl.select(option); $event.stopPropagation()">{{option.name}} {{option.isHighlighted}}
+                                ng-click="$selectCtrl.select(option); $event.stopPropagation()">{{option.name}}
                             </li>
                         </ul>
                         <i class="mi c-select__arrow" aria-hidden="true">arrow_drop_down</i>
@@ -162,6 +162,11 @@ angular.module('thread.select', []).directive('tdSelect', ($timeout: ng.ITimeout
             backdrop.on('click', (e) => {
                 e.stopPropagation();
                 ctrl.closeOptionList();
+            });
+
+            element.on('blur', (e) => {
+                ctrl.closeOptionList();
+                scope.$apply();
             });
 
             element.on('keyup', (e) => {
