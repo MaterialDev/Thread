@@ -6,7 +6,7 @@ module Thread.Components {
     }
 
     export class DialogController {
-        deferCallback : ng.IDeferred;
+        deferCallback: ng.IDeferred<any>;
         cancelled: boolean;
 
         constructor(private $element : ng.IAugmentedJQuery) {}

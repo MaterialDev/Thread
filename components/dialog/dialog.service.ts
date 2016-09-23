@@ -6,8 +6,8 @@ module Thread.Services {
             private $compile: ng.ICompileService
         ) {}
 
-        open(options) : ng.IPromise {
-            let deferred : ng.IDeferred;
+        open(options): ng.IPromise<any> {
+            let deferred: ng.IDeferred<any>;
             let dialogElement : ng.IAugmentedJQuery;
             let dialogScope : Thread.Components.DialogScope;
 
