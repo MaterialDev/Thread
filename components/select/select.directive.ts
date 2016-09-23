@@ -204,7 +204,7 @@ angular.module('thread.select', []).directive('tdSelect', ($timeout: ng.ITimeout
             });
 
             element.on('blur', (e) => {
-                // ctrl.closeOptionList();
+                ctrl.closeOptionList();
                 scope.$apply();
             });
 
@@ -227,8 +227,8 @@ angular.module('thread.select', []).directive('tdSelect', ($timeout: ng.ITimeout
                         scope.$apply();
                         break;
                     case 13:    //enter
-                        if (ctrl.isOpen && ctrl.selected) {
-                            ctrl.select(ctrl.selected);
+                        if (ctrl.isOpen && ctrl.highlighted) {
+                            ctrl.select(ctrl.highlighted);
                             scope.$apply();
                         }
                         break;
