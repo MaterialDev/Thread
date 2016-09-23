@@ -2206,7 +2206,7 @@ textarea {
   .c-select__menu-item {
     padding: 8px 16px;
     cursor: pointer; }
-    .c-select__menu-item:hover {
+    .c-select__menu-item:hover, .c-select__menu-item.has-focus {
       background: #EEE; }
   .c-select__arrow {
     position: absolute;
