@@ -11,7 +11,7 @@ gulp build-site;
 ( cd out
 git checkout $TARGET_BRANCH
 git config user.name "Travis-CI"
-git config user.email "travis@material.com"
+git config user.email "Zacharias3690@gmail.com"
 cp -r ../dist ./
 cp -r ../public ./
 cp -r ../index.html ./

@@ -126,11 +126,11 @@
 /* Configuration mixins
    =========================================================================== */
 @mixin input-color(
-$active-color,
-$text-color: $dark-primary-text,
-$border-color: $dark-divider,
-$label-color: $dark-secondary-text,
-$error-color: $thread-error
+    $active-color,
+    $text-color: $dark-primary-text,
+    $border-color: $dark-divider,
+    $label-color: $dark-secondary-text,
+    $error-color: $thread-error
 ) {
     .c-input__field {
         color: $text-color;
