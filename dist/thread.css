@@ -400,7 +400,6 @@ code {
 
 .u-flex-align-center {
   -ms-flex-align: center !important;
-  -ms-grid-row-align: center !important;
   align-items: center !important; }
 
 .u-flex-justify-center {
@@ -1011,6 +1010,7 @@ code {
   @media screen and (min-width: 600px) {
     .c-card__footer-left, .c-card__footer-right {
       -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
       align-self: auto; } }
 
 /* Style variants
