@@ -6,7 +6,7 @@ install:
 env:
   global:
   - GH_REF: github.com/MaterialDev/Thread
-  - secure: fr3r4wvURVlwtewBJ8+ZgTJFEJR0rdFQbnZcdFjQg12bQGVSfqVDxnpNjmOhRiRtc9TDpc/NprBCgzP1ryaMN/p7LFJT/MEHg++VkM/vgCeph1L9BPbDGqQdOKDfqLellptAu1agzDFL4KvBbiPbubx1bnNuDf9LEaXVSVMJwckW6OIywRoUg1lzWGHQCyvEsZ5LoJAsBjFaIxarOJSuzRaQwMzcDROkXqnaNlinqSoihmz/mQG3G7Hg9+zTdL9+G6sYFRCKjCKtenr2Jk0AdDE819YJUt0nn8Psrf2q4RUPjFgcVxwXo0oJlOoHxKjqSMeLjph5ucz5nrVYPlPEsxsgtQRYY7Zfkbq55swp3+0UNmz3edyCcD2FItaDR50KryMycIyhF3h46xBSlIa/zRAZHghTYyVJdgtxEd1GS3SS+fegFKbB4Hgl04Y3znmJXVWpAqvJRax0BI3VKfoU89HvXgkY26GnLkqr86rJaE/lSos+Z+UP4CtvQe26/iChyes+3nyT+cpCxOIq+d0t0KJKhU2y7r2sSNMmYDHUedb+d2tya8ryYIR9REEEs340OWKE+pLOX5gXEDGbAbRYXsH9hYjMsJG/3WTjU1aXZ3Tf6U/TgNGqBWs5kwYkCmllIAqBCA4TE9lDU1iLqJrWSrdlixWJWEAt0wwgqJrTCyo=
+  - secure: GdbVmodiQe8+VTHYs1iwYNe7pVO8ATUGAk9Mbj4caCJS8n4zPRCMa3Ua3GIKZHXqlRNUyvHZXu5iFZC+lwOqCm2muFDZD5WjlDR3sHkwTZR9EvodqgwtpfL0ZyvIRcagd0vyGYMUiYifRXp7V75/A+e64C7V4+eMmjtnGOIWcGdW8grbEgDgdur5z70SeAHTlNmNnTZYleqA2t4MlC7nc7E3J/54MctE3ndYRzWGuH5/KmxC3ODjruwZGqq+xP0yLZL9SerG31tu4rqMZ8ThXzxWjtVUlyfxGohvvfzUaWvffjsv1wACKRPFqjR7iD/ET6j83kfe1CEEuxKVCUYgSx4JpAafWZEWXUNeLJ6YK83fA3pFIb8uUo5I8DhVXWkSMLnV+AiOWI11udrem5FfRHfnQIOqDWam8Tpgs2Ij50cfU53lStdL4pmLJpXBpUdKPXyLx1nh4O8bJGgN0PFfWUtkkdBxZC/L+oiM8AbMCCxhb7VIU9mbGjOYW1Mcd9ICv87tH0IRhNZJdAv/QkGF+Xqg9KjIclur85YCwXebkuN8SG3QOPr2BJO3k2voeRoCSeVKdQnIeTwSBGjNkNDSBJsbSpj+son85VwgymQVwRXIe61QvrDlWTuUPnLk35Lsp+/bg+CPrJpzkhw+b/OpR6Oni13H1m9CGtyXR/xzfDU=
 before_script:
 - npm install -g gulp
 script:
@@ -14,8 +14,8 @@ script:
 after_success:
 - bash deploy.sh
 cache:
-  - node_modules
-  - bower_components
+- node_modules
+- bower_components
 branches:
   only:
-    - master
+  - master
