@@ -1528,8 +1528,6 @@ code {
   color: rgba(0, 0, 0, 0.87); }
   .c-search .c-search__field::-webkit-input-placeholder {
     color: rgba(0, 0, 0, 0.87); }
-  .c-search .c-search__field::-moz-placeholder {
-    color: rgba(0, 0, 0, 0.87); }
   .c-search .c-search__field:-ms-input-placeholder {
     color: rgba(0, 0, 0, 0.87); }
   .c-search .c-search__field::placeholder {
